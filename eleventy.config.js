@@ -30,24 +30,7 @@ module.exports = function(eleventyConfig) {
 		preAttributes: { tabindex: 0 }
 	});
 	eleventyConfig.addPlugin(pluginNavigation);
-	eleventyConfig.addPlugin(EleventyHtmlBasePlugin, {
-	  // The base URL: defaults to Path Prefix
-	  baseHref: eleventyConfig.pathPrefix,
-	
-	  // But you could use a full URL here too:
-	  // baseHref: "http://example.com/"
-	
-	  // Comma separated list of output file extensions to apply
-	  // our transform to. Use `false` to opt-out of the transform.
-	  extensions: "html",
-	
-	  // Rename the filters
-	  filters: {
-	    // base: "htmlBaseUrl",
-	    // html: "transformWithHtmlBase",
-	    pathPrefix: "/blog/",
-	  },
-	});
+	eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
 
 	// Filters
 	eleventyConfig.addFilter("readableDate", (dateObj, format, zone) => {
@@ -146,6 +129,6 @@ module.exports = function(eleventyConfig) {
 		// When paired with the HTML <base> plugin https://www.11ty.dev/docs/plugins/html-base/
 		// it will transform any absolute URLs in your HTML to include this
 		// folder name and does **not** affect where things go in the output folder.
-		pathPrefix: "/",
+		pathPrefix: "/blog/",
 	};
 };
