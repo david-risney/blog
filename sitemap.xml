@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 	
 	<url>
+		<loc>https://david-risney.github.io/blog/blog/404-good-news-bad-news/</loc>
+		<lastmod>2022-09-12</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://david-risney.github.io/blog/blog/restricted-capabilities-and-msix-apis/</loc>
+		<lastmod>2022-09-16</lastmod>
+	</url>
+	
+	<url>
 		<loc>https://david-risney.github.io/blog/blog/eleventy-github-pages/</loc>
 		<lastmod>2023-01-27</lastmod>
 	</url>
@@ -27,12 +37,47 @@
 	</url>
 	
 	<url>
+		<loc>https://david-risney.github.io/blog/tags/404/</loc>
+		<lastmod>2023-01-28</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://david-risney.github.io/blog/tags/http/</loc>
+		<lastmod>2023-01-28</lastmod>
+	</url>
+	
+	<url>
 		<loc>https://david-risney.github.io/blog/tags/eleventy/</loc>
 		<lastmod>2023-01-28</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://david-risney.github.io/blog/tags/github/</loc>
+		<lastmod>2023-01-28</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://david-risney.github.io/blog/tags/uwp/</loc>
+		<lastmod>2023-01-28</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://david-risney.github.io/blog/tags/msix/</loc>
+		<lastmod>2023-01-28</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://david-risney.github.io/blog/tags/sysinternals/</loc>
+		<lastmod>2023-01-28</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://david-risney.github.io/blog/tags/windows/</loc>
+		<lastmod>2023-01-28</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://david-risney.github.io/blog/tags/restricted-capabilities/</loc>
 		<lastmod>2023-01-28</lastmod>
 	</url>
 </urlset>

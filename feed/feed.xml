@@ -28,4 +28,50 @@
 &lt;p&gt;With this I&#39;ve got Eleventy mostly setup and running on GitHub with GitHub Pages to serve the blog and GitHub Actions to rebuild the site whenever I push. Next up, how do I find a better site layout? And after that, the much harder problem of can I move my existing blog content over to this? Maybe in the interim just merge this blog content into deletethis.net.&lt;/p&gt;
 </content>
 	</entry>
+	
+	<entry>
+		<title>Restricted Capabilities and MSIX APIs</title>
+		<link href="https://david-risney.github.io/blog/blog/restricted-capabilities-and-msix-apis/"/>
+		<updated>2022-09-16T00:00:00Z</updated>
+		<id>https://david-risney.github.io/blog/blog/restricted-capabilities-and-msix-apis/</id>
+		<content type="html">&lt;p&gt;SysInternals is in the Windows Store? This surprised me since last I knew you couldn&#39;t have admin-y utilities as appx packages in the Windows Store.&lt;/p&gt;
+&lt;p&gt;Taking a look at their appxmanifest, you can see how they&#39;ve used restricted capabilities to get admin-like access to what they need. You can view the appxmanifest of any installed package using the &lt;code&gt;Get-AppxPackage&lt;/code&gt; PowerShell command and the &lt;code&gt;Get-AppxPackageManifest&lt;/code&gt; command:&lt;/p&gt;
+&lt;pre class=&quot;language-powershell&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-powershell&quot;&gt;&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Get-AppxPackage&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;SysInternals* &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Get-AppxPackageManifest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Package&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Capabilities&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;OuterXml&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;(After formatting the results for you dear reader)&lt;/p&gt;
+&lt;pre class=&quot;language-xml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-xml&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token namespace&quot;&gt;rescap:&lt;/span&gt;Capability&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;runFullTrust&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;/&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token namespace&quot;&gt;rescap:&lt;/span&gt;Capability&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;allowElevation&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;/&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token namespace&quot;&gt;rescap:&lt;/span&gt;Capability&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;unvirtualizedResources&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;/&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;These three &lt;a href=&quot;https://docs.microsoft.com/en-us/windows/uwp/packaging/app-capability-declarations#restricted-capabilities&quot;&gt;capabilities are all documented&lt;/a&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;fullTrust&lt;/code&gt; is to run desktop apps from an msix package.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;allowElevation&lt;/code&gt; is to run your desktop app elevated.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;unvirtualizedResources&lt;/code&gt; is to skip the normal registry and disk virtualization that is usually done to help sandbox packaged apps and desktop apps from messing with one another.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;But do mere mortals such as you or I get to use restricted capabilities and get your own admin utility app into the Store? The docs say &lt;a href=&quot;https://docs.microsoft.com/en-us/windows/uwp/packaging/app-capability-declarations#restricted-capability-approval-process&quot;&gt;there is an approval process&lt;/a&gt; to use restricted capabilities in the Store so... maybe with extra scrutiny?&lt;/p&gt;
+&lt;p&gt;However, the &lt;a href=&quot;https://docs.microsoft.com/en-us/windows/uwp/packaging/app-capability-declarations&quot;&gt;docs for &lt;code&gt;allowElevation&lt;/code&gt;&lt;/a&gt; are less encouraging:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We don&#39;t recommend that you declare this capability in applications that you submit to the Microsoft Store. In most cases, the use of this capability won&#39;t be approved.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;OK well, I appreciate the bluntness anyway. And elsewhere on that page it tries to steer me away&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note that you can sideload apps that declare restricted capabilities without needing to receive any approval. Approval is only required when submitting these apps to the Store.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So is it still useful to package my utility desktop app as MSIX if I&#39;m not going to put it in the Store? Yes!  There&#39;s a whole set of APIs that didn&#39;t exist last time I looked in this area. You can &lt;a href=&quot;https://learn.microsoft.com/en-us/windows/msix/non-store-developer-updates&quot;&gt;check for and install updates to your MSIX app&lt;/a&gt;. And similar &lt;a href=&quot;https://learn.microsoft.com/en-us/windows/msix/app-installer/installing-windows10-apps-web&quot;&gt;docs on installing your non-Store MSIX&lt;/a&gt; in the first place.&lt;/p&gt;
+&lt;p&gt;(Incidentally that doc mentions how &lt;code&gt;ms-appinstaller:&lt;/code&gt; has been disabled. I&#39;d love to read more about what happened there but based on just the name of this URI scheme and my previous life working on URIs I&#39;ll make an educated guess.)&lt;/p&gt;
+&lt;p&gt;I started looking into all this to see if I should move WebView2Utilities over to MSIX and seems like I really should. Although until I get a &lt;a href=&quot;https://learn.microsoft.com/en-us/windows/msix/app-installer/installing-windows10-apps-web#signing-the-app-package&quot;&gt;proper code signing certificate&lt;/a&gt; seems like this isn&#39;t going to happen.&lt;/p&gt;
+&lt;p&gt;(Unless I just tell folks to do something dangerous like run a .ps1 file off the github repo that gets the msix, extracts and trusts its cert, then installs the msix...)&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>404 Good News, Bad News</title>
+		<link href="https://david-risney.github.io/blog/blog/404-good-news-bad-news/"/>
+		<updated>2022-09-12T00:00:00Z</updated>
+		<id>https://david-risney.github.io/blog/blog/404-good-news-bad-news/</id>
+		<content type="html">&lt;p&gt;So much has to go right to get a 404. Machines all over the world talking to each other over a surprisingly large number of protocols. It&#39;s almost a disservice to call it an error.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;404 Good News Bad News&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;When I make a browser, the default 404 page is going to be incredibly detailed:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Sorry we couldn&#39;t locate your resource, but a number of things went well to get you this far: DNS, TCP/IP connection, the Bombe helped crack Nazi encryption and win WW2, metallurgy invented before at least 5500BC, ...&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+	</entry>
 </feed>
