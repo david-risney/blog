@@ -2,23 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/blog/firstpost/</loc>
-		<lastmod>2018-05-01</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://david-risney.github.io/blog/blog/secondpost/</loc>
-		<lastmod>2018-07-04</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://david-risney.github.io/blog/blog/thirdpost/</loc>
-		<lastmod>2018-08-24</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://david-risney.github.io/blog/blog/fourthpost/</loc>
-		<lastmod>2018-09-30</lastmod>
+		<loc>https://david-risney.github.io/blog/blog/eleventy-github-pages/</loc>
+		<lastmod>2023-01-27</lastmod>
 	</url>
 	
 	<url>
@@ -42,22 +27,12 @@
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/tags/another-tag/</loc>
+		<loc>https://david-risney.github.io/blog/tags/eleventy/</loc>
 		<lastmod>2023-01-28</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/tags/number-2/</loc>
-		<lastmod>2023-01-28</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://david-risney.github.io/blog/tags/second-tag/</loc>
-		<lastmod>2023-01-28</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://david-risney.github.io/blog/tags/posts-with-two-tags/</loc>
+		<loc>https://david-risney.github.io/blog/tags/github/</loc>
 		<lastmod>2023-01-28</lastmod>
 	</url>
 </urlset>
