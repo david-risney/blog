@@ -13,9 +13,9 @@
 	
 	<entry>
 		<title>Eleventy on GitHub Pages</title>
-		<link href="https://david-risney.github.io/blog/blog/eleventy-github-pages/"/>
+		<link href="https://david-risney.github.io/blog/post/eleventy-github-pages/"/>
 		<updated>2023-01-27T00:00:00Z</updated>
-		<id>https://david-risney.github.io/blog/blog/eleventy-github-pages/</id>
+		<id>https://david-risney.github.io/blog/post/eleventy-github-pages/</id>
 		<content type="html">&lt;p&gt;I wanted to replace my existing blog solution with a simple markdown setup. I decided to give Eleventy a try and host it on GitHub Pages. Here are the steps I&#39;ve taken so far:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Create a new GitHub project using &lt;a href=&quot;https://github.com/11ty/eleventy-base-blog&quot;&gt;Elventy Base Blog&lt;/a&gt; as a project template.&lt;/li&gt;
@@ -31,9 +31,9 @@
 	
 	<entry>
 		<title>Restricted Capabilities and MSIX APIs</title>
-		<link href="https://david-risney.github.io/blog/blog/restricted-capabilities-and-msix-apis/"/>
+		<link href="https://david-risney.github.io/blog/post/restricted-capabilities-and-msix-apis/"/>
 		<updated>2022-09-16T00:00:00Z</updated>
-		<id>https://david-risney.github.io/blog/blog/restricted-capabilities-and-msix-apis/</id>
+		<id>https://david-risney.github.io/blog/post/restricted-capabilities-and-msix-apis/</id>
 		<content type="html">&lt;p&gt;SysInternals is in the Windows Store? This surprised me since last I knew you couldn&#39;t have admin-y utilities as appx packages in the Windows Store.&lt;/p&gt;
 &lt;p&gt;Taking a look at their appxmanifest, you can see how they&#39;ve used restricted capabilities to get admin-like access to what they need. You can view the appxmanifest of any installed package using the &lt;code&gt;Get-AppxPackage&lt;/code&gt; PowerShell command and the &lt;code&gt;Get-AppxPackageManifest&lt;/code&gt; command:&lt;/p&gt;
 &lt;pre class=&quot;language-powershell&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-powershell&quot;&gt;&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Get-AppxPackage&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;SysInternals* &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Get-AppxPackageManifest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Package&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Capabilities&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;OuterXml&lt;/code&gt;&lt;/pre&gt;
@@ -63,9 +63,9 @@
 	
 	<entry>
 		<title>404 Good News, Bad News</title>
-		<link href="https://david-risney.github.io/blog/blog/404-good-news-bad-news/"/>
+		<link href="https://david-risney.github.io/blog/post/404-good-news-bad-news/"/>
 		<updated>2022-09-12T00:00:00Z</updated>
-		<id>https://david-risney.github.io/blog/blog/404-good-news-bad-news/</id>
+		<id>https://david-risney.github.io/blog/post/404-good-news-bad-news/</id>
 		<content type="html">&lt;p&gt;So much has to go right to get a 404. Machines all over the world talking to each other over a surprisingly large number of protocols. It&#39;s almost a disservice to call it an error.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;404 Good News Bad News&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;When I make a browser, the default 404 page is going to be incredibly detailed:&lt;/p&gt;

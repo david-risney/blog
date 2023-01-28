@@ -2,17 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/blog/404-good-news-bad-news/</loc>
+		<loc>https://david-risney.github.io/blog/post/404-good-news-bad-news/</loc>
 		<lastmod>2022-09-12</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/blog/restricted-capabilities-and-msix-apis/</loc>
+		<loc>https://david-risney.github.io/blog/post/restricted-capabilities-and-msix-apis/</loc>
 		<lastmod>2022-09-16</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/blog/eleventy-github-pages/</loc>
+		<loc>https://david-risney.github.io/blog/post/eleventy-github-pages/</loc>
 		<lastmod>2023-01-27</lastmod>
 	</url>
 	
@@ -22,12 +22,12 @@
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/blog/</loc>
+		<loc>https://david-risney.github.io/blog/</loc>
 		<lastmod>2023-01-28</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/</loc>
+		<loc>https://david-risney.github.io/blog/post/</loc>
 		<lastmod>2023-01-28</lastmod>
 	</url>
 	
