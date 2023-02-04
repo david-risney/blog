@@ -77,28 +77,29 @@ And the log:
 
 ```log
 array ownKeys
-	 (3) [300, 200, 100] 
+    (3) [300, 200, 100] 
   -->  (4) ['0', '1', '2', 'length']
 array getPrototypeOf
-	 (3) [300, 200, 100] 
+    (3) [300, 200, 100] 
   -->  [constructor: ƒ, at: ƒ, concat: ƒ, copyWithin: ƒ, fill: ƒ, …]
 array getOwnPropertyDescriptor
-	 (3) [300, 200, 100] 0 
+    (3) [300, 200, 100] 0 
   -->  {value: 300, writable: true, enumerable: true, configurable: true}
 array getOwnPropertyDescriptor
-	 (3) [300, 200, 100] 1 
+    (3) [300, 200, 100] 1 
   -->  {value: 200, writable: true, enumerable: true, configurable: true}
 array getOwnPropertyDescriptor
-	 (3) [300, 200, 100] 2 
+    (3) [300, 200, 100] 2 
   -->  {value: 100, writable: true, enumerable: true, configurable: true}
 array getOwnPropertyDescriptor
-	 (3) [300, 200, 100] length 
+    (3) [300, 200, 100] length 
   -->  {value: 3, writable: true, enumerable: false, configurable: false}
 ```
 
 The `for` loop asks your object for the names of its properties and then the value of each.
 
 ### Watch `instanceof`
+
 Or `instanceof` with your proxy on the left hand side
 
 ```js
@@ -109,7 +110,7 @@ And watch JavaScript get the prototype of array
 
 ```log
 array getPrototypeOf
-	 (3) [300, 200, 100] 
+    (3) [300, 200, 100] 
   -->  [constructor: ƒ, at: ƒ, concat: ƒ, copyWithin: ƒ, fill: ƒ, …]
 ```
 
@@ -123,7 +124,7 @@ And watch JavaScript ask your array for its `Symbol.hasInstance` property.
 
 ```log
 array get
-	 (3) [300, 200, 100] Symbol(Symbol.hasInstance) Proxy(Array) {0: 300, 1: 200, 2: 100} 
+    (3) [300, 200, 100] Symbol(Symbol.hasInstance) Proxy(Array) {0: 300, 1: 200, 2: 100} 
   -->  undefined
 ```
 
