@@ -2,97 +2,107 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/post/watch-javascript-via-proxy/</loc>
+		<loc>https://david-risney.github.io/post/javascript-arrays-are-neat/</loc>
+		<lastmod>2021-11-24</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://david-risney.github.io/post/watch-javascript-via-proxy/</loc>
 		<lastmod>2022-02-24</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/post/404-good-news-bad-news/</loc>
+		<loc>https://david-risney.github.io/post/404-good-news-bad-news/</loc>
 		<lastmod>2022-09-12</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/post/restricted-capabilities-and-msix-apis/</loc>
+		<loc>https://david-risney.github.io/post/restricted-capabilities-and-msix-apis/</loc>
 		<lastmod>2022-09-16</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/post/eleventy-github-pages/</loc>
+		<loc>https://david-risney.github.io/post/eleventy-github-pages/</loc>
 		<lastmod>2023-01-27</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/about/</loc>
-		<lastmod>2023-02-05</lastmod>
+		<loc>https://david-risney.github.io/about/</loc>
+		<lastmod>2024-05-28</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/</loc>
-		<lastmod>2023-02-05</lastmod>
+		<loc>https://david-risney.github.io/</loc>
+		<lastmod>2024-05-28</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/post/</loc>
-		<lastmod>2023-02-05</lastmod>
+		<loc>https://david-risney.github.io/post/</loc>
+		<lastmod>2024-05-28</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/tags/</loc>
-		<lastmod>2023-02-05</lastmod>
+		<loc>https://david-risney.github.io/tags/</loc>
+		<lastmod>2024-05-28</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/tags/404/</loc>
-		<lastmod>2023-02-05</lastmod>
+		<loc>https://david-risney.github.io/tags/404/</loc>
+		<lastmod>2024-05-28</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/tags/http/</loc>
-		<lastmod>2023-02-05</lastmod>
+		<loc>https://david-risney.github.io/tags/http/</loc>
+		<lastmod>2024-05-28</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/tags/eleventy/</loc>
-		<lastmod>2023-02-05</lastmod>
+		<loc>https://david-risney.github.io/tags/eleventy/</loc>
+		<lastmod>2024-05-28</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/tags/github/</loc>
-		<lastmod>2023-02-05</lastmod>
+		<loc>https://david-risney.github.io/tags/github/</loc>
+		<lastmod>2024-05-28</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/tags/uwp/</loc>
-		<lastmod>2023-02-05</lastmod>
+		<loc>https://david-risney.github.io/tags/javascript/</loc>
+		<lastmod>2024-05-28</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/tags/msix/</loc>
-		<lastmod>2023-02-05</lastmod>
+		<loc>https://david-risney.github.io/tags/array/</loc>
+		<lastmod>2024-05-28</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/tags/sysinternals/</loc>
-		<lastmod>2023-02-05</lastmod>
+		<loc>https://david-risney.github.io/tags/proxy/</loc>
+		<lastmod>2024-05-28</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/tags/windows/</loc>
-		<lastmod>2023-02-05</lastmod>
+		<loc>https://david-risney.github.io/tags/uwp/</loc>
+		<lastmod>2024-05-28</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/tags/restricted-capabilities/</loc>
-		<lastmod>2023-02-05</lastmod>
+		<loc>https://david-risney.github.io/tags/msix/</loc>
+		<lastmod>2024-05-28</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/tags/javascript/</loc>
-		<lastmod>2023-02-05</lastmod>
+		<loc>https://david-risney.github.io/tags/sysinternals/</loc>
+		<lastmod>2024-05-28</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://david-risney.github.io/blog/tags/proxy/</loc>
-		<lastmod>2023-02-05</lastmod>
+		<loc>https://david-risney.github.io/tags/windows/</loc>
+		<lastmod>2024-05-28</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://david-risney.github.io/tags/restricted-capabilities/</loc>
+		<lastmod>2024-05-28</lastmod>
 	</url>
 </urlset>
