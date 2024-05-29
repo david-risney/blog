@@ -1,11 +1,11 @@
 module.exports = {
-	"title": "david-risney/blog",
-	"url": "https://david-risney.github.io/blog/",
+	"title": "dave.deletethis.net",
+	"url": "https://dave.deletethis.net/",
 	"language": "en",
-	"description": "David Risney's blog on web or coding things",
+	"description": "David Risney's blog on web, coding, and things",
 	"author": {
 		"name": "Dave Risney",
 		"email": "david.risney+blog@gmail.com",
-		"url": "https://deletethis.net/dave/"
+		"url": "https://dave.deletethis.net/"
 	}
 }

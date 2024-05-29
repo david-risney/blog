@@ -6,14 +6,14 @@ eleventyNavigation:
 ---
 {% set postsCount = collections.posts | length %}
 {% set latestPostsCount = postsCount | min(3) %}
-<h1>Latest {{ latestPostsCount }} Post{% if latestPostsCount != 1 %}s{% endif %}</h1>
+<h1>Recent Post{% if latestPostsCount != 1 %}s{% endif %}</h1>
 
 {% set postslist = collections.posts | head(-3) %}
 {% set postslistCounter = postsCount %}
 {% include "postslist.njk" %}
 
 {% if postsCount > 3 %}
-<p>More posts can be found in <a href="/blog/">the archive</a>.</p>
+<p>More posts can be found in <a href="/post/">the archive</a>.</p>
 {% endif %}
 
 {# List every content page in the project #}
