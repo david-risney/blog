@@ -1,15 +1,13 @@
 ---
 layout: layouts/base.njk
 eleventyNavigation:
-  key: About Me
+  key: About
   order: 3
 ---
-# About Me
+# About
 
-I'm Dave Risney. I blog here about web and coding and stuff. I'm a software developer working on WebView2 on the Microsoft Edge team living in Redmond, WA. Pronouns: he/him.
+I'm Dave Risney. I blog here about web, coding, and whatever I like. I'm a software developer working on WebView2 on the Microsoft Edge team living in Redmond, WA. Pronouns: he/him.
 
-<ul>
-<li><a href="https://deletethis.net/dave/">Blog</a></li>
-<li><a href="https://github.com/david-risney/">github</a></li>
-<li><a href="https://infosec.exchange/@davidrisney">Mastodon</a></li>
-</ul>
+* [Blog](https://dave.deletethis.net/)
+* [github](https://github.com/david-risney/)
+* [Mastodon](https://infosec.exchange/@davidrisney)

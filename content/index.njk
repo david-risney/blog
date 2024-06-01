@@ -1,26 +1,25 @@
 ---
 layout: layouts/home.njk
-eleventyNavigation:
-  key: Home
-  order: 1
 ---
+<div class="grid-2-columns">
+<div id="blog-posts" class="grid-column-1">
 {% set postsCount = collections.posts | length %}
-{% set latestPostsCount = postsCount | min(3) %}
-<h1>Recent Post{% if latestPostsCount != 1 %}s{% endif %}</h1>
+{% set latestPostsCount = postsCount | min(10) %}
+<h1><a href="/post/">Blog</a></h1>
 
-{% set postslist = collections.posts | head(-3) %}
+{% set postslist = collections.posts | head(-10) %}
 {% set postslistCounter = postsCount %}
-{% include "postslist.njk" %}
+{% include "postsstart.njk" %}
 
-{% if postsCount > 3 %}
-<p>More posts can be found in <a href="/post/">the archive</a>.</p>
+{% if postsCount > 10 %}
+<p><a href="/post/">More posts</a>.</p>
 {% endif %}
+</div>
 
-{# List every content page in the project #}
-{#
-<ul>
-	{%- for entry in collections.all %}
-	<li><a href="{{ entry.url }}"><code>{{ entry.url }}</code></a></li>
-	{%- endfor %}
-</ul>
-#}
+<div id="mastodon-posts" class="grid-column-2">
+<h1><a href="https://infosec.exchange/@davidrisney">Mastodon</a></h1>
+<a class="mastodon-feed" href="https://infosec.exchange/@davidrisney" data-toot-limit="10"></a>
+<script type="module" src="https://esm.sh/emfed@1"></script>
+<link rel="stylesheet" type="text/css" href="https://esm.sh/emfed@1/toots.css">
+</div>
+</div>
