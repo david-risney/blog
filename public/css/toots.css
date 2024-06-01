@@ -51,7 +51,6 @@
 
 .toot .boost:before {
   content: "♺";
-  font-size: 140%;
 }
 
 .toot .boost .username {
