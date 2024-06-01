@@ -1,3 +1,38 @@
+@view-transition { navigation: auto; }
+
+::view-transition-group(*) { animation-duration: 0.2s; }
+
+@keyframes slide-in-from-left { from { translate: -150vw 0; } }
+@keyframes slide-in-from-right { from { translate: 150vw 0; } }
+@keyframes slide-out-to-left { to { translate: -150vw 0; } }
+@keyframes slide-out-to-right { to { translate: 150vw 0; } }
+@keyframes scale-up { from { scale: 0; } }
+@keyframes scale-down { to { scale: 0; } }
+@keyframes fade-in { from { opacity: 0; } }
+@keyframes fade-out { to { opacity: 0; } }
+
+html:active-view-transition-type(forwards, backwards) {
+	:root { view-transition-name: none; }
+	header { view-transition-name: header; }
+	main { view-transition-name: main; }
+	footer { view-transition-name: footer; }
+}
+
+html:active-view-transition-type(forwards) {
+	&::view-transition-old(main) { animation-name: fade-out; }
+	&::view-transition-new(main) { animation-name: fade-in; }
+}
+
+html:active-view-transition-type(backwards) {
+	&::view-transition-old(main) { animation-name: fade-out; }
+	&::view-transition-new(main) { animation-name: fade-in; }
+}
+
+html:active-view-transition-type(reload) {
+	&::view-transition-old(root) { animation-name: fade-out; }
+	&::view-transition-new(root) { animation-name: fade-in; }
+}
+
 /* Defaults */
 :root {
 	--font-family: -apple-system, system-ui, sans-serif;

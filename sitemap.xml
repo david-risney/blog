@@ -57,6 +57,11 @@
 	</url>
 	
 	<url>
+		<loc>https://dave.deletethis.net/tags/http/</loc>
+		<lastmod>2024-06-01</lastmod>
+	</url>
+	
+	<url>
 		<loc>https://dave.deletethis.net/tags/eleventy/</loc>
 		<lastmod>2024-06-01</lastmod>
 	</url>
@@ -68,11 +73,6 @@
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/dns/</loc>
-		<lastmod>2024-06-01</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://dave.deletethis.net/tags/http/</loc>
 		<lastmod>2024-06-01</lastmod>
 	</url>
 	
