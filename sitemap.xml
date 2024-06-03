@@ -33,86 +33,86 @@
 	
 	<url>
 		<loc>https://dave.deletethis.net/about/</loc>
-		<lastmod>2024-06-01</lastmod>
+		<lastmod>2024-06-03</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/</loc>
-		<lastmod>2024-06-01</lastmod>
+		<lastmod>2024-06-03</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/post/</loc>
-		<lastmod>2024-06-01</lastmod>
+		<lastmod>2024-06-03</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/</loc>
-		<lastmod>2024-06-01</lastmod>
+		<lastmod>2024-06-03</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/404/</loc>
-		<lastmod>2024-06-01</lastmod>
+		<lastmod>2024-06-03</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/http/</loc>
-		<lastmod>2024-06-01</lastmod>
+		<lastmod>2024-06-03</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/eleventy/</loc>
-		<lastmod>2024-06-01</lastmod>
+		<lastmod>2024-06-03</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/github/</loc>
-		<lastmod>2024-06-01</lastmod>
+		<lastmod>2024-06-03</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/dns/</loc>
-		<lastmod>2024-06-01</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://dave.deletethis.net/tags/uwp/</loc>
-		<lastmod>2024-06-01</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://dave.deletethis.net/tags/msix/</loc>
-		<lastmod>2024-06-01</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://dave.deletethis.net/tags/sysinternals/</loc>
-		<lastmod>2024-06-01</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://dave.deletethis.net/tags/windows/</loc>
-		<lastmod>2024-06-01</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://dave.deletethis.net/tags/restricted-capabilities/</loc>
-		<lastmod>2024-06-01</lastmod>
+		<lastmod>2024-06-03</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/javascript/</loc>
-		<lastmod>2024-06-01</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://dave.deletethis.net/tags/proxy/</loc>
-		<lastmod>2024-06-01</lastmod>
+		<lastmod>2024-06-03</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/array/</loc>
-		<lastmod>2024-06-01</lastmod>
+		<lastmod>2024-06-03</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/tags/uwp/</loc>
+		<lastmod>2024-06-03</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/tags/msix/</loc>
+		<lastmod>2024-06-03</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/tags/sysinternals/</loc>
+		<lastmod>2024-06-03</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/tags/windows/</loc>
+		<lastmod>2024-06-03</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/tags/restricted-capabilities/</loc>
+		<lastmod>2024-06-03</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/tags/proxy/</loc>
+		<lastmod>2024-06-03</lastmod>
 	</url>
 </urlset>
