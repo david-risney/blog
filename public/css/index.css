@@ -95,19 +95,19 @@ html {
 		max-width: 25em;
 	}
 
-	#recap-container, .grid-2-columns {
+	#recap-container {
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-template-rows: repeat(1, 1fr);
 		gap: 1em;
 	}
 
-	#blog-posts, .grid-column-1 {
+	#blog-posts {
 		grid-column: 1 / 2;
 		grid-row: 1 / 2;
 	}
 
-	#mastodon-posts, .grid-column-2 {
+	#mastodon-posts {
 		grid-column: 1 / 2;
 		grid-row: 2 / 3;
 	}
@@ -118,17 +118,17 @@ html {
 		max-width: 50em;
 	}
 
-	#recap-container, .grid-2-columns {
+	#recap-container {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 1em;
 	}
 
-	#blog-posts, .grid-column-1 {
+	#blog-posts {
 		grid-column: 1 / 2;
 	}
 
-	#mastodon-posts, .grid-column-2 {
+	#mastodon-posts {
 		grid-column: 2 / 3;
 	}
 }
