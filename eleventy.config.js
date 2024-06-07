@@ -83,6 +83,29 @@ module.exports = function(eleventyConfig) {
 		return value;
 	});
 
+	eleventyConfig.addFilter("titleToOldPath", function(value) {
+		// Replace non-unreserved characters (a-z, A-Z, 0-9, -, ., _, ~) with hyphen
+		value = value.replace(/[^a-zA-Z0-9-._~ ]/g, '-');
+
+		// Replace spaces with +
+		return value.replace(/ /g, '+');
+	});
+
+	eleventyConfig.addFilter("titleToPath", function(value) {
+		// Replace non-unreserved characters (a-z, A-Z, 0-9, -, ., _, ~) with hyphen
+		value = value.replace(/[^a-zA-Z0-9-._]/g, '-');
+		// lower case value
+		value = value.toLowerCase();
+
+		return value;
+	});
+
+	eleventyConfig.addFilter("dateToPath", function(value) {
+		// Turn JavaScript date object into string YYYY-MM where YYYY is the 4 or more digit year and MM is the two digit month.
+		const dateParts = value.toISOString().split('-');
+		return dateParts[0] + "-" + dateParts[1];
+	});
+
 	// Customize Markdown library settings:
 	eleventyConfig.amendLibrary("md", mdLib => {
 		mdLib.use(markdownItAnchor, {
