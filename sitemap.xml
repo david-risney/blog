@@ -567,6 +567,11 @@
 	</url>
 	
 	<url>
+		<loc>https://dave.deletethis.net/tags/proxy/</loc>
+		<lastmod>2024-06-07</lastmod>
+	</url>
+	
+	<url>
 		<loc>https://dave.deletethis.net/tags/uwp/</loc>
 		<lastmod>2024-06-07</lastmod>
 	</url>
@@ -588,11 +593,6 @@
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/restricted-capabilities/</loc>
-		<lastmod>2024-06-07</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://dave.deletethis.net/tags/proxy/</loc>
 		<lastmod>2024-06-07</lastmod>
 	</url>
 </urlset>
