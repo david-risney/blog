@@ -2,117 +2,597 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 	
 	<url>
-		<loc>https://dave.deletethis.net/post/javascript-arrays-are-neat/</loc>
+		<loc>https://dave.deletethis.net/post/2010-07/Google+and+Outlook+Calendar+Sync-ing/</loc>
+		<lastmod>2010-07-08</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2010-08/DVD+Ripping+and+Viewing+in+Windows+Media+Center/</loc>
+		<lastmod>2010-08-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2010-08/Windows+7+Accelerator+Platform+COM+-+C-+Interop/</loc>
+		<lastmod>2010-08-20</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2010-12/Console+Build+Window+Jump+Lists+Tool/</loc>
+		<lastmod>2010-12-13</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2010-12/Ratatat+Rocks/</loc>
+		<lastmod>2010-12-28</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2011-02/Listen+to+Max+Tannone+and+Watch+Moon/</loc>
+		<lastmod>2011-02-23</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2011-04/GeolocMock+Tool+-+Tell+IE9+Where+You+Are/</loc>
+		<lastmod>2011-04-03</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2011-04/IE9+Document+Mode+in+WebOC/</loc>
+		<lastmod>2011-04-04</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2011-04/JavaScript+-+.NET+interop+via+WebBrowser+Control/</loc>
+		<lastmod>2011-04-05</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2011-04/Capturing+HTTPS+with+FiddlerCore/</loc>
+		<lastmod>2011-04-06</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2011-05/PowerShell+Script+Batch+File+Wrapper/</loc>
+		<lastmod>2011-05-22</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2011-05/_opt+Mnemonic/</loc>
+		<lastmod>2011-05-24</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2011-05/clip.exe+-+Useful+tool+I+didn-t+know+shipped+with+Windows/</loc>
+		<lastmod>2011-05-26</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2011-05/Command+line+for+finding+missing+URLACTIONs/</loc>
+		<lastmod>2011-05-28</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2011-06/WPAD+Server+Fiddler+Extension+Update+v1.0.1/</loc>
+		<lastmod>2011-06-12</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2011-10/Haven-t+Been+Posting+Much/</loc>
+		<lastmod>2011-10-18</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2011-11/Replacing+Delicious+with+Google+Reader/</loc>
+		<lastmod>2011-11-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2011-11/Features+of+image+type+input+tags+in+HTML/</loc>
+		<lastmod>2011-11-21</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2011-11/URI+Empty+Path+Segments+Matter/</loc>
+		<lastmod>2011-11-23</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2011-11/Replacing+Google+Reader+Shared+Feeds+with+Tumblr/</loc>
+		<lastmod>2011-11-28</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2011-12/Bug+Spotting-+Ctors+with+default+parameters/</loc>
+		<lastmod>2011-12-01</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2011-12/JavaScript+Array+methods+in+the+latest+browsers/</loc>
+		<lastmod>2011-12-03</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-02/URI+Percent+Encoding+Ignorance+Level+0+-+Existence/</loc>
+		<lastmod>2012-02-10</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-02/Blackmail+DRM+-+Stolen+Thoughts/</loc>
+		<lastmod>2012-02-13</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-02/URI+Percent-Encoding+Ignorance+Level+1+-+Purpose/</loc>
+		<lastmod>2012-02-15</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-02/Why+I+Like+Glitch/</loc>
+		<lastmod>2012-02-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-02/URI+Percent+Encoding+Ignorance+Level+2+-+There+is+no+Unencoded+URI/</loc>
+		<lastmod>2012-02-20</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-02/Prime+HTTP+Status+Codes/</loc>
+		<lastmod>2012-02-22</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-02/Web+Worker+Initialization+Race/</loc>
+		<lastmod>2012-02-24</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-02/Client+Side+Cross+Domain+Data+YQL+Hack/</loc>
+		<lastmod>2012-02-27</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-02/Glitch+Helperator/</loc>
+		<lastmod>2012-02-29</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-03/HTML5+Table+Flipper+Experiment/</loc>
+		<lastmod>2012-03-02</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-03/Privacy+through+Obscurity/</loc>
+		<lastmod>2012-03-09</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-03/Alternate+IPv4+Forms+-+URI+Host+Syntax+Notes/</loc>
+		<lastmod>2012-03-14</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-03/Why+Did+This+Work-/</loc>
+		<lastmod>2012-03-23</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-05/Play+Fez/</loc>
+		<lastmod>2012-05-07</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-05/Favorite+Windows+8+Feature-+Intra-Line+Tab+Completion/</loc>
+		<lastmod>2012-05-09</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-05/PowerShell+Equivalents+for+JavaScript+Array+Functions/</loc>
+		<lastmod>2012-05-15</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-05/Permanently+Add+Path+to+System+PATH+Environment+Variable+in+PowerShell/</loc>
+		<lastmod>2012-05-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-05/Crowdsource+These+Projects/</loc>
+		<lastmod>2012-05-22</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-06/Changing+Windows+Live+IDs/</loc>
+		<lastmod>2012-06-06</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-06/Application+Protocols+in+Windows+8/</loc>
+		<lastmod>2012-06-12</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-06/HTTP+Compression+Documentation+Reference/</loc>
+		<lastmod>2012-06-13</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-08/Web+Security+Contest+-+Stripe+CTF/</loc>
+		<lastmod>2012-08-27</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-08/Stripe+Web+Security+CTF+Summary/</loc>
+		<lastmod>2012-08-30</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-09/Stripe+CTF+-+SQL+injections+-Levels+0+-+3-/</loc>
+		<lastmod>2012-09-05</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-09/Stripe+CTF+-+Input+validation+-Levels+1+-+2-/</loc>
+		<lastmod>2012-09-06</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-09/Stripe+CTF+-+XSS-+CSRF+-Levels+4+-+6-/</loc>
+		<lastmod>2012-09-10</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-09/Stripe+CTF+-+Level+5/</loc>
+		<lastmod>2012-09-11</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-09/Stripe+CTF+-+Level+7/</loc>
+		<lastmod>2012-09-13</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-12/Stripe+CTF+-+Level+8/</loc>
+		<lastmod>2012-12-07</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2012-12/Windows+Remote+Desktop+via+Internet/</loc>
+		<lastmod>2012-12-07</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2013-05/Sci-fi+short+stories+disguised+as+Internet+docs/</loc>
+		<lastmod>2013-05-29</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2013-06/Windows+Store+on+Windows+8+Fun+For+Independent+Developers/</loc>
+		<lastmod>2013-06-24</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2013-06/Shout+Text+Windows+8+App+Development+Notes/</loc>
+		<lastmod>2013-06-27</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2013-07/MSVC--+64bit+Enums/</loc>
+		<lastmod>2013-07-01</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2013-07/Words+with+Hints+Windows+8+App+Development+Notes/</loc>
+		<lastmod>2013-07-04</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2013-07/WinRT+PropertySet+Changed+Event+Danger/</loc>
+		<lastmod>2013-07-08</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2013-07/Percent+Clcok+Windows+Store+App+Development+Notes/</loc>
+		<lastmod>2013-07-11</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2013-07/Subtleties+of+postMessage/</loc>
+		<lastmod>2013-07-15</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2013-07/C--+constructor+member+initializers+run+in+member+declaration+order/</loc>
+		<lastmod>2013-07-18</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2013-07/URI+functions+in+Windows+Store+Applications/</loc>
+		<lastmod>2013-07-25</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2013-08/Considerate+MessagePort+Usage/</loc>
+		<lastmod>2013-08-07</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2013-08/Serializing+JavaScript+Promise+Execution/</loc>
+		<lastmod>2013-08-10</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2013-08/Moving+PowerShell+data+into+Excel/</loc>
+		<lastmod>2013-08-15</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2013-08/FitBit+and+WebOC+Application+Compatibility+Errors/</loc>
+		<lastmod>2013-08-29</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2014-05/Debugging+anecdote+-+the+color+transparent+black+breaks+accessibility+/</loc>
+		<lastmod>2014-05-22</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2014-05/location.hash+and+location.search+are+bad+and+they+should+feel+bad/</loc>
+		<lastmod>2014-05-22</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2014-05/Cloud+Share+-+New+App/</loc>
+		<lastmod>2014-05-23</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2016-01/JavaScript+Types+and+WinRT+Types/</loc>
+		<lastmod>2016-01-21</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2016-01/Unicode+Clock/</loc>
+		<lastmod>2016-01-24</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2016-02/Let-s+Encrypt+NearlyFreeSpeech.net+Setup/</loc>
+		<lastmod>2016-02-04</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2016-02/Cdb-Windbg+Commands+for+Runtime+Patching/</loc>
+		<lastmod>2016-02-08</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2016-03/WinRT+Launcher+API+in+PowerShell/</loc>
+		<lastmod>2016-03-31</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2016-06/Windows+Store+App+WebView+Cross+Origin+XMLHttpRequest+Behavior/</loc>
+		<lastmod>2016-06-02</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2016-06/WinRT+Toast+from+PowerShell/</loc>
+		<lastmod>2016-06-15</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2016-06/Data+breakpoints+in+JavaScript/</loc>
+		<lastmod>2016-06-17</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2016-08/WPAD+Server+Fiddler+Extension+Source/</loc>
+		<lastmod>2016-08-05</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2016-11/Parsing+WinMD+with+.NET+reflection+APIs/</loc>
+		<lastmod>2016-11-02</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2016-11/Let-s+Encrypt+NearlyFreeSpeech.net+Update/</loc>
+		<lastmod>2016-11-05</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2017-05/Application+Content+URI+Rules+wildcard+syntax/</loc>
+		<lastmod>2017-05-31</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2017-06/Application+Content+URI+Rules+rule+ordering/</loc>
+		<lastmod>2017-06-01</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2017-06/JavaScript+Microsoft+Store+app+StartPage/</loc>
+		<lastmod>2017-06-22</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2017-06/Application+Content+URI+Rule+effects/</loc>
+		<lastmod>2017-06-30</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2017-09/Win10+UWP+WebView+AddWebAllowedObject+details/</loc>
+		<lastmod>2017-09-04</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2017-10/MSApp.getHtmlPrintDocumentSourceAsync+-+JavaScript+UWP+app+printing/</loc>
+		<lastmod>2017-10-11</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2018-03/Multiple+Windows+in+Win10+JavaScript+UWP+apps/</loc>
+		<lastmod>2018-03-10</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2018-05/Tiny+browser+features-+JSBrowser+zoom/</loc>
+		<lastmod>2018-05-10</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2018-05/Tiny+browser+features-+JSBrowser+crash+resistance/</loc>
+		<lastmod>2018-05-13</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2018-05/Win10+PWA+Terminology/</loc>
+		<lastmod>2018-05-31</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2018-07/Windows.Web.UI.Interop.WebViewControl+localhost+access/</loc>
+		<lastmod>2018-07-25</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2018-10/Changing+the+User+Agent+string+in+UWP+WebView/</loc>
+		<lastmod>2018-10-23</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2018-10/GoBack-GoForward+in+Win10+UWP+WebView/</loc>
+		<lastmod>2018-10-23</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2018-11/Edge+browser+and+JavaScript+UWP+app+security+model+comparison/</loc>
+		<lastmod>2018-11-29</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2019-08/Scrollbars+in+EdgeHtml+WebView+and+Edge+browser/</loc>
+		<lastmod>2019-08-22</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2020-10/Right-To-Left+Override+Twitter+Name/</loc>
+		<lastmod>2020-10-21</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://dave.deletethis.net/post/2021-11/javascript-arrays-are-neat/</loc>
 		<lastmod>2021-11-24</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://dave.deletethis.net/post/watch-javascript-via-proxy/</loc>
+		<loc>https://dave.deletethis.net/post/2022-02/watch-javascript-via-proxy/</loc>
 		<lastmod>2022-02-24</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://dave.deletethis.net/post/404-good-news-bad-news/</loc>
+		<loc>https://dave.deletethis.net/post/2022-09/404-good-news--bad-news/</loc>
 		<lastmod>2022-09-12</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://dave.deletethis.net/post/restricted-capabilities-and-msix-apis/</loc>
+		<loc>https://dave.deletethis.net/post/2022-09/restricted-capabilities-and-msix-apis/</loc>
 		<lastmod>2022-09-16</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://dave.deletethis.net/post/eleventy-github-pages/</loc>
+		<loc>https://dave.deletethis.net/post/2023-01/eleventy-on-github-pages/</loc>
 		<lastmod>2023-01-27</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://dave.deletethis.net/post/eleventy-github-pages-part-2/</loc>
+		<loc>https://dave.deletethis.net/post/2024-05/eleventy-on-github-pages--part-2-/</loc>
 		<lastmod>2024-05-28</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/about/</loc>
-		<lastmod>2024-06-03</lastmod>
+		<lastmod>2024-06-07</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/</loc>
-		<lastmod>2024-06-03</lastmod>
+		<lastmod>2024-06-07</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/post/</loc>
-		<lastmod>2024-06-03</lastmod>
+		<lastmod>2024-06-07</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/</loc>
-		<lastmod>2024-06-03</lastmod>
+		<lastmod>2024-06-07</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/404/</loc>
-		<lastmod>2024-06-03</lastmod>
+		<lastmod>2024-06-07</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/http/</loc>
-		<lastmod>2024-06-03</lastmod>
+		<lastmod>2024-06-07</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/eleventy/</loc>
-		<lastmod>2024-06-03</lastmod>
+		<lastmod>2024-06-07</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/github/</loc>
-		<lastmod>2024-06-03</lastmod>
+		<lastmod>2024-06-07</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/dns/</loc>
-		<lastmod>2024-06-03</lastmod>
+		<lastmod>2024-06-07</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/javascript/</loc>
-		<lastmod>2024-06-03</lastmod>
+		<lastmod>2024-06-07</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/array/</loc>
-		<lastmod>2024-06-03</lastmod>
+		<lastmod>2024-06-07</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/uwp/</loc>
-		<lastmod>2024-06-03</lastmod>
+		<lastmod>2024-06-07</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/msix/</loc>
-		<lastmod>2024-06-03</lastmod>
+		<lastmod>2024-06-07</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/sysinternals/</loc>
-		<lastmod>2024-06-03</lastmod>
+		<lastmod>2024-06-07</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/windows/</loc>
-		<lastmod>2024-06-03</lastmod>
+		<lastmod>2024-06-07</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/restricted-capabilities/</loc>
-		<lastmod>2024-06-03</lastmod>
+		<lastmod>2024-06-07</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://dave.deletethis.net/tags/proxy/</loc>
-		<lastmod>2024-06-03</lastmod>
+		<lastmod>2024-06-07</lastmod>
 	</url>
 </urlset>

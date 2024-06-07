@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" class="gradient-background">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Changing the User Agent string in UWP WebView</title>
+		<meta name="description" content="David Risney&#39;s blog on web, coding, and things">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="dave.deletethis.net">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="dave.deletethis.net">
+
+		<meta name="generator" content="Eleventy v2.0.0">
+
+		<link rel="icon" type="image/x-icon" href="/favicon.ico">
+		<link rel="stylesheet" href="/css/index.css">
+
+		<script>
+window.addEventListener("pageswap", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+
+window.addEventListener("pagereveal", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+		</script>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/" class="home-link">dave.deletethis.net</a>
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/post/">Blog</a></li>
+					<li class="nav-item"><a href="/about/">About</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<h1>Changing the User Agent string in UWP WebView</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2018-10-23">23 October 2018</time></li>
+</ul>
+
+<div xmlns="http://www.w3.org/1999/xhtml"><div><p>
+    There's no perfect way to change the user agent string for the UWP WebView (x-ms-webview in HTML, Windows.UI.Xaml.Controls.WebView in XAML, and Windows.Web.UI.Interop.WebViewControl in Win32) but
+    there are two imperfect methods folks end up using.
+  </p><p>
+    The first is to call UrlMkSetSessionOption. This is an old public API that allows you to configure various arcane options including one that is the default user agent string for requests running
+    through urlmon. This API is allowed by the Microsoft Store for UWP apps. The change it applies is process wide which has two potential drawbacks. If you want to be able to have different UA
+    strings set for different requests from a WebView that's not really possible with this solution. The other drawback is if you're using out of process WebView, you need to ensure you're calling
+    into UrlMkSetSessionOption in the WebView's process. You'll need to write third party WinRT that calls UrlMkSetSessionOption, create the out of proc WebView, navigate it to some trusted local
+    page, use AddWebAllowedObject or provide that URI WinRT access, and call into your third party WinRT. You'll need to do that for any new WebView process you create.
+  </p><p>
+    The second less generally applicable solution is to use NavigateWithHttpRequestMessage and set the User-Agent HTTP header. In this case you get to control the scope of the user agent string
+    changes but has the limitations that not all sub resource downloads will use this user agent string and for navigations you don't initiate you have to manually intercept and re-request being
+    careful to transfer over all POST body state and HTTP headers correctly. That last part is not actually possible for iframes.
+  </p></div></div>
+
+<ul class="links-nextprev"><li>Previous: <a href="/post/2018-07/Windows.Web.UI.Interop.WebViewControl+localhost+access/">Windows.Web.UI.Interop.WebViewControl localhost access</a></li><li>Next: <a href="/post/2018-10/GoBack-GoForward+in+Win10+UWP+WebView/">GoBack/GoForward in Win10 UWP WebView</a></li>
+</ul>
+
+		</main>
+
+		<footer></footer>
+
+		<!-- Current page: /post/2018-10/Changing+the+User+Agent+string+in+UWP+WebView/ -->
+	</body>
+</html>

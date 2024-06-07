@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" class="gradient-background">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Eleventy on GitHub Pages</title>
+		<meta name="description" content="Building this blog using Eleventy and GitHub Pages">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="dave.deletethis.net">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="dave.deletethis.net">
+
+		<meta name="generator" content="Eleventy v2.0.0">
+
+		<link rel="icon" type="image/x-icon" href="/favicon.ico">
+		<link rel="stylesheet" href="/css/index.css">
+
+		<script>
+window.addEventListener("pageswap", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+
+window.addEventListener("pagereveal", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+		</script>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/" class="home-link">dave.deletethis.net</a>
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/post/">Blog</a></li>
+					<li class="nav-item"><a href="/about/">About</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<h1>Eleventy on GitHub Pages</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2023-01-27">27 January 2023</time></li>
+	<li><a href="/tags/eleventy/" class="post-tag">eleventy</a>, </li>
+	<li><a href="/tags/github/" class="post-tag">github</a></li>
+</ul>
+
+<p>I wanted to replace my existing blog solution with a simple markdown setup. I decided to give Eleventy a try and host it on GitHub Pages. Here are the steps I've taken so far:</p>
+<ol>
+<li>Create a new GitHub project using <a href="https://github.com/11ty/eleventy-base-blog">Elventy Base Blog</a> as a project template.</li>
+<li>Used the yml from <a href="https://www.rockyourcode.com/how-to-deploy-eleventy-to-github-pages-with-github-actions/">How to deploy eleventy to github pages with github actions</a> in a new file <a href="https://github.com/david-risney/blog/blob/main/.github/workflows/build_eleventy.yml"><code>.github/workflows/build_eleventy.yml</code></a>.</li>
+<li>I updated some version numbers, and added a permissions contents write per the <a href="https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-first-deployment-with-github_token">peaceiris/actions-gh-pages help</a>.</li>
+<li>I also made sure to create the <code>gh-pages</code> branch.</li>
+<li>And in the GitHub project's Settings | Pages, set Source to <code>Deploy from a branch</code> and Branch to <code>gh-pages</code>.</li>
+<li>Then I needed to <a href="https://github.com/david-risney/blog/commit/583048de085a4dda89ef23f63b8a454ae889376a">update the pathPrefix setting</a> to <code>/blog/</code> to match my project name.</li>
+</ol>
+<p>With this I've got Eleventy mostly setup and running on GitHub with GitHub Pages to serve the blog and GitHub Actions to rebuild the site whenever I push. Next up, how do I find a better site layout? And after that, the much harder problem of can I move my existing blog content over to this? Maybe in the interim just merge this blog content into deletethis.net.</p>
+
+<ul class="links-nextprev"><li>Previous: <a href="/post/2022-09/restricted-capabilities-and-msix-apis/">Restricted Capabilities and MSIX APIs</a></li><li>Next: <a href="/post/2024-05/eleventy-on-github-pages--part-2-/">Eleventy on GitHub Pages (Part 2)</a></li>
+</ul>
+
+		</main>
+
+		<footer></footer>
+
+		<!-- Current page: /post/2023-01/eleventy-on-github-pages/ -->
+	</body>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" class="gradient-background">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>WPAD Server Fiddler Extension Source</title>
+		<meta name="description" content="David Risney&#39;s blog on web, coding, and things">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="dave.deletethis.net">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="dave.deletethis.net">
+
+		<meta name="generator" content="Eleventy v2.0.0">
+
+		<link rel="icon" type="image/x-icon" href="/favicon.ico">
+		<link rel="stylesheet" href="/css/index.css">
+
+		<script>
+window.addEventListener("pageswap", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+
+window.addEventListener("pagereveal", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+		</script>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/" class="home-link">dave.deletethis.net</a>
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/post/">Blog</a></li>
+					<li class="nav-item"><a href="/about/">About</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<h1>WPAD Server Fiddler Extension Source</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2016-08-05">05 August 2016</time></li>
+</ul>
+
+<div xmlns="http://www.w3.org/1999/xhtml"><div><p>
+    I've put my <a href="https://github.com/david-risney/WpadServerFiddlerExtension">WPAD Fiddler extension source</a> and the <a href="https://github.com/david-risney/WpadServerFiddlerExtension/releases">installer</a> on GitHub.
+  </p><p>
+    Six years ago I made a WPAD DHCP server Fiddler extension (described <a href="https://deletethis.net/dave/2010-01/WPAD+Server+Fiddler+Extension">previously</a> and <a href="https://deletethis.net/dave/2011-06/WPAD+Server+Fiddler+Extension+Update+v1.0.1">previously</a>). The extension runs a WPAD DHCP server telling any clients that connect to connect to the running
+    Fiddler instance. I've finally got around to putting the source on GitHub. I haven't touched it in five or so years so this is either for posterity or education or something.
+  </p></div></div>
+
+<ul class="links-nextprev"><li>Previous: <a href="/post/2016-06/Data+breakpoints+in+JavaScript/">Data breakpoints in JavaScript</a></li><li>Next: <a href="/post/2016-11/Parsing+WinMD+with+.NET+reflection+APIs/">Parsing WinMD with .NET reflection APIs</a></li>
+</ul>
+
+		</main>
+
+		<footer></footer>
+
+		<!-- Current page: /post/2016-08/WPAD+Server+Fiddler+Extension+Source/ -->
+	</body>
+</html>

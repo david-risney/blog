@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" class="gradient-background">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>_opt Mnemonic</title>
+		<meta name="description" content="David Risney&#39;s blog on web, coding, and things">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="dave.deletethis.net">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="dave.deletethis.net">
+
+		<meta name="generator" content="Eleventy v2.0.0">
+
+		<link rel="icon" type="image/x-icon" href="/favicon.ico">
+		<link rel="stylesheet" href="/css/index.css">
+
+		<script>
+window.addEventListener("pageswap", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+
+window.addEventListener("pagereveal", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+		</script>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/" class="home-link">dave.deletethis.net</a>
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/post/">Blog</a></li>
+					<li class="nav-item"><a href="/about/">About</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<h1>_opt Mnemonic</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2011-05-24">24 May 2011</time></li>
+</ul>
+
+<div xmlns="http://www.w3.org/1999/xhtml"><div><p>
+    ​I always have trouble remembering where the opt goes in <a href="http://msdn.microsoft.com/en-us/library/aa383701(VS.85).aspx">SAL</a> in the __deref_out case. The mnemonic is pretty simple: the
+    _opt at the start of the SAL is for the pointer value at the start of the function. And the _opt at the end of the SAL is for the dereferenced pointer value at the end of the function.
+  </p><br /><br /><br /><br /><br /><table><tr><th>
+        SAL
+      </th><th>
+        foo == nullptr allowed at function start?
+      </th><th>
+        *foo == nullptr allowed at function end?
+      </th></tr><tr><td>
+        __deref_out void **foo
+      </td><td>
+        No
+      </td><td>
+        No
+      </td></tr><tr><td>
+        __deref<b>_opt</b>_out void **foo
+      </td><td>
+        Yes
+      </td><td>
+        No
+      </td></tr><tr><td>
+        __deref_out<b>_opt</b> void **foo
+      </td><td>
+        No
+      </td><td>
+        Yes
+      </td></tr><tr><td>
+        __deref<b>_opt</b>_out<b>_opt</b> void **foo
+      </td><td>
+        Yes
+      </td><td>
+        Yes
+      </td></tr></table>.
+  <div class="blogger-post-footer"><img width="1" height="1" src="https://blogger.googleusercontent.com/tracker/1670048653123050463-8290674282470951917?l=davescoolblog.blogspot.com" alt="" /></div></div></div>
+
+<ul class="links-nextprev"><li>Previous: <a href="/post/2011-05/PowerShell+Script+Batch+File+Wrapper/">PowerShell Script Batch File Wrapper</a></li><li>Next: <a href="/post/2011-05/clip.exe+-+Useful+tool+I+didn-t+know+shipped+with+Windows/">clip.exe - Useful tool I didn&#39;t know shipped with Windows</a></li>
+</ul>
+
+		</main>
+
+		<footer></footer>
+
+		<!-- Current page: /post/2011-05/_opt+Mnemonic/ -->
+	</body>
+</html>

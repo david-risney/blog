@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" class="gradient-background">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>PowerShell Script Batch File Wrapper</title>
+		<meta name="description" content="David Risney&#39;s blog on web, coding, and things">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="dave.deletethis.net">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="dave.deletethis.net">
+
+		<meta name="generator" content="Eleventy v2.0.0">
+
+		<link rel="icon" type="image/x-icon" href="/favicon.ico">
+		<link rel="stylesheet" href="/css/index.css">
+
+		<script>
+window.addEventListener("pageswap", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+
+window.addEventListener("pagereveal", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+		</script>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/" class="home-link">dave.deletethis.net</a>
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/post/">Blog</a></li>
+					<li class="nav-item"><a href="/about/">About</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<h1>PowerShell Script Batch File Wrapper</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2011-05-22">22 May 2011</time></li>
+</ul>
+
+<div xmlns="http://www.w3.org/1999/xhtml"><div><p>
+    I'm trying to learn and use PowerShell more, but plenty of other folks I know don't use PowerShell. To allow them to use my scripts I use the following cmd.exe batch file to make it easy to call
+    PowerShell scripts. To use, just name the batch file name the same as the corresponding PowerShell script filename and put it in the same directory.<br /></p><pre><code>@echo off<br />if "%1"=="/?" goto help<br />if "%1"=="/h" goto help<br />if "%1"=="-?" goto help<br />if "%1"=="-h" goto help<br /><br />%systemroot%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy RemoteSigned -Command . %~dpn0.ps1 %*<br />goto end<br /><br />:help<br />%systemroot%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy RemoteSigned -Command help %~dpn0.ps1 -full<br />goto end<br /><br />:end</code></pre><p>
+    Additionally for PowerShell scripts that modify the current working directory I use the following batch file:
+  </p><pre><code>@echo off<br />if "%1"=="/?" goto help<br />if "%1"=="/h" goto help<br />if "%1"=="-?" goto help<br />if "%1"=="-h" goto help<br /><br />%systemroot%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy RemoteSigned -Command . %~dpn0.ps1 %*;(pwd).Path 1&gt; %temp%\%~n0.tmp 2&gt; nul<br />set /p newdir=</code></pre></div></div>
+
+<ul class="links-nextprev"><li>Previous: <a href="/post/2011-04/Capturing+HTTPS+with+FiddlerCore/">Capturing HTTPS with FiddlerCore</a></li><li>Next: <a href="/post/2011-05/_opt+Mnemonic/">_opt Mnemonic</a></li>
+</ul>
+
+		</main>
+
+		<footer></footer>
+
+		<!-- Current page: /post/2011-05/PowerShell+Script+Batch+File+Wrapper/ -->
+	</body>
+</html>
