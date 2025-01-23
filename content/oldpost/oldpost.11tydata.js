@@ -3,5 +3,5 @@ module.exports = {
 		"posts"
 	],
 	"layout": "layouts/post.njk",
-	"permalink": "/post/{{ date | dateToPath }}/{{ title | titleToOldPath }}/index.html",
+	"permalink": "/{{ date | dateToPath }}/{{ title | titleToOldPath }}/index.html",
 };

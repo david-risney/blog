@@ -67,7 +67,7 @@ window.addEventListener("pagereveal", async (e) => {
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
 
 		<header>
-			<a href="/" class="home-link">{{ metadata.title }} <img src="/img/semicolon-dark.svg" class="logo"></a>
+			<a href="/" class="home-link">{{ metadata.title }}<!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
 
 			{#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
 			<nav>
@@ -76,7 +76,7 @@ window.addEventListener("pagereveal", async (e) => {
 				{%- for entry in collections.all | eleventyNavigation %}
 					<li class="nav-item"><a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a></li>
 				{%- endfor %}
-					<li class="nav-item"><a href="/feed/feed.xml"><img class="logo" src="/img/rss-dark.svg"> Feed</a></li>
+					<li class="nav-item"><a href="/feed/feed.xml"><!-- img class="logo" src="/img/rss-dark.svg" -->Feed</a></li>
 				</ul>
 			</nav>
 		</header>
