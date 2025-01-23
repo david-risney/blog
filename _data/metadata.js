@@ -1,11 +1,11 @@
 module.exports = {
-	"title": "dave.deletethis.net",
-	"url": "https://dave.deletethis.net/",
+	"title": "deletethis.net",
+	"url": "https://deletethis.net/dave/",
 	"language": "en",
-	"description": "David Risney's blog on web, coding, and things",
+	"description": "Dave Risney's blog on web, coding, and things",
 	"author": {
 		"name": "Dave Risney",
 		"email": "david.risney+blog@gmail.com",
-		"url": "https://dave.deletethis.net/"
+		"url": "https://deletethis.net/dave/"
 	}
 }
