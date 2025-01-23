@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:base="en">
-	<title>dave.deletethis.net</title>
-	<subtitle>David Risney&#39;s blog on web, coding, and things</subtitle>
-	<link href="https://dave.deletethis.net/feed/feed.xml" rel="self"/>
-	<link href="https://dave.deletethis.net/"/>
+	<title>deletethis.net</title>
+	<subtitle>Dave Risney&#39;s blog on web, coding, and things</subtitle>
+	<link href="https://deletethis.net/dave/feed/feed.xml" rel="self"/>
+	<link href="https://deletethis.net/dave/dave/"/>
 	<updated>2024-05-28T00:00:00Z</updated>
-	<id>https://dave.deletethis.net/</id>
+	<id>https://deletethis.net/dave/</id>
 	<author>
 		<name>Dave Risney</name>
 		<email>david.risney+blog@gmail.com</email>
@@ -13,10 +13,10 @@
 	
 	<entry>
 		<title>Eleventy on GitHub Pages (Part 2)</title>
-		<link href="https://dave.deletethis.net/post/2024-05/eleventy-on-github-pages--part-2-/"/>
+		<link href="https://deletethis.net/dave/2024-05/eleventy-on-github-pages--part-2-/"/>
 		<updated>2024-05-28T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2024-05/eleventy-on-github-pages--part-2-/</id>
-		<content type="html">&lt;p&gt;&lt;a href=&quot;https://dave.deletethis.net/post/2024-05/eleventy-on-github-pages--part-2-/eleventy-github-pages.md&quot;&gt;Previously&lt;/a&gt;, I made an Eleventy based GitHub project with GitHub automation to run Eleventy when checking in changes. I stopped at that point because hooking in all my old blog&#39;s posts without changing their URIs sounded like a big pain, but now I&#39;ve decided to go ahead and just link from old blog to new blog and not try to move them.&lt;/p&gt;
+		<id>https://deletethis.net/dave/2024-05/eleventy-on-github-pages--part-2-/</id>
+		<content type="html">&lt;p&gt;&lt;a href=&quot;https://deletethis.net/dave/2024-05/eleventy-on-github-pages--part-2-/eleventy-github-pages.md&quot;&gt;Previously&lt;/a&gt;, I made an Eleventy based GitHub project with GitHub automation to run Eleventy when checking in changes. I stopped at that point because hooking in all my old blog&#39;s posts without changing their URIs sounded like a big pain, but now I&#39;ve decided to go ahead and just link from old blog to new blog and not try to move them.&lt;/p&gt;
 &lt;p&gt;This time, I&#39;ve hooked up a custom subdomain (dave.deletethis.net) to the GitHub output which was surprisingly easy:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;GitHub has &lt;a href=&quot;https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain&quot;&gt;docs on using a custom subdomain&lt;/a&gt; which I followed mostly trouble free. The first step is in the GitHub project&#39;s Settings, Pages, Custom domain section to set your subdomain. However, this starts a domain check which fails because I haven&#39;t done the next step yet.&lt;/li&gt;
@@ -32,9 +32,9 @@
 	
 	<entry>
 		<title>Eleventy on GitHub Pages</title>
-		<link href="https://dave.deletethis.net/post/2023-01/eleventy-on-github-pages/"/>
+		<link href="https://deletethis.net/dave/2023-01/eleventy-on-github-pages/"/>
 		<updated>2023-01-27T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2023-01/eleventy-on-github-pages/</id>
+		<id>https://deletethis.net/dave/2023-01/eleventy-on-github-pages/</id>
 		<content type="html">&lt;p&gt;I wanted to replace my existing blog solution with a simple markdown setup. I decided to give Eleventy a try and host it on GitHub Pages. Here are the steps I&#39;ve taken so far:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Create a new GitHub project using &lt;a href=&quot;https://github.com/11ty/eleventy-base-blog&quot;&gt;Elventy Base Blog&lt;/a&gt; as a project template.&lt;/li&gt;
@@ -50,9 +50,9 @@
 	
 	<entry>
 		<title>Restricted Capabilities and MSIX APIs</title>
-		<link href="https://dave.deletethis.net/post/2022-09/restricted-capabilities-and-msix-apis/"/>
+		<link href="https://deletethis.net/dave/2022-09/restricted-capabilities-and-msix-apis/"/>
 		<updated>2022-09-16T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2022-09/restricted-capabilities-and-msix-apis/</id>
+		<id>https://deletethis.net/dave/2022-09/restricted-capabilities-and-msix-apis/</id>
 		<content type="html">&lt;p&gt;SysInternals is in the Windows Store? This surprised me since last I knew you couldn&#39;t have admin-y utilities as appx packages in the Windows Store.&lt;/p&gt;
 &lt;p&gt;Taking a look at their appxmanifest, you can see how they&#39;ve used restricted capabilities to get admin-like access to what they need. You can view the appxmanifest of any installed package using the &lt;code&gt;Get-AppxPackage&lt;/code&gt; PowerShell command and the &lt;code&gt;Get-AppxPackageManifest&lt;/code&gt; command:&lt;/p&gt;
 &lt;pre class=&quot;language-powershell&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-powershell&quot;&gt;&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Get-AppxPackage&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;SysInternals* &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Get-AppxPackageManifest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Package&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Capabilities&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;OuterXml&lt;/code&gt;&lt;/pre&gt;
@@ -82,9 +82,9 @@
 	
 	<entry>
 		<title>404 Good News, Bad News</title>
-		<link href="https://dave.deletethis.net/post/2022-09/404-good-news--bad-news/"/>
+		<link href="https://deletethis.net/dave/2022-09/404-good-news--bad-news/"/>
 		<updated>2022-09-12T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2022-09/404-good-news--bad-news/</id>
+		<id>https://deletethis.net/dave/2022-09/404-good-news--bad-news/</id>
 		<content type="html">&lt;p&gt;So much has to go right to get a 404. Machines all over the world talking to each other over a surprisingly large number of protocols. It&#39;s almost a disservice to call it an error.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;404 Good News Bad News&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;When I make a browser, the default 404 page is going to be incredibly detailed:&lt;/p&gt;
@@ -96,17 +96,17 @@
 	
 	<entry>
 		<title>Watch JavaScript via Proxy</title>
-		<link href="https://dave.deletethis.net/post/2022-02/watch-javascript-via-proxy/"/>
+		<link href="https://deletethis.net/dave/2022-02/watch-javascript-via-proxy/"/>
 		<updated>2022-02-24T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2022-02/watch-javascript-via-proxy/</id>
+		<id>https://deletethis.net/dave/2022-02/watch-javascript-via-proxy/</id>
 		<content type="html">&lt;p&gt;JavaScript has a type &lt;code&gt;Proxy&lt;/code&gt; that lets you intercept all interactions with an object - all property reads, writes, method calls, and so on. One fun thing you can do with this is watch how JavaScript itself interacts with your objects.&lt;/p&gt;
 &lt;p&gt;If we put a &lt;code&gt;Proxy&lt;/code&gt; in another &lt;code&gt;Proxy&lt;/code&gt; we can see how JavaScript uses our objects:&lt;/p&gt;
 &lt;pre class=&quot;language-js&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;trace&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;obj&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Proxy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;obj&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Proxy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;br&gt;        &lt;span class=&quot;token function-variable function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;t&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; property&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; r&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;br&gt;            &lt;span class=&quot;token function&quot;&gt;logCall&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; name &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39; &#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; property&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; Reflect&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;property&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; Reflect&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;logCall&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;description&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; fn&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; fnThis&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;fnArgs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; r &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;fn&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;fnThis&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;fnArgs&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;        console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;description &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;&#92;n&#92;t&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;fnArgs&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&#92;n  --&gt;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; r&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; r&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;        console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;description &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;&#92;n&#92;t&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;fnArgs&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&#92;n  -fail-&gt;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;how-this-works&quot; tabindex=&quot;-1&quot;&gt;How this works &lt;a class=&quot;header-anchor&quot; href=&quot;https://dave.deletethis.net/post/2022-02/watch-javascript-via-proxy/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;how-this-works&quot; tabindex=&quot;-1&quot;&gt;How this works &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2022-02/watch-javascript-via-proxy/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;trace&lt;/code&gt; returns a &lt;code&gt;Proxy&lt;/code&gt; around your object that uses &lt;code&gt;Reflect&lt;/code&gt; to perform the normal &lt;code&gt;Proxy&lt;/code&gt; operations but then &lt;code&gt;console.log&lt;/code&gt; the call.&lt;/p&gt;
 &lt;p&gt;The constructor for &lt;code&gt;Proxy&lt;/code&gt; takes two parameters: first the object you&#39;re wrapping, and second an object with functions for all the different kind of object interactions that you want to intercept. Because we want to just log the interaction and not do anything specific we can use a &lt;code&gt;Proxy&lt;/code&gt; around &lt;code&gt;Reflect&lt;/code&gt; to define this second parameter.&lt;/p&gt;
 &lt;p&gt;Our inner &lt;code&gt;Proxy&lt;/code&gt; implements the handler of the outer &lt;code&gt;Proxy&lt;/code&gt;. The handler is supposed to have methods called &lt;code&gt;get&lt;/code&gt;, &lt;code&gt;set&lt;/code&gt;, &lt;code&gt;apply&lt;/code&gt; and others for each operation to intercept. Instead we define our inner &lt;code&gt;Proxy&lt;/code&gt;s &lt;code&gt;get&lt;/code&gt; to return a function that will perform the operation and log it using &lt;code&gt;logCall&lt;/code&gt;. The function we pass in to &lt;code&gt;logCall&lt;/code&gt; to run is one of the functions off of &lt;code&gt;Reflect&lt;/code&gt;. &lt;code&gt;Reflect&lt;/code&gt; defines all the &lt;code&gt;Proxy&lt;/code&gt; handler functions &lt;code&gt;get&lt;/code&gt;, &lt;code&gt;set&lt;/code&gt;, &lt;code&gt;apply&lt;/code&gt; and so on but where each just performs those operations. &lt;code&gt;Reflect&lt;/code&gt; is like a convenient default for all &lt;code&gt;Proxy&lt;/code&gt; handler functions. We want to perform the default operations but additionally log the result so using &lt;code&gt;Reflect&lt;/code&gt; is exactly what we want.&lt;/p&gt;
-&lt;h2 id=&quot;what-you-can-do-with-it&quot; tabindex=&quot;-1&quot;&gt;What you can do with it &lt;a class=&quot;header-anchor&quot; href=&quot;https://dave.deletethis.net/post/2022-02/watch-javascript-via-proxy/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;what-you-can-do-with-it&quot; tabindex=&quot;-1&quot;&gt;What you can do with it &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2022-02/watch-javascript-via-proxy/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;With that you can call &lt;code&gt;trace&lt;/code&gt; with an object and get out a &lt;code&gt;Proxy&lt;/code&gt; that acts just like your object but also &lt;code&gt;console.log&lt;/code&gt;s every &lt;code&gt;get&lt;/code&gt;, &lt;code&gt;set&lt;/code&gt;, &lt;code&gt;has&lt;/code&gt;, &lt;code&gt;getOwnPropertyDescriptor&lt;/code&gt;, and so on that JavaScript asks of your object.&lt;/p&gt;
 &lt;p&gt;You can watch how &lt;code&gt;Array.sort&lt;/code&gt; sorts an array.&lt;/p&gt;
 &lt;p&gt;Or how &lt;code&gt;Array.toString&lt;/code&gt; calls &lt;code&gt;Array.join&lt;/code&gt;.&lt;/p&gt;
@@ -117,13 +117,13 @@
 &lt;p&gt;The above is a &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/get&quot;&gt;&lt;code&gt;Proxy&lt;/code&gt; handler&#39;s get call&lt;/a&gt;. The first param is the array &lt;code&gt;(3) [300, 200, 100]&lt;/code&gt; on which we will &#39;get&#39;. The second param is the string &lt;code&gt;&#39;sort&#39;&lt;/code&gt; that is the property to get. The third is our proxy.&lt;/p&gt;
 &lt;p&gt;I haven&#39;t tried wrapping the return values in trace Proxy although maybe that would give an even better picture of what&#39;s happening.&lt;/p&gt;
 &lt;p&gt;Various &lt;code&gt;Array&lt;/code&gt; functions can operate on a &lt;code&gt;this&lt;/code&gt; that is a not an &lt;code&gt;Array&lt;/code&gt;. If you&#39;re trying to make a non-&lt;code&gt;Array&lt;/code&gt; object work with &lt;code&gt;Array&lt;/code&gt; functions, then using a &lt;code&gt;Proxy&lt;/code&gt; to watch what JavaScript is doing can help debug.&lt;/p&gt;
-&lt;h3 id=&quot;watch-a-for-loop&quot; tabindex=&quot;-1&quot;&gt;Watch a &lt;code&gt;for&lt;/code&gt; loop &lt;a class=&quot;header-anchor&quot; href=&quot;https://dave.deletethis.net/post/2022-02/watch-javascript-via-proxy/&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;watch-a-for-loop&quot; tabindex=&quot;-1&quot;&gt;Watch a &lt;code&gt;for&lt;/code&gt; loop &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2022-02/watch-javascript-via-proxy/&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;But Proxy watching works for other parts of JavaScript and not just standard functions. For example watch a &lt;code&gt;for&lt;/code&gt; loop enumerate over your array:&lt;/p&gt;
 &lt;pre class=&quot;language-js&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; arr &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;trace&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;array&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; name &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;And the log:&lt;/p&gt;
 &lt;pre class=&quot;language-log&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-log&quot;&gt;array ownKeys&lt;br&gt;    &lt;span class=&quot;token operator&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;br&gt;  &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;0&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;1&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;2&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;length&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;br&gt;array getPrototypeOf&lt;br&gt;    &lt;span class=&quot;token operator&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;br&gt;  &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;  &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;constructor&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ƒ&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; at&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ƒ&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; concat&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ƒ&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; copyWithin&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ƒ&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; fill&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ƒ&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; …&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;br&gt;array getOwnPropertyDescriptor&lt;br&gt;    &lt;span class=&quot;token operator&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;br&gt;  &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;{&lt;/span&gt;value&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; writable&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; enumerable&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; configurable&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;}&lt;/span&gt;&lt;br&gt;array getOwnPropertyDescriptor&lt;br&gt;    &lt;span class=&quot;token operator&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;br&gt;  &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;{&lt;/span&gt;value&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; writable&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; enumerable&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; configurable&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;}&lt;/span&gt;&lt;br&gt;array getOwnPropertyDescriptor&lt;br&gt;    &lt;span class=&quot;token operator&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; &lt;br&gt;  &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;{&lt;/span&gt;value&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; writable&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; enumerable&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; configurable&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;}&lt;/span&gt;&lt;br&gt;array getOwnPropertyDescriptor&lt;br&gt;    &lt;span class=&quot;token operator&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; length &lt;br&gt;  &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;{&lt;/span&gt;value&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; writable&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; enumerable&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; configurable&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The &lt;code&gt;for&lt;/code&gt; loop asks your object for the names of its properties and then the value of each.&lt;/p&gt;
-&lt;h3 id=&quot;watch-instanceof&quot; tabindex=&quot;-1&quot;&gt;Watch &lt;code&gt;instanceof&lt;/code&gt; &lt;a class=&quot;header-anchor&quot; href=&quot;https://dave.deletethis.net/post/2022-02/watch-javascript-via-proxy/&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;watch-instanceof&quot; tabindex=&quot;-1&quot;&gt;Watch &lt;code&gt;instanceof&lt;/code&gt; &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2022-02/watch-javascript-via-proxy/&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Or &lt;code&gt;instanceof&lt;/code&gt; with your proxy on the left hand side&lt;/p&gt;
 &lt;pre class=&quot;language-js&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;arr &lt;span class=&quot;token keyword&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;String&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;And watch JavaScript get the prototype of array&lt;/p&gt;
@@ -138,9 +138,9 @@
 	
 	<entry>
 		<title>JavaScript Arrays are neat</title>
-		<link href="https://dave.deletethis.net/post/2021-11/javascript-arrays-are-neat/"/>
+		<link href="https://deletethis.net/dave/2021-11/javascript-arrays-are-neat/"/>
 		<updated>2021-11-24T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2021-11/javascript-arrays-are-neat/</id>
+		<id>https://deletethis.net/dave/2021-11/javascript-arrays-are-neat/</id>
 		<content type="html">&lt;p&gt;JavaScript arrays are unbelievable. If I told you the length property of an array is writable you might chuckle and say &#39;oh JavaScript&#39;. But no, it goes all the way.&lt;/p&gt;
 &lt;pre class=&quot;language-js&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; a &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;a&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 3&lt;/span&gt;&lt;br&gt;console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;,&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 1,2,3&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This seems like a curve where folks very new to programming or very experienced with JavaScript know what this does and folks in the middle say that can&#39;t possibly work:&lt;/p&gt;
@@ -158,9 +158,9 @@
 	
 	<entry>
 		<title>Right-To-Left Override Twitter Name</title>
-		<link href="https://dave.deletethis.net/post/2020-10/Right-To-Left+Override+Twitter+Name/"/>
+		<link href="https://deletethis.net/dave/2020-10/Right-To-Left+Override+Twitter+Name/"/>
 		<updated>2020-10-21T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2020-10/Right-To-Left+Override+Twitter+Name/</id>
+		<id>https://deletethis.net/dave/2020-10/Right-To-Left+Override+Twitter+Name/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     Its rare to find devs anticipating &lt;a href=&quot;https://en.wikipedia.org/wiki/Unicode_control_characters&quot;&gt;Unicode control characters&lt;/a&gt; showing up in user input. And the most fun when unanticipated
     is the &lt;a href=&quot;https://www.unicode.org/reports/tr9/&quot;&gt;Right-To-Left Override character U+202E&lt;/a&gt;. Unicode characters have an implicit direction so that for example by default Hebrew characters
@@ -178,9 +178,9 @@
 	
 	<entry>
 		<title>Scrollbars in EdgeHtml WebView and Edge browser</title>
-		<link href="https://dave.deletethis.net/post/2019-08/Scrollbars+in+EdgeHtml+WebView+and+Edge+browser/"/>
+		<link href="https://deletethis.net/dave/2019-08/Scrollbars+in+EdgeHtml+WebView+and+Edge+browser/"/>
 		<updated>2019-08-22T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2019-08/Scrollbars+in+EdgeHtml+WebView+and+Edge+browser/</id>
+		<id>https://deletethis.net/dave/2019-08/Scrollbars+in+EdgeHtml+WebView+and+Edge+browser/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     The scrollbars in UWP WebView and in Edge have different default behavior leading to many emails to my team. (Everything I talk about here is for the EdgeHtml based WebView and Edge browser and
     does not apply to the Chromium based Edge browser and WebView2).
@@ -202,9 +202,9 @@
 	
 	<entry>
 		<title>Edge browser and JavaScript UWP app security model comparison</title>
-		<link href="https://dave.deletethis.net/post/2018-11/Edge+browser+and+JavaScript+UWP+app+security+model+comparison/"/>
+		<link href="https://deletethis.net/dave/2018-11/Edge+browser+and+JavaScript+UWP+app+security+model+comparison/"/>
 		<updated>2018-11-29T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2018-11/Edge+browser+and+JavaScript+UWP+app+security+model+comparison/</id>
+		<id>https://deletethis.net/dave/2018-11/Edge+browser+and+JavaScript+UWP+app+security+model+comparison/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     There are two main differences in terms of security between a JavaScript UWP app and the Edge browser:
   &lt;/p&gt;&lt;h2&gt;
@@ -239,9 +239,9 @@
 	
 	<entry>
 		<title>GoBack/GoForward in Win10 UWP WebView</title>
-		<link href="https://dave.deletethis.net/post/2018-10/GoBack-GoForward+in+Win10+UWP+WebView/"/>
+		<link href="https://deletethis.net/dave/2018-10/GoBack-GoForward+in+Win10+UWP+WebView/"/>
 		<updated>2018-10-23T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2018-10/GoBack-GoForward+in+Win10+UWP+WebView/</id>
+		<id>https://deletethis.net/dave/2018-10/GoBack-GoForward+in+Win10+UWP+WebView/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     The GoBack and GoForward methods on the UWP WebView (x-ms-webview in HTML, Windows.UI.Xaml.Controls.WebView in XAML, and Windows.Web.UI.Interop.WebViewControl in Win32) act the same as the Back
     and Forward buttons in the Edge browser. They don&#39;t necessarily change the top level document of the WebView. If inside the webview an iframe navigates then that navigation will be recorded in
@@ -261,9 +261,9 @@
 	
 	<entry>
 		<title>Changing the User Agent string in UWP WebView</title>
-		<link href="https://dave.deletethis.net/post/2018-10/Changing+the+User+Agent+string+in+UWP+WebView/"/>
+		<link href="https://deletethis.net/dave/2018-10/Changing+the+User+Agent+string+in+UWP+WebView/"/>
 		<updated>2018-10-23T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2018-10/Changing+the+User+Agent+string+in+UWP+WebView/</id>
+		<id>https://deletethis.net/dave/2018-10/Changing+the+User+Agent+string+in+UWP+WebView/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     There&#39;s no perfect way to change the user agent string for the UWP WebView (x-ms-webview in HTML, Windows.UI.Xaml.Controls.WebView in XAML, and Windows.Web.UI.Interop.WebViewControl in Win32) but
     there are two imperfect methods folks end up using.
@@ -283,9 +283,9 @@
 	
 	<entry>
 		<title>Windows.Web.UI.Interop.WebViewControl localhost access</title>
-		<link href="https://dave.deletethis.net/post/2018-07/Windows.Web.UI.Interop.WebViewControl+localhost+access/"/>
+		<link href="https://deletethis.net/dave/2018-07/Windows.Web.UI.Interop.WebViewControl+localhost+access/"/>
 		<updated>2018-07-25T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2018-07/Windows.Web.UI.Interop.WebViewControl+localhost+access/</id>
+		<id>https://deletethis.net/dave/2018-07/Windows.Web.UI.Interop.WebViewControl+localhost+access/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     If you&#39;re developing with the new &lt;a href=&quot;https://docs.microsoft.com/en-us/uwp/api/windows.web.ui.interop.webviewcontrol&quot;&gt;Windows.Web.UI.Interop.WebViewControl&lt;/a&gt; you may have noticed you
     cannot navigate to localhost HTTP servers. This is because the WebViewControl&#39;s WebView process is a UWP process. All UWP processes by default cannot use the loopback adapter as a security
@@ -306,9 +306,9 @@
 	
 	<entry>
 		<title>Win10 PWA Terminology</title>
-		<link href="https://dave.deletethis.net/post/2018-05/Win10+PWA+Terminology/"/>
+		<link href="https://deletethis.net/dave/2018-05/Win10+PWA+Terminology/"/>
 		<updated>2018-05-31T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2018-05/Win10+PWA+Terminology/</id>
+		<id>https://deletethis.net/dave/2018-05/Win10+PWA+Terminology/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     Folks familiar with JavaScript UWP apps in Win10 have often been confused by what PWAs in Win10 actually are. TLDR: PWAs in Win10 are simply JavaScript UWP apps. The main difference between these
     JS UWP Apps and our non-PWA JS UWP apps are our target end developer audience, and how we get Win10 PWAs into the Microsoft Store. See this &lt;a href=&quot;https://blogs.windows.com/msedgedev/2018/02/06/welcoming-progressive-web-apps-edge-windows-10/&quot;&gt;Win10 blog post on PWAs on Win10&lt;/a&gt; for related info.
@@ -348,9 +348,9 @@
 	
 	<entry>
 		<title>Tiny browser features: JSBrowser crash resistance</title>
-		<link href="https://dave.deletethis.net/post/2018-05/Tiny+browser+features-+JSBrowser+crash+resistance/"/>
+		<link href="https://deletethis.net/dave/2018-05/Tiny+browser+features-+JSBrowser+crash+resistance/"/>
 		<updated>2018-05-13T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2018-05/Tiny+browser+features-+JSBrowser+crash+resistance/</id>
+		<id>https://deletethis.net/dave/2018-05/Tiny+browser+features-+JSBrowser+crash+resistance/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/david-risney/JSBrowser&quot;&gt;JSBrowser&lt;/a&gt; is a basic browser built as a Win10 JavaScript UWP app around the WebView HTML element. Its fun and relatively simple to
     implement tiny browser features in JavaScript and in this post I&#39;m implementing crash resistance.
   &lt;/p&gt;&lt;p&gt;
@@ -373,9 +373,9 @@
 	
 	<entry>
 		<title>Tiny browser features: JSBrowser zoom</title>
-		<link href="https://dave.deletethis.net/post/2018-05/Tiny+browser+features-+JSBrowser+zoom/"/>
+		<link href="https://deletethis.net/dave/2018-05/Tiny+browser+features-+JSBrowser+zoom/"/>
 		<updated>2018-05-10T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2018-05/Tiny+browser+features-+JSBrowser+zoom/</id>
+		<id>https://deletethis.net/dave/2018-05/Tiny+browser+features-+JSBrowser+zoom/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/david-risney/JSBrowser&quot;&gt;JSBrowser&lt;/a&gt; is a basic browser built as a Win10 JavaScript UWP app around the WebView HTML element. Its fun and relatively simple to
     implement tiny browser features in JavaScript and in this post I&#39;m implementing zoom.
   &lt;/p&gt;&lt;p&gt;
@@ -409,9 +409,9 @@
 	
 	<entry>
 		<title>Multiple Windows in Win10 JavaScript UWP apps</title>
-		<link href="https://dave.deletethis.net/post/2018-03/Multiple+Windows+in+Win10+JavaScript+UWP+apps/"/>
+		<link href="https://deletethis.net/dave/2018-03/Multiple+Windows+in+Win10+JavaScript+UWP+apps/"/>
 		<updated>2018-03-10T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2018-03/Multiple+Windows+in+Win10+JavaScript+UWP+apps/</id>
+		<id>https://deletethis.net/dave/2018-03/Multiple+Windows+in+Win10+JavaScript+UWP+apps/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;h2&gt;
     Win10 Changes
   &lt;/h2&gt;&lt;p&gt;
@@ -478,9 +478,9 @@
 	
 	<entry>
 		<title>MSApp.getHtmlPrintDocumentSourceAsync - JavaScript UWP app printing</title>
-		<link href="https://dave.deletethis.net/post/2017-10/MSApp.getHtmlPrintDocumentSourceAsync+-+JavaScript+UWP+app+printing/"/>
+		<link href="https://deletethis.net/dave/2017-10/MSApp.getHtmlPrintDocumentSourceAsync+-+JavaScript+UWP+app+printing/"/>
 		<updated>2017-10-11T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2017-10/MSApp.getHtmlPrintDocumentSourceAsync+-+JavaScript+UWP+app+printing/</id>
+		<id>https://deletethis.net/dave/2017-10/MSApp.getHtmlPrintDocumentSourceAsync+-+JavaScript+UWP+app+printing/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     The documentation for printing in JavaScript UWP apps is out of date as it all references &lt;a href=&quot;https://msdn.microsoft.com/en-us/library/hh772325(v=vs.85).aspx&quot;&gt;MSApp.getHtmlPrintDocumentSource&lt;/a&gt; but that method has been replaced by MSApp.getHtmlPrintDocumentSourceAsync since WinPhone
     8.1.
@@ -507,9 +507,9 @@
 	
 	<entry>
 		<title>Win10 UWP WebView AddWebAllowedObject details</title>
-		<link href="https://dave.deletethis.net/post/2017-09/Win10+UWP+WebView+AddWebAllowedObject+details/"/>
+		<link href="https://deletethis.net/dave/2017-09/Win10+UWP+WebView+AddWebAllowedObject+details/"/>
 		<updated>2017-09-04T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2017-09/Win10+UWP+WebView+AddWebAllowedObject+details/</id>
+		<id>https://deletethis.net/dave/2017-09/Win10+UWP+WebView+AddWebAllowedObject+details/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     The x-ms-webview HTML element has the void &lt;a href=&quot;https://msdn.microsoft.com/en-us/library/windows/apps/dn926632.aspx&quot;&gt;addWebAllowedObject&lt;/a&gt;(string name, any value) method and the webview
     XAML element has the void &lt;a href=&quot;https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.webview#Windows_UI_Xaml_Controls_WebView_AddWebAllowedObject_System_String_System_Object_&quot;&gt;AddWebAllowedObject&lt;/a&gt;(String name,
@@ -562,9 +562,9 @@
 	
 	<entry>
 		<title>Application Content URI Rule effects</title>
-		<link href="https://dave.deletethis.net/post/2017-06/Application+Content+URI+Rule+effects/"/>
+		<link href="https://deletethis.net/dave/2017-06/Application+Content+URI+Rule+effects/"/>
 		<updated>2017-06-30T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2017-06/Application+Content+URI+Rule+effects/</id>
+		<id>https://deletethis.net/dave/2017-06/Application+Content+URI+Rule+effects/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     Previously I described &lt;a href=&quot;https://deletethis.net/dave/2017-05/Application+Content+URI+Rules+wildcard+syntax&quot;&gt;Application Content URI Rules (ACUR) parsing&lt;/a&gt; and &lt;a href=&quot;https://deletethis.net/dave/2017-06/Application+Content+URI+Rules+rule+ordering&quot;&gt;ACUR ordering&lt;/a&gt;. This post describes what you get from putting a URI in ACUR.
   &lt;/p&gt;&lt;p&gt;
@@ -593,9 +593,9 @@
 	
 	<entry>
 		<title>JavaScript Microsoft Store app StartPage</title>
-		<link href="https://dave.deletethis.net/post/2017-06/JavaScript+Microsoft+Store+app+StartPage/"/>
+		<link href="https://deletethis.net/dave/2017-06/JavaScript+Microsoft+Store+app+StartPage/"/>
 		<updated>2017-06-22T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2017-06/JavaScript+Microsoft+Store+app+StartPage/</id>
+		<id>https://deletethis.net/dave/2017-06/JavaScript+Microsoft+Store+app+StartPage/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     JavaScript Microsoft Store apps have some details related to activation that are specific to JavaScript Store apps and that are poorly documented which I’ll describe here.
   &lt;/p&gt;&lt;h2&gt;
@@ -638,9 +638,9 @@
 	
 	<entry>
 		<title>Application Content URI Rules rule ordering</title>
-		<link href="https://dave.deletethis.net/post/2017-06/Application+Content+URI+Rules+rule+ordering/"/>
+		<link href="https://deletethis.net/dave/2017-06/Application+Content+URI+Rules+rule+ordering/"/>
 		<updated>2017-06-01T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2017-06/Application+Content+URI+Rules+rule+ordering/</id>
+		<id>https://deletethis.net/dave/2017-06/Application+Content+URI+Rules+rule+ordering/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/uwp/schemas/appxpackage/appxmanifestschema/element-applicationcontenturirules&quot;&gt;Application Content URI Rules&lt;/a&gt; (ACUR from now on) defines the bounds on
     the web that make up a Microsoft Store application. The previous blog post discussed &lt;a href=&quot;https://deletethis.net/dave/2017-05/Application+Content+URI+Rules+wildcard+syntax&quot;&gt;the syntax of the
     Rule&#39;s Match attribute&lt;/a&gt; and this time I&#39;ll write about the interactions between the Rules elements.
@@ -668,9 +668,9 @@
 	
 	<entry>
 		<title>Application Content URI Rules wildcard syntax</title>
-		<link href="https://dave.deletethis.net/post/2017-05/Application+Content+URI+Rules+wildcard+syntax/"/>
+		<link href="https://deletethis.net/dave/2017-05/Application+Content+URI+Rules+wildcard+syntax/"/>
 		<updated>2017-05-31T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2017-05/Application+Content+URI+Rules+wildcard+syntax/</id>
+		<id>https://deletethis.net/dave/2017-05/Application+Content+URI+Rules+wildcard+syntax/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/uwp/schemas/appxpackage/appxmanifestschema/element-applicationcontenturirules&quot;&gt;Application Content URI Rules&lt;/a&gt; (ACUR from now on) defines the bounds of
     the web that make up the Microsoft Store application. Package content via the ms-appx URI scheme is automatically considered part of the app. But if you have content on the web via http or https
     you can use ACUR to declare to Windows that those URIs are also part of your application. When your app navigates to URIs on the web those URIs will be matched against the ACUR to determine if
@@ -717,9 +717,9 @@
 	
 	<entry>
 		<title>Let&#39;s Encrypt NearlyFreeSpeech.net Update</title>
-		<link href="https://dave.deletethis.net/post/2016-11/Let-s+Encrypt+NearlyFreeSpeech.net+Update/"/>
+		<link href="https://deletethis.net/dave/2016-11/Let-s+Encrypt+NearlyFreeSpeech.net+Update/"/>
 		<updated>2016-11-05T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2016-11/Let-s+Encrypt+NearlyFreeSpeech.net+Update/</id>
+		<id>https://deletethis.net/dave/2016-11/Let-s+Encrypt+NearlyFreeSpeech.net+Update/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     Since I had last &lt;a href=&quot;https://deletethis.net/dave/2016-02/Let%27s+Encrypt+NearlyFreeSpeech.net+Setup&quot;&gt;posted about using Let&#39;s Encrypt with NearlyFreeSpeech&lt;/a&gt;, NFS has changed their process
     for setting TLS info. Instead of putting the various files in /home/protected/ssl and submitting an assistance request, now there is a command to submit the certificate info and a webpage for
@@ -742,9 +742,9 @@
 	
 	<entry>
 		<title>Parsing WinMD with .NET reflection APIs</title>
-		<link href="https://dave.deletethis.net/post/2016-11/Parsing+WinMD+with+.NET+reflection+APIs/"/>
+		<link href="https://deletethis.net/dave/2016-11/Parsing+WinMD+with+.NET+reflection+APIs/"/>
 		<updated>2016-11-02T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2016-11/Parsing+WinMD+with+.NET+reflection+APIs/</id>
+		<id>https://deletethis.net/dave/2016-11/Parsing+WinMD+with+.NET+reflection+APIs/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     Parsing WinMD files, the containers of WinRT API metadata, is relatively simple using the appropriate .NET reflection APIs. However, figuring out which reflection APIs to use is not obvious. I&#39;ve
     got a completed &lt;a href=&quot;https://github.com/david-risney/WinMDGraph/blob/master/WinMDTypes.cs&quot;&gt;C sharp class parsing WinMD files&lt;/a&gt; that you can check out for reference.
@@ -763,9 +763,9 @@
 	
 	<entry>
 		<title>WPAD Server Fiddler Extension Source</title>
-		<link href="https://dave.deletethis.net/post/2016-08/WPAD+Server+Fiddler+Extension+Source/"/>
+		<link href="https://deletethis.net/dave/2016-08/WPAD+Server+Fiddler+Extension+Source/"/>
 		<updated>2016-08-05T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2016-08/WPAD+Server+Fiddler+Extension+Source/</id>
+		<id>https://deletethis.net/dave/2016-08/WPAD+Server+Fiddler+Extension+Source/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     I&#39;ve put my &lt;a href=&quot;https://github.com/david-risney/WpadServerFiddlerExtension&quot;&gt;WPAD Fiddler extension source&lt;/a&gt; and the &lt;a href=&quot;https://github.com/david-risney/WpadServerFiddlerExtension/releases&quot;&gt;installer&lt;/a&gt; on GitHub.
   &lt;/p&gt;&lt;p&gt;
@@ -777,9 +777,9 @@
 	
 	<entry>
 		<title>Data breakpoints in JavaScript</title>
-		<link href="https://dave.deletethis.net/post/2016-06/Data+breakpoints+in+JavaScript/"/>
+		<link href="https://deletethis.net/dave/2016-06/Data+breakpoints+in+JavaScript/"/>
 		<updated>2016-06-17T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2016-06/Data+breakpoints+in+JavaScript/</id>
+		<id>https://deletethis.net/dave/2016-06/Data+breakpoints+in+JavaScript/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     The other day I had to debug a JavaScript UWA that was failing when trying to use an undefined property. In a previous OS build this code would run and the property was defined. I wanted
     something similar to windbg/cdb&#39;s ba command that lets me set a breakpoint on read or writes to a memory location so I could see what was creating the object in the previous OS build and what
@@ -796,9 +796,9 @@
 	
 	<entry>
 		<title>WinRT Toast from PowerShell</title>
-		<link href="https://dave.deletethis.net/post/2016-06/WinRT+Toast+from+PowerShell/"/>
+		<link href="https://deletethis.net/dave/2016-06/WinRT+Toast+from+PowerShell/"/>
 		<updated>2016-06-15T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2016-06/WinRT+Toast+from+PowerShell/</id>
+		<id>https://deletethis.net/dave/2016-06/WinRT+Toast+from+PowerShell/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     I&#39;ve made a &lt;a href=&quot;https://github.com/david-risney/PoshWinRT/blob/master/Show-Toast.ps1&quot;&gt;PowerShell script to show system toast notifications&lt;/a&gt; with WinRT and PowerShell. Along the way I
     learned several interesting things.
@@ -828,9 +828,9 @@
 	
 	<entry>
 		<title>Windows Store App WebView Cross Origin XMLHttpRequest Behavior</title>
-		<link href="https://dave.deletethis.net/post/2016-06/Windows+Store+App+WebView+Cross+Origin+XMLHttpRequest+Behavior/"/>
+		<link href="https://deletethis.net/dave/2016-06/Windows+Store+App+WebView+Cross+Origin+XMLHttpRequest+Behavior/"/>
 		<updated>2016-06-02T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2016-06/Windows+Store+App+WebView+Cross+Origin+XMLHttpRequest+Behavior/</id>
+		<id>https://deletethis.net/dave/2016-06/Windows+Store+App+WebView+Cross+Origin+XMLHttpRequest+Behavior/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     TL;DR: Web content in a JavaScript Windows Store app or WebView in a Windows Store app that has full access to WinRT also gets to use XHR unrestricted by cross origin checks.
   &lt;/p&gt;&lt;p&gt;
@@ -847,9 +847,9 @@
 	
 	<entry>
 		<title>WinRT Launcher API in PowerShell</title>
-		<link href="https://dave.deletethis.net/post/2016-03/WinRT+Launcher+API+in+PowerShell/"/>
+		<link href="https://deletethis.net/dave/2016-03/WinRT+Launcher+API+in+PowerShell/"/>
 		<updated>2016-03-31T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2016-03/WinRT+Launcher+API+in+PowerShell/</id>
+		<id>https://deletethis.net/dave/2016-03/WinRT+Launcher+API+in+PowerShell/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;
   You can call WinRT APIs from PowerShell. Here&#39;s a short example using the WinRT Launcher API:
   &lt;pre&gt;&lt;code&gt;[Windows.System.Launcher,Windows.System,ContentType=WindowsRuntime]&lt;br&gt;$uri = New-Object System.Uri &quot;http://example.com/&quot;&lt;br&gt;[Windows.System.Launcher]::LaunchUriAsync($uri)&lt;/code&gt;&lt;/pre&gt;Note
@@ -861,9 +861,9 @@
 	
 	<entry>
 		<title>Cdb/Windbg Commands for Runtime Patching</title>
-		<link href="https://dave.deletethis.net/post/2016-02/Cdb-Windbg+Commands+for+Runtime+Patching/"/>
+		<link href="https://deletethis.net/dave/2016-02/Cdb-Windbg+Commands+for+Runtime+Patching/"/>
 		<updated>2016-02-08T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2016-02/Cdb-Windbg+Commands+for+Runtime+Patching/</id>
+		<id>https://deletethis.net/dave/2016-02/Cdb-Windbg+Commands+for+Runtime+Patching/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     You can use conditional breakpoints and debugging commands in windbg and cdb that together can amount to effectively patching a binary at runtime. This can be useful if you have symbols but you
     can&#39;t easily rebuild the binary. Or if the patch is small and the binary requires a great deal of time to rebuild.
@@ -892,9 +892,9 @@
 	
 	<entry>
 		<title>Let&#39;s Encrypt NearlyFreeSpeech.net Setup</title>
-		<link href="https://dave.deletethis.net/post/2016-02/Let-s+Encrypt+NearlyFreeSpeech.net+Setup/"/>
+		<link href="https://deletethis.net/dave/2016-02/Let-s+Encrypt+NearlyFreeSpeech.net+Setup/"/>
 		<updated>2016-02-04T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2016-02/Let-s+Encrypt+NearlyFreeSpeech.net+Setup/</id>
+		<id>https://deletethis.net/dave/2016-02/Let-s+Encrypt+NearlyFreeSpeech.net+Setup/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     2016-Nov-5: &lt;a href=&quot;https://deletethis.net/dave/2016-11/Let%27s+Encrypt+NearlyFreeSpeech.net+Update&quot;&gt;Updated post&lt;/a&gt; on using Let&#39;s Encrypt with NearlyFreeSpeech.net
   &lt;/p&gt;&lt;p&gt;
@@ -931,9 +931,9 @@
 	
 	<entry>
 		<title>Unicode Clock</title>
-		<link href="https://dave.deletethis.net/post/2016-01/Unicode+Clock/"/>
+		<link href="https://deletethis.net/dave/2016-01/Unicode+Clock/"/>
 		<updated>2016-01-24T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2016-01/Unicode+Clock/</id>
+		<id>https://deletethis.net/dave/2016-01/Unicode+Clock/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     I&#39;ve made a &lt;a href=&quot;http://david-risney.github.io/UnicodeClock/&quot;&gt;Unicode Clock in JavaScript&lt;/a&gt;.
   &lt;/p&gt;&lt;p&gt;
@@ -953,18 +953,18 @@
 	
 	<entry>
 		<title>JavaScript Types and WinRT Types</title>
-		<link href="https://dave.deletethis.net/post/2016-01/JavaScript+Types+and+WinRT+Types/"/>
+		<link href="https://deletethis.net/dave/2016-01/JavaScript+Types+and+WinRT+Types/"/>
 		<updated>2016-01-21T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2016-01/JavaScript+Types+and+WinRT+Types/</id>
+		<id>https://deletethis.net/dave/2016-01/JavaScript+Types+and+WinRT+Types/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;/div&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>Cloud Share - New App</title>
-		<link href="https://dave.deletethis.net/post/2014-05/Cloud+Share+-+New+App/"/>
+		<link href="https://deletethis.net/dave/2014-05/Cloud+Share+-+New+App/"/>
 		<updated>2014-05-23T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2014-05/Cloud+Share+-+New+App/</id>
+		<id>https://deletethis.net/dave/2014-05/Cloud+Share+-+New+App/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     I&#39;ve put a new app on the Windows Store: &lt;a href=&quot;http://apps.microsoft.com/windows/en-us/app/a2b392c8-a94e-44ab-b52b-dea2c6c93572&quot;&gt;Cloud Share&lt;/a&gt;. It connects the web to your Windows 8 share
     charm.
@@ -978,9 +978,9 @@
 	
 	<entry>
 		<title>location.hash and location.search are bad and they should feel bad</title>
-		<link href="https://dave.deletethis.net/post/2014-05/location.hash+and+location.search+are+bad+and+they+should+feel+bad/"/>
+		<link href="https://deletethis.net/dave/2014-05/location.hash+and+location.search+are+bad+and+they+should+feel+bad/"/>
 		<updated>2014-05-22T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2014-05/location.hash+and+location.search+are+bad+and+they+should+feel+bad/</id>
+		<id>https://deletethis.net/dave/2014-05/location.hash+and+location.search+are+bad+and+they+should+feel+bad/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;
   The &lt;a href=&quot;http://www.w3.org/html/wg/drafts/html/master/browsers.html#the-location-interface&quot;&gt;DOM location interface&lt;/a&gt; exposes the HTML document&#39;s URI parsed into its properties. However, it is
   ancient and has problems that bug me but otherwise rarely show up in the real world. Complaining about mostly theoretical issues is why blogging exists, so here goes:
@@ -1002,9 +1002,9 @@
 	
 	<entry>
 		<title>Debugging anecdote - the color transparent black breaks accessibility </title>
-		<link href="https://dave.deletethis.net/post/2014-05/Debugging+anecdote+-+the+color+transparent+black+breaks+accessibility+/"/>
+		<link href="https://deletethis.net/dave/2014-05/Debugging+anecdote+-+the+color+transparent+black+breaks+accessibility+/"/>
 		<updated>2014-05-22T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2014-05/Debugging+anecdote+-+the+color+transparent+black+breaks+accessibility+/</id>
+		<id>https://deletethis.net/dave/2014-05/Debugging+anecdote+-+the+color+transparent+black+breaks+accessibility+/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     Some time back while I was working on getting the &lt;a href=&quot;http://msdn.microsoft.com/en-us/library/windows/apps/dn631759.aspx&quot;&gt;Javascript Windows Store app platform&lt;/a&gt; running on Windows Phone
     (now available on the last Windows Phone release!) I had an interesting bug that in retrospect is amusing.
@@ -1051,9 +1051,9 @@
 	
 	<entry>
 		<title>FitBit and WebOC Application Compatibility Errors</title>
-		<link href="https://dave.deletethis.net/post/2013-08/FitBit+and+WebOC+Application+Compatibility+Errors/"/>
+		<link href="https://deletethis.net/dave/2013-08/FitBit+and+WebOC+Application+Compatibility+Errors/"/>
 		<updated>2013-08-29T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2013-08/FitBit+and+WebOC+Application+Compatibility+Errors/</id>
+		<id>https://deletethis.net/dave/2013-08/FitBit+and+WebOC+Application+Compatibility+Errors/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;
   I just got a FitBit One from my wife. Unfortunately I had issues running their app on my Windows 8.1 Preview machine. But I recognized the errors as IE compatibility issues, for instance an IE
   dialog popup from the FitBit app telling me about an error in the app&#39;s JavaScript. Given &lt;a href=&quot;http://deletethis.net/dave/?uri=http%3A%2F%2Fdavescoolblog.blogspot.com%2F2011%2F04%2Fie9-document-mode-in-weboc.html&quot;&gt;my previous post on WebOC versioning&lt;/a&gt; you may guess what I tried next. I
@@ -1068,9 +1068,9 @@
 	
 	<entry>
 		<title>Moving PowerShell data into Excel</title>
-		<link href="https://dave.deletethis.net/post/2013-08/Moving+PowerShell+data+into+Excel/"/>
+		<link href="https://deletethis.net/dave/2013-08/Moving+PowerShell+data+into+Excel/"/>
 		<updated>2013-08-15T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2013-08/Moving+PowerShell+data+into+Excel/</id>
+		<id>https://deletethis.net/dave/2013-08/Moving+PowerShell+data+into+Excel/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;
   PowerShell nicely includes ConvertTo-CSV and ConvertFrom-CSV which allow you to serialize and deserialize your PowerShell objects to and from CSV. Unfortunately the CSV produced by ConvertTo-CSV is
   not easily opened by Excel which expects by default different sets of delimiters and such. Looking online you&#39;ll find folks who recommend using automation via COM to create a new Excel instance and
@@ -1084,9 +1084,9 @@
 	
 	<entry>
 		<title>Serializing JavaScript Promise Execution</title>
-		<link href="https://dave.deletethis.net/post/2013-08/Serializing+JavaScript+Promise+Execution/"/>
+		<link href="https://deletethis.net/dave/2013-08/Serializing+JavaScript+Promise+Execution/"/>
 		<updated>2013-08-10T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2013-08/Serializing+JavaScript+Promise+Execution/</id>
+		<id>https://deletethis.net/dave/2013-08/Serializing+JavaScript+Promise+Execution/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;
   Occasionally I have need to run a set of unrelated promises in series, for instance an object dealing with a WinRT camera API that can only execute one async operation at a time, or an object
   handling postMessage message events and must resolve associated async operations in the same order it received the requests. The solution is very simply to keep track of the last promise and when
@@ -1099,9 +1099,9 @@
 	
 	<entry>
 		<title>Considerate MessagePort Usage</title>
-		<link href="https://dave.deletethis.net/post/2013-08/Considerate+MessagePort+Usage/"/>
+		<link href="https://deletethis.net/dave/2013-08/Considerate+MessagePort+Usage/"/>
 		<updated>2013-08-07T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2013-08/Considerate+MessagePort+Usage/</id>
+		<id>https://deletethis.net/dave/2013-08/Considerate+MessagePort+Usage/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;img align=&quot;right&quot; alt=&quot;Sharing by leezie5. Two squirrels sharing food hanging from a bird feeder. Used under Creative Commons license Attribution-NonCommercial-NoDerivs 2.0 Generic.&quot; src=&quot;http://farm7.staticflickr.com/6013/5912219625_ece631b7e6_m.jpg&quot;&gt;When writing a JavaScript library that uses postMessage and the message event, I must be considerate of other JS code that will be
   running along side my library. I shouldn&#39;t assume I&#39;m the only sender and receiver on a caller provided MessagePort object. This means obviously I should use addEventListener(&quot;message&quot; rather than
   the onmessage property (see related &lt;a href=&quot;http://blogs.msdn.com/b/oldnewthing/archive/2005/06/07/426294.aspx&quot;&gt;What if two programs did this?&lt;/a&gt;). But considering the actual messages traveling
@@ -1132,27 +1132,27 @@
 	
 	<entry>
 		<title>URI functions in Windows Store Applications</title>
-		<link href="https://dave.deletethis.net/post/2013-07/URI+functions+in+Windows+Store+Applications/"/>
+		<link href="https://deletethis.net/dave/2013-07/URI+functions+in+Windows+Store+Applications/"/>
 		<updated>2013-07-25T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2013-07/URI+functions+in+Windows+Store+Applications/</id>
+		<id>https://deletethis.net/dave/2013-07/URI+functions+in+Windows+Store+Applications/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;/div&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>C++ constructor member initializers run in member declaration order</title>
-		<link href="https://dave.deletethis.net/post/2013-07/C--+constructor+member+initializers+run+in+member+declaration+order/"/>
+		<link href="https://deletethis.net/dave/2013-07/C--+constructor+member+initializers+run+in+member+declaration+order/"/>
 		<updated>2013-07-18T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2013-07/C--+constructor+member+initializers+run+in+member+declaration+order/</id>
+		<id>https://deletethis.net/dave/2013-07/C--+constructor+member+initializers+run+in+member+declaration+order/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;/div&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>Subtleties of postMessage</title>
-		<link href="https://dave.deletethis.net/post/2013-07/Subtleties+of+postMessage/"/>
+		<link href="https://deletethis.net/dave/2013-07/Subtleties+of+postMessage/"/>
 		<updated>2013-07-15T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2013-07/Subtleties+of+postMessage/</id>
+		<id>https://deletethis.net/dave/2013-07/Subtleties+of+postMessage/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;div&gt;&lt;p&gt;
       In IE10 and other new browsers one may create MessageChannel objects that have two MessagePorts each connected (w3c spec calls it entangled) to one another such that postMessage on one port
       results in the message event firing on the other. You can pass an array of ports as the last parameter to postMessage and they show up in the ports property of the message event arg.
@@ -1190,9 +1190,9 @@
 	
 	<entry>
 		<title>Percent Clcok Windows Store App Development Notes</title>
-		<link href="https://dave.deletethis.net/post/2013-07/Percent+Clcok+Windows+Store+App+Development+Notes/"/>
+		<link href="https://deletethis.net/dave/2013-07/Percent+Clcok+Windows+Store+App+Development+Notes/"/>
 		<updated>2013-07-11T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2013-07/Percent+Clcok+Windows+Store+App+Development+Notes/</id>
+		<id>https://deletethis.net/dave/2013-07/Percent+Clcok+Windows+Store+App+Development+Notes/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;div&gt;&lt;p&gt;
       My third completed Windows Store app is &lt;a href=&quot;http://apps.microsoft.com/windows/en-us/app/percent-clock/e1560938-5720-4b5f-a19e-707f1b68e09f/&quot;&gt;Percent Clock&lt;/a&gt; which displays portions of a
       time span like the time of the day or time until your next birthday, as a percentage. This was a small project I had previously started as a webpage and converted and finished as an HTML
@@ -1208,9 +1208,9 @@
 	
 	<entry>
 		<title>WinRT PropertySet Changed Event Danger</title>
-		<link href="https://dave.deletethis.net/post/2013-07/WinRT+PropertySet+Changed+Event+Danger/"/>
+		<link href="https://deletethis.net/dave/2013-07/WinRT+PropertySet+Changed+Event+Danger/"/>
 		<updated>2013-07-08T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2013-07/WinRT+PropertySet+Changed+Event+Danger/</id>
+		<id>https://deletethis.net/dave/2013-07/WinRT+PropertySet+Changed+Event+Danger/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;div&gt;&lt;p&gt;
       The Windows Runtime API &lt;a href=&quot;http://msdn.microsoft.com/en-us/library/windows/apps/windows.foundation.collections.propertyset.aspx&quot;&gt;Windows.Foundation.Collections.PropertySet&lt;/a&gt; class​ is a
       nice string name to object value map that has a changed event that fires when the contents of the map is modified. Be careful with this event because it fires synchronously from the thread on
@@ -1222,9 +1222,9 @@
 	
 	<entry>
 		<title>Words with Hints Windows 8 App Development Notes</title>
-		<link href="https://dave.deletethis.net/post/2013-07/Words+with+Hints+Windows+8+App+Development+Notes/"/>
+		<link href="https://deletethis.net/dave/2013-07/Words+with+Hints+Windows+8+App+Development+Notes/"/>
 		<updated>2013-07-04T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2013-07/Words+with+Hints+Windows+8+App+Development+Notes/</id>
+		<id>https://deletethis.net/dave/2013-07/Words+with+Hints+Windows+8+App+Development+Notes/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;div&gt;&lt;p&gt;
       My second completed app for the Windows Store was &lt;a href=&quot;http://apps.microsoft.com/windows/en-us/app/words-with-hints/e302a949-452d-4086-8261-4d93d2f4f53a/&quot;&gt;Words with Hints&lt;/a&gt; a companion
       to Words with Friends or other Scrabble like games that gives you *ahem* hints. You provide your tiles and optionally letters placed in a line on the board and Words with Hints gives you word
@@ -1249,9 +1249,9 @@
 	
 	<entry>
 		<title>MSVC++ 64bit Enums</title>
-		<link href="https://dave.deletethis.net/post/2013-07/MSVC--+64bit+Enums/"/>
+		<link href="https://deletethis.net/dave/2013-07/MSVC--+64bit+Enums/"/>
 		<updated>2013-07-01T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2013-07/MSVC--+64bit+Enums/</id>
+		<id>https://deletethis.net/dave/2013-07/MSVC--+64bit+Enums/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;div&gt;&lt;p&gt;
       If you want to represent a value larger than 32bits in an enum in MSVC++ you can use C++0x style syntax to tell the compiler exactly what kind of integral type to store the enum values.
       Unfortunately by default an enum is always 32bits, and additionally while you can specify constants larger than 32bits for the enum values, they are silently truncated to 32bits.
@@ -1267,9 +1267,9 @@
 	
 	<entry>
 		<title>Shout Text Windows 8 App Development Notes</title>
-		<link href="https://dave.deletethis.net/post/2013-06/Shout+Text+Windows+8+App+Development+Notes/"/>
+		<link href="https://deletethis.net/dave/2013-06/Shout+Text+Windows+8+App+Development+Notes/"/>
 		<updated>2013-06-27T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2013-06/Shout+Text+Windows+8+App+Development+Notes/</id>
+		<id>https://deletethis.net/dave/2013-06/Shout+Text+Windows+8+App+Development+Notes/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     My first app for Windows 8 was &lt;a href=&quot;http://apps.microsoft.com/windows/en-us/app/shout-text/d3c22289-d1f6-4ead-a9ef-17abd0e6345a&quot;&gt;Shout Text&lt;/a&gt;. You type into Shout Text, and your text is
     scaled up as large as possible while still fitting on the screen, as you type. It is the closest thing to a Hello World app as you&#39;ll find on the Windows Store that doesn&#39;t contain that phrase
@@ -1291,9 +1291,9 @@
 	
 	<entry>
 		<title>Windows Store on Windows 8 Fun For Independent Developers</title>
-		<link href="https://dave.deletethis.net/post/2013-06/Windows+Store+on+Windows+8+Fun+For+Independent+Developers/"/>
+		<link href="https://deletethis.net/dave/2013-06/Windows+Store+on+Windows+8+Fun+For+Independent+Developers/"/>
 		<updated>2013-06-24T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2013-06/Windows+Store+on+Windows+8+Fun+For+Independent+Developers/</id>
+		<id>https://deletethis.net/dave/2013-06/Windows+Store+on+Windows+8+Fun+For+Independent+Developers/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;
   Having worked on Windows 8 I&#39;m not in a neutral position to review aspects of it, however I&#39;ll say from a high level I love taking the following various positives from smart phone apps and app
   stores and applying it to the desktop:
@@ -1311,9 +1311,9 @@
 	
 	<entry>
 		<title>Sci-fi short stories disguised as Internet docs</title>
-		<link href="https://dave.deletethis.net/post/2013-05/Sci-fi+short+stories+disguised+as+Internet+docs/"/>
+		<link href="https://deletethis.net/dave/2013-05/Sci-fi+short+stories+disguised+as+Internet+docs/"/>
 		<updated>2013-05-29T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2013-05/Sci-fi+short+stories+disguised+as+Internet+docs/</id>
+		<id>https://deletethis.net/dave/2013-05/Sci-fi+short+stories+disguised+as+Internet+docs/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;
   The recent short story &lt;a href=&quot;http://twitter.bug.quietbabylon.com/&quot;&gt;Twitter API returning results that do not respect arrow of time&lt;/a&gt; by Tim May written as a Twitter bug report reminded me of a
   few other short sci-fi stories written in the style of some sort of Internet document:&lt;br&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;http://www.ansible.co.uk/writing/c-b-faq.html&quot;&gt;comp.basalisk FAQ&lt;/a&gt; by David Langford written as a FAQ.
@@ -1326,9 +1326,9 @@
 	
 	<entry>
 		<title>Windows Remote Desktop via Internet</title>
-		<link href="https://dave.deletethis.net/post/2012-12/Windows+Remote+Desktop+via+Internet/"/>
+		<link href="https://deletethis.net/dave/2012-12/Windows+Remote+Desktop+via+Internet/"/>
 		<updated>2012-12-07T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-12/Windows+Remote+Desktop+via+Internet/</id>
+		<id>https://deletethis.net/dave/2012-12/Windows+Remote+Desktop+via+Internet/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;
   To setup my home Windows dev box to be accessible from outside I followed two main steps:&lt;br&gt;&lt;ul&gt;&lt;li&gt; Configure &lt;a href=&quot;http://windows.microsoft.com/en-US/windows7/allow-remote-desktop-connections-from-outside-your-home-network&quot;&gt;my router to forward the remote desktop port.&lt;/a&gt;&lt;/li&gt;&lt;li&gt; Setup a &lt;a href=&quot;http://www.dnsdynamic.org/&quot;&gt;free dynamic DNS service.&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;Last time I had to do this there was a service named dynamicdns.org which seems to still exist but no longer appears to be free. Instead I used dnsdynamic.org which is free and has a web API
   as well as links to and instructions for setting up native tools to dynamically update my IP address.
@@ -1338,9 +1338,9 @@
 	
 	<entry>
 		<title>Stripe CTF - Level 8</title>
-		<link href="https://dave.deletethis.net/post/2012-12/Stripe+CTF+-+Level+8/"/>
+		<link href="https://deletethis.net/dave/2012-12/Stripe+CTF+-+Level+8/"/>
 		<updated>2012-12-07T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-12/Stripe+CTF+-+Level+8/</id>
+		<id>https://deletethis.net/dave/2012-12/Stripe+CTF+-+Level+8/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;a href=&quot;https://stripe-ctf.com/levels/8&quot;&gt;Level 8&lt;/a&gt; of the Stripe CTF is a password server that returns success: true if and only if the password provided matches the password stored directly via
   a RESTful API and optionally indirectly via a callback URI. The solution is side channel attack like a timing attack but with ports instead of time.&lt;br&gt;&lt;br&gt;
   (I found this in my drafts folder and had intended to post a while ago.)&lt;br&gt;&lt;h4&gt;
@@ -1368,18 +1368,18 @@
 	
 	<entry>
 		<title>Stripe CTF - Level 7</title>
-		<link href="https://dave.deletethis.net/post/2012-09/Stripe+CTF+-+Level+7/"/>
+		<link href="https://deletethis.net/dave/2012-09/Stripe+CTF+-+Level+7/"/>
 		<updated>2012-09-13T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-09/Stripe+CTF+-+Level+7/</id>
+		<id>https://deletethis.net/dave/2012-09/Stripe+CTF+-+Level+7/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;/div&gt;
 </content>
 	</entry>
 	
 	<entry>
 		<title>Stripe CTF - Level 5</title>
-		<link href="https://dave.deletethis.net/post/2012-09/Stripe+CTF+-+Level+5/"/>
+		<link href="https://deletethis.net/dave/2012-09/Stripe+CTF+-+Level+5/"/>
 		<updated>2012-09-11T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-09/Stripe+CTF+-+Level+5/</id>
+		<id>https://deletethis.net/dave/2012-09/Stripe+CTF+-+Level+5/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;&lt;a href=&quot;https://stripe-ctf.com/levels/5&quot;&gt;Level 5&lt;/a&gt; of the Stripe CTF revolved around a design issue in an OpenID like protocol.
   &lt;/p&gt;&lt;h4&gt;
     Code
@@ -1408,9 +1408,9 @@
 	
 	<entry>
 		<title>Stripe CTF - XSS, CSRF (Levels 4 &amp; 6)</title>
-		<link href="https://dave.deletethis.net/post/2012-09/Stripe+CTF+-+XSS-+CSRF+-Levels+4+-+6-/"/>
+		<link href="https://deletethis.net/dave/2012-09/Stripe+CTF+-+XSS-+CSRF+-Levels+4+-+6-/"/>
 		<updated>2012-09-10T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-09/Stripe+CTF+-+XSS-+CSRF+-Levels+4+-+6-/</id>
+		<id>https://deletethis.net/dave/2012-09/Stripe+CTF+-+XSS-+CSRF+-Levels+4+-+6-/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;&lt;a href=&quot;https://stripe-ctf.com/levels/4&quot;&gt;Level 4&lt;/a&gt; and &lt;a href=&quot;https://stripe-ctf.com/levels/6&quot;&gt;level 6&lt;/a&gt; of the Stripe CTF had solutions around XSS.
   &lt;/p&gt;&lt;h3&gt;
     Level 4
@@ -1464,9 +1464,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Stripe CTF - Input validation (Levels 1 &amp; 2)</title>
-		<link href="https://dave.deletethis.net/post/2012-09/Stripe+CTF+-+Input+validation+-Levels+1+-+2-/"/>
+		<link href="https://deletethis.net/dave/2012-09/Stripe+CTF+-+Input+validation+-Levels+1+-+2-/"/>
 		<updated>2012-09-06T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-09/Stripe+CTF+-+Input+validation+-Levels+1+-+2-/</id>
+		<id>https://deletethis.net/dave/2012-09/Stripe+CTF+-+Input+validation+-Levels+1+-+2-/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;&lt;a href=&quot;http://davescoolblog.blogspot.com/2012/08/stripe-web-security-ctf-summary.html&quot;&gt;Stripe&#39;s web security CTF&lt;/a&gt;&#39;s &lt;a href=&quot;https://stripe-ctf.com/levels/1&quot;&gt;Level 1&lt;/a&gt; and &lt;a href=&quot;https://stripe-ctf.com/levels/2&quot;&gt;level 2&lt;/a&gt; of the Stripe CTF had issues with missing input validation solutions described below.
   &lt;/p&gt;&lt;h3&gt;
     Level 1
@@ -1484,9 +1484,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Stripe CTF - SQL injections (Levels 0 &amp; 3)</title>
-		<link href="https://dave.deletethis.net/post/2012-09/Stripe+CTF+-+SQL+injections+-Levels+0+-+3-/"/>
+		<link href="https://deletethis.net/dave/2012-09/Stripe+CTF+-+SQL+injections+-Levels+0+-+3-/"/>
 		<updated>2012-09-05T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-09/Stripe+CTF+-+SQL+injections+-Levels+0+-+3-/</id>
+		<id>https://deletethis.net/dave/2012-09/Stripe+CTF+-+SQL+injections+-Levels+0+-+3-/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;&lt;a href=&quot;http://davescoolblog.blogspot.com/2012/08/stripe-web-security-ctf-summary.html&quot;&gt;Stripe&#39;s web security CTF&lt;/a&gt;&#39;s &lt;a href=&quot;https://stripe-ctf.com/levels/0&quot;&gt;level 0&lt;/a&gt; and &lt;a href=&quot;https://stripe-ctf.com/levels/3&quot;&gt;level 3&lt;/a&gt; had SQL injection solutions described below.
   &lt;/p&gt;&lt;h3&gt;
     Level 0
@@ -1526,9 +1526,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Stripe Web Security CTF Summary</title>
-		<link href="https://dave.deletethis.net/post/2012-08/Stripe+Web+Security+CTF+Summary/"/>
+		<link href="https://deletethis.net/dave/2012-08/Stripe+Web+Security+CTF+Summary/"/>
 		<updated>2012-08-30T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-08/Stripe+Web+Security+CTF+Summary/</id>
+		<id>https://deletethis.net/dave/2012-08/Stripe+Web+Security+CTF+Summary/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     I was the &lt;a href=&quot;https://stripe-ctf.com/leaderboard/27&quot;&gt;546th person&lt;/a&gt; to complete Stripe&#39;s web security CTF and again had a ton of fun applying my theoretical knowledge of web security
     issues to the (semi-)real world. As I went through the levels I thought about what red flags jumped out at me (or should have) that I could apply to future code reviews:
@@ -1600,9 +1600,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Web Security Contest - Stripe CTF</title>
-		<link href="https://dave.deletethis.net/post/2012-08/Web+Security+Contest+-+Stripe+CTF/"/>
+		<link href="https://deletethis.net/dave/2012-08/Web+Security+Contest+-+Stripe+CTF/"/>
 		<updated>2012-08-27T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-08/Web+Security+Contest+-+Stripe+CTF/</id>
+		<id>https://deletethis.net/dave/2012-08/Web+Security+Contest+-+Stripe+CTF/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     Stripe is running a &lt;a href=&quot;https://stripe-ctf.com/about&quot;&gt;web security capture the flag&lt;/a&gt; - a series of increasingly difficult web security exploit challenges. &lt;a href=&quot;https://stripe-ctf.com/progress/SequelGuy&quot;&gt;I&#39;ve finished it&lt;/a&gt; and had a lot of fun. Working on a web browser I knew the theory of these various web based attacks, but this was my first chance
     to put theory into practice with:
@@ -1620,9 +1620,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>HTTP Compression Documentation Reference</title>
-		<link href="https://dave.deletethis.net/post/2012-06/HTTP+Compression+Documentation+Reference/"/>
+		<link href="https://deletethis.net/dave/2012-06/HTTP+Compression+Documentation+Reference/"/>
 		<updated>2012-06-13T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-06/HTTP+Compression+Documentation+Reference/</id>
+		<id>https://deletethis.net/dave/2012-06/HTTP+Compression+Documentation+Reference/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;
   There&#39;s a lot of name reuse in HTTP compression so I&#39;ve made the following to help myself keep it straight.
   &lt;table border=&quot;1&quot;&gt;&lt;tr&gt;&lt;th&gt;&lt;a href=&quot;http://www.iana.org/assignments/http-parameters/http-parameters.xml&quot;&gt;HTTP Content Coding Token&lt;/a&gt;&lt;/th&gt;&lt;td&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc2616.html#section-3.5&quot;&gt;gzip&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc2616.html#section-3.5&quot;&gt;deflate&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc2616.html#section-3.5&quot;&gt;compress&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;td&gt;
@@ -1651,9 +1651,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Application Protocols in Windows 8</title>
-		<link href="https://dave.deletethis.net/post/2012-06/Application+Protocols+in+Windows+8/"/>
+		<link href="https://deletethis.net/dave/2012-06/Application+Protocols+in+Windows+8/"/>
 		<updated>2012-06-12T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-06/Application+Protocols+in+Windows+8/</id>
+		<id>https://deletethis.net/dave/2012-06/Application+Protocols+in+Windows+8/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;
   In Windows 8 you can still &lt;a href=&quot;http://msdn.microsoft.com/en-us/library/aa767914(v=VS.85).aspx&quot;&gt;register a desktop application to handle a particular URI scheme&lt;/a&gt;, but now you can also
   &lt;a href=&quot;http://msdn.microsoft.com/en-us/library/windows/apps/hh452686.aspx&quot;&gt;register a Metro Win8 application to handle a particular URI scheme&lt;/a&gt;. No more manually modifying the registry - now
@@ -1664,9 +1664,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Changing Windows Live IDs</title>
-		<link href="https://dave.deletethis.net/post/2012-06/Changing+Windows+Live+IDs/"/>
+		<link href="https://deletethis.net/dave/2012-06/Changing+Windows+Live+IDs/"/>
 		<updated>2012-06-06T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-06/Changing+Windows+Live+IDs/</id>
+		<id>https://deletethis.net/dave/2012-06/Changing+Windows+Live+IDs/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     Use of my old Hotmail account has really snuck up on me as I end up caring more and more about all of the services with which it is associated. The last straw is &lt;a href=&quot;http://blogs.msdn.com/b/b8/archive/2011/09/26/signing-in-to-windows-8-with-a-windows-live-id.aspx&quot;&gt;Windows 8 login&lt;/a&gt;, but previous straws include Xbox, Zune, SkyDrive, and my Windows 7 Phone.
     I like the features and sync&#39;ing associated with the Windows Live ID, but I don&#39;t like my old, spam filled, hotmail email address on the Live ID account.
@@ -1706,9 +1706,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Crowdsource These Projects</title>
-		<link href="https://dave.deletethis.net/post/2012-05/Crowdsource+These+Projects/"/>
+		<link href="https://deletethis.net/dave/2012-05/Crowdsource+These+Projects/"/>
 		<updated>2012-05-22T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-05/Crowdsource+These+Projects/</id>
+		<id>https://deletethis.net/dave/2012-05/Crowdsource+These+Projects/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     I keep seeing crowdsource projects with big names that I actually want to back:
   &lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;http://www.pledgemusic.com/projects/benfoldsfive&quot;&gt;New Ben Folds Five album&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.kickstarter.com/projects/66710809/double-fine-adventure&quot;&gt;New Double Fine Adventure game&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.kickstarter.com/projects/amandapalmer/amanda-palmer-the-new-record-art-book-and-tour&quot;&gt;New Amanda Palmer album&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.kickstarter.com/projects/spaceventure/two-guys-spaceventure-by-the-creators-of-space-que&quot;&gt;New Space Quest (like) game&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;
@@ -1717,9 +1717,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Permanently Add Path to System PATH Environment Variable in PowerShell</title>
-		<link href="https://dave.deletethis.net/post/2012-05/Permanently+Add+Path+to+System+PATH+Environment+Variable+in+PowerShell/"/>
+		<link href="https://deletethis.net/dave/2012-05/Permanently+Add+Path+to+System+PATH+Environment+Variable+in+PowerShell/"/>
 		<updated>2012-05-17T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-05/Permanently+Add+Path+to+System+PATH+Environment+Variable+in+PowerShell/</id>
+		<id>https://deletethis.net/dave/2012-05/Permanently+Add+Path+to+System+PATH+Environment+Variable+in+PowerShell/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;
   According to &lt;a href=&quot;http://sequelguy.tumblr.com/post/19438594681&quot;&gt;MSDN&lt;/a&gt; the proper way to permanently add a path to your system&#39;s PATH environment variable is by modifying a registry value.
   Accordingly this is easily represented in a PowerShell script that first checks if the path provided is already there and otherwise appends it:
@@ -1729,9 +1729,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>PowerShell Equivalents for JavaScript Array Functions</title>
-		<link href="https://dave.deletethis.net/post/2012-05/PowerShell+Equivalents+for+JavaScript+Array+Functions/"/>
+		<link href="https://deletethis.net/dave/2012-05/PowerShell+Equivalents+for+JavaScript+Array+Functions/"/>
 		<updated>2012-05-15T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-05/PowerShell+Equivalents+for+JavaScript+Array+Functions/</id>
+		<id>https://deletethis.net/dave/2012-05/PowerShell+Equivalents+for+JavaScript+Array+Functions/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;h4&gt;
     Built-in
   &lt;/h4&gt;&lt;dl&gt;&lt;dt&gt;
@@ -1776,9 +1776,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Favorite Windows 8 Feature: Intra-Line Tab Completion</title>
-		<link href="https://dave.deletethis.net/post/2012-05/Favorite+Windows+8+Feature-+Intra-Line+Tab+Completion/"/>
+		<link href="https://deletethis.net/dave/2012-05/Favorite+Windows+8+Feature-+Intra-Line+Tab+Completion/"/>
 		<updated>2012-05-09T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-05/Favorite+Windows+8+Feature-+Intra-Line+Tab+Completion/</id>
+		<id>https://deletethis.net/dave/2012-05/Favorite+Windows+8+Feature-+Intra-Line+Tab+Completion/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     Fixed in Windows 8 is intra-line tab completion - you can try it out on the &lt;a href=&quot;http://windows.microsoft.com/en-US/windows-8/consumer-preview&quot;&gt;Windows 8 Consumer Preview&lt;/a&gt; now. If you open
     a command prompt, type a command, then move your cursor back into a token in the middle of the command and tab complete, the tab completion works on that whitespace delimited token and doesn&#39;t
@@ -1789,9 +1789,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Play Fez</title>
-		<link href="https://dave.deletethis.net/post/2012-05/Play+Fez/"/>
+		<link href="https://deletethis.net/dave/2012-05/Play+Fez/"/>
 		<updated>2012-05-07T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-05/Play+Fez/</id>
+		<id>https://deletethis.net/dave/2012-05/Play+Fez/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;iframe src=&quot;http://player.vimeo.com/video/40269839?color=ff9933&quot; width=&quot;500&quot; height=&quot;281&quot; frameborder=&quot;0&quot; webkitallowfullscreen=&quot;&quot; mozallowfullscreen=&quot;&quot; allowfullscreen=&quot;allowfullscreen&quot;&gt;&lt;/iframe&gt;&lt;p&gt;
     I&#39;m done playing &lt;a href=&quot;http://polytroncorporation.com/what-is-fez&quot;&gt;Fez&lt;/a&gt;. The style is atmospheric retro nastalgia and on the surface the gameplay is standard 2D platformer with one
     interesting Flatland style game mechanic but dig deeper to find Myst style puzzles. Despite the following I thoroughly enjoyed the game and would recommend it to anyone intrigued by the previous.
@@ -1806,9 +1806,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Why Did This Work?</title>
-		<link href="https://dave.deletethis.net/post/2012-03/Why+Did+This+Work-/"/>
+		<link href="https://deletethis.net/dave/2012-03/Why+Did+This+Work-/"/>
 		<updated>2012-03-23T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-03/Why+Did+This+Work-/</id>
+		<id>https://deletethis.net/dave/2012-03/Why+Did+This+Work-/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     Do we have a word or phrase to describe the following situation: You code up something complicated and it compiles and works on the first try. You then spend the next ten minutes trying to figure
     out what&#39;s actually broken because it shouldn&#39;t be this easy.
@@ -1819,9 +1819,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Alternate IPv4 Forms - URI Host Syntax Notes</title>
-		<link href="https://dave.deletethis.net/post/2012-03/Alternate+IPv4+Forms+-+URI+Host+Syntax+Notes/"/>
+		<link href="https://deletethis.net/dave/2012-03/Alternate+IPv4+Forms+-+URI+Host+Syntax+Notes/"/>
 		<updated>2012-03-14T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-03/Alternate+IPv4+Forms+-+URI+Host+Syntax+Notes/</id>
+		<id>https://deletethis.net/dave/2012-03/Alternate+IPv4+Forms+-+URI+Host+Syntax+Notes/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     By the &lt;a href=&quot;http://tools.ietf.org/html/rfc3986#section-7.4&quot;&gt;URI RFC&lt;/a&gt; there is only one way to represent a particular IPv4 address in the host of a URI. This is the standard dotted decimal
     notation of four bytes in decimal with no leading zeroes delimited by periods. And no leading zeros are allowed which means there&#39;s only one textual representation of a particular IPv4 address.
@@ -1862,9 +1862,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Privacy through Obscurity</title>
-		<link href="https://dave.deletethis.net/post/2012-03/Privacy+through+Obscurity/"/>
+		<link href="https://deletethis.net/dave/2012-03/Privacy+through+Obscurity/"/>
 		<updated>2012-03-09T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-03/Privacy+through+Obscurity/</id>
+		<id>https://deletethis.net/dave/2012-03/Privacy+through+Obscurity/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     With Facebook changing its privacy policy and settings so frequently and just generally the huge amount of social sites out there, for many of us it is far too late to ensure our name doesn&#39;t
     show up with unfortunate results in web searches. Information is too easily copyable and archive-able to make removing these results a viable option, so clearly the solution is to create more
@@ -1880,9 +1880,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>HTML5 Table Flipper Experiment</title>
-		<link href="https://dave.deletethis.net/post/2012-03/HTML5+Table+Flipper+Experiment/"/>
+		<link href="https://deletethis.net/dave/2012-03/HTML5+Table+Flipper+Experiment/"/>
 		<updated>2012-03-02T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-03/HTML5+Table+Flipper+Experiment/</id>
+		<id>https://deletethis.net/dave/2012-03/HTML5+Table+Flipper+Experiment/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     The goal of this experiment was to combine the &lt;a href=&quot;http://knowyourmeme.com/memes/flipping-tables-%E2%95%AF%E2%96%A1%EF%BC%89%E2%95%AF%EF%B8%B5-%E2%94%BB%E2%94%81%E2%94%BB&quot;&gt;flipping tables
     emoticons&lt;/a&gt; with the &lt;a href=&quot;http://www.youtube.com/watch?v=gAYL5H46QnQ&amp;amp;ob=av3e&quot;&gt;Threw It On The Ground video&lt;/a&gt; using shiny new HTML5-ish features and the end result is &lt;a href=&quot;http://deletethis.net/dave/dev/flip/&quot;&gt;the table flipper flipping the Threw It On the Ground video&lt;/a&gt;.
@@ -1897,9 +1897,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Glitch Helperator</title>
-		<link href="https://dave.deletethis.net/post/2012-02/Glitch+Helperator/"/>
+		<link href="https://deletethis.net/dave/2012-02/Glitch+Helperator/"/>
 		<updated>2012-02-29T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-02/Glitch+Helperator/</id>
+		<id>https://deletethis.net/dave/2012-02/Glitch+Helperator/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     I&#39;ve been working on the &lt;a href=&quot;http://deletethis.net/dave/dev/glitch-helperator/&quot;&gt;Glitch Helperator&lt;/a&gt;. It is a collection of tools and things I&#39;ve put together for &lt;a href=&quot;http://www.glitch.com&quot;&gt;Glitch&lt;/a&gt;. It has a few features that I haven&#39;t seen elsewhere including:
   &lt;/p&gt;&lt;dl&gt;&lt;dt&gt;
@@ -1921,9 +1921,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Client Side Cross Domain Data YQL Hack</title>
-		<link href="https://dave.deletethis.net/post/2012-02/Client+Side+Cross+Domain+Data+YQL+Hack/"/>
+		<link href="https://deletethis.net/dave/2012-02/Client+Side+Cross+Domain+Data+YQL+Hack/"/>
 		<updated>2012-02-27T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-02/Client+Side+Cross+Domain+Data+YQL+Hack/</id>
+		<id>https://deletethis.net/dave/2012-02/Client+Side+Cross+Domain+Data+YQL+Hack/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     One of the more limiting issues of writing client side script in the browser is the same origin limitations of XMLHttpRequest. The latest version of all browsers support a subset of CORS to allow
     servers to opt-in particular resources for cross-domain access. Since IE8 there&#39;s &lt;a href=&quot;http://msdn.microsoft.com/en-us/library/cc288060%28v=VS.85%29.aspx&quot;&gt;XDomainRequest&lt;/a&gt; and in all other
@@ -1941,9 +1941,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Web Worker Initialization Race</title>
-		<link href="https://dave.deletethis.net/post/2012-02/Web+Worker+Initialization+Race/"/>
+		<link href="https://deletethis.net/dave/2012-02/Web+Worker+Initialization+Race/"/>
 		<updated>2012-02-24T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-02/Web+Worker+Initialization+Race/</id>
+		<id>https://deletethis.net/dave/2012-02/Web+Worker+Initialization+Race/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     Elaborating on a previous brief post on the topic of &lt;a href=&quot;http://deletethis.net/dave/?uri=http%3A%2F%2Flists.whatwg.org%2Fpipermail%2Fhelp-whatwg.org%2F2010-August%2F000606.html&quot;&gt;Web Worker
     initialization race conditions&lt;/a&gt;, there&#39;s two important points to avoid a race condition when setting up a Worker:
@@ -1963,9 +1963,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Prime HTTP Status Codes</title>
-		<link href="https://dave.deletethis.net/post/2012-02/Prime+HTTP+Status+Codes/"/>
+		<link href="https://deletethis.net/dave/2012-02/Prime+HTTP+Status+Codes/"/>
 		<updated>2012-02-22T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-02/Prime+HTTP+Status+Codes/</id>
+		<id>https://deletethis.net/dave/2012-02/Prime+HTTP+Status+Codes/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;
   These are the &lt;a href=&quot;http://www.wolframalpha.com/input/?i=primes+between+100+and+600&quot;&gt;prime&lt;/a&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Http_status_codes&quot;&gt;HTTP status codes&lt;/a&gt;:
   &lt;ul&gt;&lt;li&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Http_status_codes#101&quot;&gt;101 Switching Protocols&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Http_status_codes#103&quot;&gt;103 Checkpoint&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Http_status_codes#307&quot;&gt;307 Temporary Redirect&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Http_status_codes#401&quot;&gt;401 Unauthorized&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Http_status_codes#409&quot;&gt;409 Conflict&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Http_status_codes#431&quot;&gt;431 Request Header Fields Too Large&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Http_status_codes#449&quot;&gt;449 Retry With&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Http_status_codes#499&quot;&gt;499 Client Closed Request&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Http_status_codes#503&quot;&gt;503 Service Unavailable&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Http_status_codes#509&quot;&gt;509 Bandwidth Limit Exceeded&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Http_status_codes#599&quot;&gt;599 Network connect timeout error&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;
@@ -1974,9 +1974,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>URI Percent Encoding Ignorance Level 2 - There is no Unencoded URI</title>
-		<link href="https://dave.deletethis.net/post/2012-02/URI+Percent+Encoding+Ignorance+Level+2+-+There+is+no+Unencoded+URI/"/>
+		<link href="https://deletethis.net/dave/2012-02/URI+Percent+Encoding+Ignorance+Level+2+-+There+is+no+Unencoded+URI/"/>
 		<updated>2012-02-20T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-02/URI+Percent+Encoding+Ignorance+Level+2+-+There+is+no+Unencoded+URI/</id>
+		<id>https://deletethis.net/dave/2012-02/URI+Percent+Encoding+Ignorance+Level+2+-+There+is+no+Unencoded+URI/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;&lt;i&gt;As a professional URI aficionado I deal with various levels of ignorance on URI percent-encoding (aka URI encoding, or URL escaping).&lt;/i&gt;&lt;/p&gt;&lt;p&gt;
     Getting into the more subtle levels of URI percent-encoding ignorance, folks try to apply their knowledge of percent-encoding to URIs as a whole producing the concepts escaped URIs and unescaped
     URIs. However there are no such things - URIs themselves aren&#39;t percent-encoded or decoded but rather contain characters that are percent-encoded or decoded. Applying percent-encoding or decoding
@@ -2003,9 +2003,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Why I Like Glitch</title>
-		<link href="https://dave.deletethis.net/post/2012-02/Why+I+Like+Glitch/"/>
+		<link href="https://deletethis.net/dave/2012-02/Why+I+Like+Glitch/"/>
 		<updated>2012-02-17T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-02/Why+I+Like+Glitch/</id>
+		<id>https://deletethis.net/dave/2012-02/Why+I+Like+Glitch/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     Sarah and I have been enjoying &lt;a href=&quot;http://www.glitch.com&quot;&gt;Glitch&lt;/a&gt; for a while now. Reviews are &lt;a href=&quot;http://arstechnica.com/gaming/news/2011/11/glitch-the-battle-to-build-a-massive-multiplayer-game-without-combat.ars&quot;&gt;usually positive&lt;/a&gt; although occasionally &lt;a href=&quot;http://www.rockpapershotgun.com/2011/10/04/review-glitch/&quot;&gt;biting (but mostly accurate)&lt;/a&gt;.
   &lt;/p&gt;&lt;p&gt;
@@ -2019,9 +2019,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>URI Percent-Encoding Ignorance Level 1 - Purpose</title>
-		<link href="https://dave.deletethis.net/post/2012-02/URI+Percent-Encoding+Ignorance+Level+1+-+Purpose/"/>
+		<link href="https://deletethis.net/dave/2012-02/URI+Percent-Encoding+Ignorance+Level+1+-+Purpose/"/>
 		<updated>2012-02-15T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-02/URI+Percent-Encoding+Ignorance+Level+1+-+Purpose/</id>
+		<id>https://deletethis.net/dave/2012-02/URI+Percent-Encoding+Ignorance+Level+1+-+Purpose/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;&lt;i&gt;As a professional URI aficionado I deal with various levels of ignorance on URI percent-encoding (aka URI encoding, or URL escaping).&lt;/i&gt;&lt;/p&gt;&lt;p&gt;
     Worse than the lame blog comments hating on percent-encoding is the shipping code which can do actual damage. In one very large project I won&#39;t name, I&#39;ve fixed code that decodes all
     percent-encoded octets in a URI in order to get rid of pesky percents before calling ShellExecute. An unnamed developer with similar intent but clearly much craftier did the same thing in a loop
@@ -2042,9 +2042,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Blackmail DRM - Stolen Thoughts</title>
-		<link href="https://dave.deletethis.net/post/2012-02/Blackmail+DRM+-+Stolen+Thoughts/"/>
+		<link href="https://deletethis.net/dave/2012-02/Blackmail+DRM+-+Stolen+Thoughts/"/>
 		<updated>2012-02-13T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-02/Blackmail+DRM+-+Stolen+Thoughts/</id>
+		<id>https://deletethis.net/dave/2012-02/Blackmail+DRM+-+Stolen+Thoughts/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     Most existing DRM attempts to only allow the user to access the DRM&#39;ed content with particular applications or with particular credentials so that if the file is shared it won&#39;t be useful to
     others. A better solution is to encode any of the user&#39;s horrible secrets into unique versions of the DRM&#39;ed content so that the user won&#39;t &lt;i&gt;want&lt;/i&gt; to share it. Entangle the users and the
@@ -2060,9 +2060,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>URI Percent Encoding Ignorance Level 0 - Existence</title>
-		<link href="https://dave.deletethis.net/post/2012-02/URI+Percent+Encoding+Ignorance+Level+0+-+Existence/"/>
+		<link href="https://deletethis.net/dave/2012-02/URI+Percent+Encoding+Ignorance+Level+0+-+Existence/"/>
 		<updated>2012-02-10T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2012-02/URI+Percent+Encoding+Ignorance+Level+0+-+Existence/</id>
+		<id>https://deletethis.net/dave/2012-02/URI+Percent+Encoding+Ignorance+Level+0+-+Existence/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     As a professional URI aficionado I deal with various levels of ignorance on URI percent-encoding (aka URI encoding, or URL escaping). The basest ignorance is with respect to the mere existence of
     percent-encoding. Percents in URIs are special: they always represent the start of a percent-encoded octet. That is to say, a percent is always followed by two hex digits that represents a value
@@ -2078,9 +2078,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>JavaScript Array methods in the latest browsers</title>
-		<link href="https://dave.deletethis.net/post/2011-12/JavaScript+Array+methods+in+the+latest+browsers/"/>
+		<link href="https://deletethis.net/dave/2011-12/JavaScript+Array+methods+in+the+latest+browsers/"/>
 		<updated>2011-12-03T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2011-12/JavaScript+Array+methods+in+the+latest+browsers/</id>
+		<id>https://deletethis.net/dave/2011-12/JavaScript+Array+methods+in+the+latest+browsers/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     Cool and (relatively) &lt;a href=&quot;http://dev.opera.com/articles/view/javascript-array-extras-in-detail/&quot;&gt;new methods on the JavaScript Array object&lt;/a&gt; are here in the most recent versions of your
     favorite browser! More about them on &lt;a href=&quot;http://es5.github.com/#x15.4.4.16&quot;&gt;ECMAScript5&lt;/a&gt;, &lt;a href=&quot;http://msdn.microsoft.com/en-us/library/k4h76zbx(v=VS.94).aspx&quot;&gt;MSDN&lt;/a&gt;, the &lt;a href=&quot;http://blogs.msdn.com/b/ie/archive/2010/06/25/enhanced-scripting-in-ie9-ecmascript-5-support-and-more.aspx&quot;&gt;IE blog&lt;/a&gt;, or &lt;a href=&quot;https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array&quot;&gt;Mozilla&#39;s&lt;/a&gt; documentation. Here&#39;s the list that&#39;s got me excited:
@@ -2104,9 +2104,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Bug Spotting: Ctors with default parameters</title>
-		<link href="https://dave.deletethis.net/post/2011-12/Bug+Spotting-+Ctors+with+default+parameters/"/>
+		<link href="https://deletethis.net/dave/2011-12/Bug+Spotting-+Ctors+with+default+parameters/"/>
 		<updated>2011-12-01T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2011-12/Bug+Spotting-+Ctors+with+default+parameters/</id>
+		<id>https://deletethis.net/dave/2011-12/Bug+Spotting-+Ctors+with+default+parameters/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     The following code compiled just fine but did not at all act in the manner I expected:
   &lt;/p&gt;&lt;pre&gt;&lt;code&gt;BOOL CheckForThing(__in CObj *pObj, __in IFigMgr* pFigMgr, __in_opt LPCWSTR url)&lt;br&gt;{&lt;br&gt;    BOOL fCheck = FALSE;&lt;br&gt;    if (SubCheck(pObj))&lt;br&gt;    {&lt;br&gt;        ...&lt;/code&gt;&lt;/pre&gt;I’m
@@ -2129,9 +2129,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Replacing Google Reader Shared Feeds with Tumblr</title>
-		<link href="https://dave.deletethis.net/post/2011-11/Replacing+Google+Reader+Shared+Feeds+with+Tumblr/"/>
+		<link href="https://deletethis.net/dave/2011-11/Replacing+Google+Reader+Shared+Feeds+with+Tumblr/"/>
 		<updated>2011-11-28T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2011-11/Replacing+Google+Reader+Shared+Feeds+with+Tumblr/</id>
+		<id>https://deletethis.net/dave/2011-11/Replacing+Google+Reader+Shared+Feeds+with+Tumblr/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     Last time I wrote about how &lt;a href=&quot;http://deletethis.net/dave/?uri=http%3A%2F%2Fdavescoolblog.blogspot.com%2F2011%2F11%2Freplacing-delicious-with-google-reader.html&quot;&gt;I switched from Delicious
     to Google Reader&#39;s shared links feature&lt;/a&gt; only to find out that week that &lt;a href=&quot;http://googlereader.blogspot.com/2011/10/upcoming-changes-to-reader-new-look-new.html&quot;&gt;Google was removing the
@@ -2150,9 +2150,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>URI Empty Path Segments Matter</title>
-		<link href="https://dave.deletethis.net/post/2011-11/URI+Empty+Path+Segments+Matter/"/>
+		<link href="https://deletethis.net/dave/2011-11/URI+Empty+Path+Segments+Matter/"/>
 		<updated>2011-11-23T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2011-11/URI+Empty+Path+Segments+Matter/</id>
+		<id>https://deletethis.net/dave/2011-11/URI+Empty+Path+Segments+Matter/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     Shortly after joining the Internet Explorer team I got a bug from a PM on a popular Microsoft web server product that I&#39;ll leave unnamed (from now on UWS). The bug said that IE was handling empty
     path segments incorrectly by not removing them before resolving dotted path segments. For example UWS would do the following:
@@ -2175,9 +2175,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Features of image type input tags in HTML</title>
-		<link href="https://dave.deletethis.net/post/2011-11/Features+of+image+type+input+tags+in+HTML/"/>
+		<link href="https://deletethis.net/dave/2011-11/Features+of+image+type+input+tags+in+HTML/"/>
 		<updated>2011-11-21T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2011-11/Features+of+image+type+input+tags+in+HTML/</id>
+		<id>https://deletethis.net/dave/2011-11/Features+of+image+type+input+tags+in+HTML/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     A bug came up the other day involving markup containing &lt;code&gt;&amp;lt;input type=&quot;image&quot; src=&quot;http://example.com/...&lt;/code&gt;. I knew that &quot;image&quot; was a valid input type but it wasn&#39;t until that moment
     that I realized I didn&#39;t know what it did. Looking it up I found that it displays the specified image and when the user clicks on the image, the form is submitted with an additional two name
@@ -2196,9 +2196,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Replacing Delicious with Google Reader</title>
-		<link href="https://dave.deletethis.net/post/2011-11/Replacing+Delicious+with+Google+Reader/"/>
+		<link href="https://deletethis.net/dave/2011-11/Replacing+Delicious+with+Google+Reader/"/>
 		<updated>2011-11-17T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2011-11/Replacing+Delicious+with+Google+Reader/</id>
+		<id>https://deletethis.net/dave/2011-11/Replacing+Delicious+with+Google+Reader/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     I had previously replaced my use of Delicious with Google Reader. Delicious had a number of issues during their switch over from Yahoo to the new owners and I was eventually fed up enough to
     remove it from daily use. I used Delicious to do the following things:
@@ -2218,9 +2218,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Haven&#39;t Been Posting Much</title>
-		<link href="https://dave.deletethis.net/post/2011-10/Haven-t+Been+Posting+Much/"/>
+		<link href="https://deletethis.net/dave/2011-10/Haven-t+Been+Posting+Much/"/>
 		<updated>2011-10-18T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2011-10/Haven-t+Been+Posting+Much/</id>
+		<id>https://deletethis.net/dave/2011-10/Haven-t+Been+Posting+Much/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;
   I haven&#39;t been updating my blog recently. But I have three excellent reasons:
   &lt;ul&gt;&lt;li&gt;The manner in which I use &lt;a href=&quot;http://www.zdnet.com/blog/violetblue/avos-delicious-disaster-lessons-from-a-complete-failure/705&quot;&gt;Delicious is broken&lt;/a&gt;.
@@ -2232,9 +2232,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>WPAD Server Fiddler Extension Update v1.0.1</title>
-		<link href="https://dave.deletethis.net/post/2011-06/WPAD+Server+Fiddler+Extension+Update+v1.0.1/"/>
+		<link href="https://deletethis.net/dave/2011-06/WPAD+Server+Fiddler+Extension+Update+v1.0.1/"/>
 		<updated>2011-06-12T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2011-06/WPAD+Server+Fiddler+Extension+Update+v1.0.1/</id>
+		<id>https://deletethis.net/dave/2011-06/WPAD+Server+Fiddler+Extension+Update+v1.0.1/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;
   As it turns out the &lt;a href=&quot;http://deletethis.net/dave/wpadserverfiddlerextension/&quot;&gt;WPAD Server Fiddler Extension&lt;/a&gt; I made &lt;a href=&quot;http://deletethis.net/dave/?uri=http%3A%2F%2Fcerealnumber.livejournal.com%2F51588.html&quot;&gt;a while back&lt;/a&gt; actually has a non-malicious purpose. Apparently its useful for debugging HTTP on the WP7
   phone (or so I&#39;m told). Anyway I took some requests and I&#39;ve fixed a few minor bugs (start button not updating correctly), changed the dialog to be a Fiddler tab so you can use it non-modally, and
@@ -2245,9 +2245,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Command line for finding missing URLACTIONs</title>
-		<link href="https://dave.deletethis.net/post/2011-05/Command+line+for+finding+missing+URLACTIONs/"/>
+		<link href="https://deletethis.net/dave/2011-05/Command+line+for+finding+missing+URLACTIONs/"/>
 		<updated>2011-05-28T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2011-05/Command+line+for+finding+missing+URLACTIONs/</id>
+		<id>https://deletethis.net/dave/2011-05/Command+line+for+finding+missing+URLACTIONs/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     I wanted to ensure that my switch statement in my implementation of IInternetSecurityManager::ProcessURLAction had a case for every possible documented URLACTION. I wrote the following short
     command line sequence to see the list of all URLACTIONs in the SDK header file not found in my source file:
@@ -2266,9 +2266,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>clip.exe - Useful tool I didn&#39;t know shipped with Windows</title>
-		<link href="https://dave.deletethis.net/post/2011-05/clip.exe+-+Useful+tool+I+didn-t+know+shipped+with+Windows/"/>
+		<link href="https://deletethis.net/dave/2011-05/clip.exe+-+Useful+tool+I+didn-t+know+shipped+with+Windows/"/>
 		<updated>2011-05-26T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2011-05/clip.exe+-+Useful+tool+I+didn-t+know+shipped+with+Windows/</id>
+		<id>https://deletethis.net/dave/2011-05/clip.exe+-+Useful+tool+I+didn-t+know+shipped+with+Windows/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     When you run clip.exe, whatever comes into its standard input is put onto the clipboard. So when you need to move the result of something in your command window somewhere else you can pipe the
     result into clip.exe. Then you won&#39;t have to worry about the irritating way cmd.exe does block copy/pasting and you avoid having to manually fixup line breaks in wrapped lines. For instance, you
@@ -2283,9 +2283,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>_opt Mnemonic</title>
-		<link href="https://dave.deletethis.net/post/2011-05/_opt+Mnemonic/"/>
+		<link href="https://deletethis.net/dave/2011-05/_opt+Mnemonic/"/>
 		<updated>2011-05-24T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2011-05/_opt+Mnemonic/</id>
+		<id>https://deletethis.net/dave/2011-05/_opt+Mnemonic/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     ​I always have trouble remembering where the opt goes in &lt;a href=&quot;http://msdn.microsoft.com/en-us/library/aa383701(VS.85).aspx&quot;&gt;SAL&lt;/a&gt; in the __deref_out case. The mnemonic is pretty simple: the
     _opt at the start of the SAL is for the pointer value at the start of the function. And the _opt at the end of the SAL is for the dereferenced pointer value at the end of the function.
@@ -2326,9 +2326,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>PowerShell Script Batch File Wrapper</title>
-		<link href="https://dave.deletethis.net/post/2011-05/PowerShell+Script+Batch+File+Wrapper/"/>
+		<link href="https://deletethis.net/dave/2011-05/PowerShell+Script+Batch+File+Wrapper/"/>
 		<updated>2011-05-22T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2011-05/PowerShell+Script+Batch+File+Wrapper/</id>
+		<id>https://deletethis.net/dave/2011-05/PowerShell+Script+Batch+File+Wrapper/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     I&#39;m trying to learn and use PowerShell more, but plenty of other folks I know don&#39;t use PowerShell. To allow them to use my scripts I use the following cmd.exe batch file to make it easy to call
     PowerShell scripts. To use, just name the batch file name the same as the corresponding PowerShell script filename and put it in the same directory.&lt;br&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;@echo off&lt;br&gt;if &quot;%1&quot;==&quot;/?&quot; goto help&lt;br&gt;if &quot;%1&quot;==&quot;/h&quot; goto help&lt;br&gt;if &quot;%1&quot;==&quot;-?&quot; goto help&lt;br&gt;if &quot;%1&quot;==&quot;-h&quot; goto help&lt;br&gt;&lt;br&gt;%systemroot%&#92;system32&#92;windowspowershell&#92;v1.0&#92;powershell.exe -ExecutionPolicy RemoteSigned -Command . %~dpn0.ps1 %*&lt;br&gt;goto end&lt;br&gt;&lt;br&gt;:help&lt;br&gt;%systemroot%&#92;system32&#92;windowspowershell&#92;v1.0&#92;powershell.exe -ExecutionPolicy RemoteSigned -Command help %~dpn0.ps1 -full&lt;br&gt;goto end&lt;br&gt;&lt;br&gt;:end&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;
@@ -2339,9 +2339,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Capturing HTTPS with FiddlerCore</title>
-		<link href="https://dave.deletethis.net/post/2011-04/Capturing+HTTPS+with+FiddlerCore/"/>
+		<link href="https://deletethis.net/dave/2011-04/Capturing+HTTPS+with+FiddlerCore/"/>
 		<updated>2011-04-06T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2011-04/Capturing+HTTPS+with+FiddlerCore/</id>
+		<id>https://deletethis.net/dave/2011-04/Capturing+HTTPS+with+FiddlerCore/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     I used &lt;a href=&quot;http://fiddler.wikidot.com/fiddlercore&quot;&gt;FiddlerCore&lt;/a&gt; in &lt;a href=&quot;http://deletethis.net/dave/dev/geolocmock/&quot;&gt;GeolocMock&lt;/a&gt; to edit HTTPS responses and ran into two stumbling
     blocks that I&#39;ll document here. The first is that I didn&#39;t check if the Fiddler root cert existed or was installed, which of course is necessary to edit HTTPS traffic. The following is my code
@@ -2355,9 +2355,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>JavaScript &amp; .NET interop via WebBrowser Control</title>
-		<link href="https://dave.deletethis.net/post/2011-04/JavaScript+-+.NET+interop+via+WebBrowser+Control/"/>
+		<link href="https://deletethis.net/dave/2011-04/JavaScript+-+.NET+interop+via+WebBrowser+Control/"/>
 		<updated>2011-04-05T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2011-04/JavaScript+-+.NET+interop+via+WebBrowser+Control/</id>
+		<id>https://deletethis.net/dave/2011-04/JavaScript+-+.NET+interop+via+WebBrowser+Control/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     For my &lt;a href=&quot;http://deletethis.net/dave/dev/geolocmock/&quot;&gt;GeolocMock&lt;/a&gt; weekend project I intended to use the Bing Maps API to display a map in a WebBrowser control and allow the user to
     interact with that to select a location to be consumed by my application. Getting my .NET code to talk to the JavaScript in the WebBrowser control was surprisingly easy.
@@ -2378,9 +2378,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>IE9 Document Mode in WebOC</title>
-		<link href="https://dave.deletethis.net/post/2011-04/IE9+Document+Mode+in+WebOC/"/>
+		<link href="https://deletethis.net/dave/2011-04/IE9+Document+Mode+in+WebOC/"/>
 		<updated>2011-04-04T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2011-04/IE9+Document+Mode+in+WebOC/</id>
+		<id>https://deletethis.net/dave/2011-04/IE9+Document+Mode+in+WebOC/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     Working on &lt;a href=&quot;http://deletethis.net/dave/dev/geolocmock/&quot;&gt;GeolocMock&lt;/a&gt; it took me a bit to realize why my HTML could use the W3C Geolocation API in IE9 but not in my WebBrowser control in
     my .NET application. Eventually I realized that I was getting the wrong IE doc mode. Reading this old &lt;a href=&quot;http://blogs.msdn.com/b/ie/archive/2009/03/10/more-ie8-extensibility-improvements.aspx&quot;&gt;More IE8 Extensibility Improvements IE&lt;/a&gt; blog post from the IE blog I found the issue is that for app
@@ -2392,9 +2392,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>GeolocMock Tool - Tell IE9 Where You Are</title>
-		<link href="https://dave.deletethis.net/post/2011-04/GeolocMock+Tool+-+Tell+IE9+Where+You+Are/"/>
+		<link href="https://deletethis.net/dave/2011-04/GeolocMock+Tool+-+Tell+IE9+Where+You+Are/"/>
 		<updated>2011-04-03T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2011-04/GeolocMock+Tool+-+Tell+IE9+Where+You+Are/</id>
+		<id>https://deletethis.net/dave/2011-04/GeolocMock+Tool+-+Tell+IE9+Where+You+Are/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     I&#39;ve made &lt;a href=&quot;http://deletethis.net/dave/dev/geolocmock/&quot;&gt;GeolocMock&lt;/a&gt;. If your PC has no geolocation devices, IE9 uses a webservice to determine your location. GeolocMock uses FiddlerCore
     to intercept the response from the webservice and allows the user to replace the location in the response with another. This was a fun weekend project in order to play with &lt;a href=&quot;http://fiddler.wikidot.com/fiddlercore&quot;&gt;FiddlerCore&lt;/a&gt;, the &lt;a href=&quot;http://blogs.msdn.com/b/ie/archive/2011/02/17/w3c-geolocation-api-in-ie9.aspx&quot;&gt;W3C Geoloc APIs in IE9&lt;/a&gt;, hosting the IE9
@@ -2405,9 +2405,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Listen to Max Tannone and Watch Moon</title>
-		<link href="https://dave.deletethis.net/post/2011-02/Listen+to+Max+Tannone+and+Watch+Moon/"/>
+		<link href="https://deletethis.net/dave/2011-02/Listen+to+Max+Tannone+and+Watch+Moon/"/>
 		<updated>2011-02-23T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2011-02/Listen+to+Max+Tannone+and+Watch+Moon/</id>
+		<id>https://deletethis.net/dave/2011-02/Listen+to+Max+Tannone+and+Watch+Moon/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;a href=&quot;http://www.maxtannone.com/&quot;&gt;Max Tannone&lt;/a&gt; does awesome remix albums:&lt;br&gt;&lt;ul&gt;&lt;br&gt;&lt;li&gt;&lt;a href=&quot;http://www.maxtannone.com/projects/jaydiohead/&quot;&gt;&lt;img src=&quot;http://www.maxtannone.com/wp-content/uploads/2010/10/jaydiohead_full2-150x150.jpg&quot; width=&quot;150&quot; height=&quot;150&quot;&gt;&lt;/a&gt;Jaydiohead -
       Radiohead &amp;amp; Jay-Z mashup. Listen:&lt;br&gt;&lt;object width=&quot;100%&quot; height=&quot;81&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F147259&quot;&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;embed height=&quot;81&quot; type=&quot;application/x-shockwave-flash&quot; width=&quot;100%&quot; src=&quot;http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F147259&quot; allowscriptaccess=&quot;always&quot;&gt;&lt;/object&gt;&lt;span&gt;&lt;a href=&quot;http://soundcloud.com/maxtannone/jaydiohead-06-dirt-off-your-android&quot;&gt;Jaydiohead - 06 - Dirt Off Your Android&lt;/a&gt; by &lt;a href=&quot;http://soundcloud.com/maxtannone&quot;&gt;Max
       Tannone&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;&lt;br&gt;&lt;li&gt;&lt;a href=&quot;http://www.seleneproject.com/&quot;&gt;&lt;img src=&quot;http://www.seleneproject.com/Selene_EP_front_cover_web.jpg&quot; width=&quot;150&quot; height=&quot;150&quot;&gt;&lt;/a&gt;Selene - Richard Rich &amp;amp; beats over the Moon
@@ -2422,9 +2422,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Ratatat Rocks</title>
-		<link href="https://dave.deletethis.net/post/2010-12/Ratatat+Rocks/"/>
+		<link href="https://deletethis.net/dave/2010-12/Ratatat+Rocks/"/>
 		<updated>2010-12-28T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2010-12/Ratatat+Rocks/</id>
+		<id>https://deletethis.net/dave/2010-12/Ratatat+Rocks/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;
   I just found out that I like the group &lt;a href=&quot;http://en.wikipedia.org/wiki/Ratatat&quot;&gt;Ratatat&lt;/a&gt;. I&#39;d first heard them way back when the Zune was first released as the backing for &lt;a href=&quot;http://72andsunny.com/#/work/zune/zune_arts/film/los_corazones/&quot;&gt;Los Corazones&lt;/a&gt; on the zune-arts.net website.&lt;br&gt;&lt;br&gt;&lt;object width=&quot;480&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://www.youtube.com/v/lWK7rDJ2RKM?fs=1&amp;amp;hl=en_US&quot;&gt;&lt;param name=&quot;allowFullScreen&quot; value=&quot;true&quot;&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;embed src=&quot;http://www.youtube.com/v/lWK7rDJ2RKM?fs=1&amp;amp;hl=en_US&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; allowfullscreen=&quot;true&quot; width=&quot;480&quot; height=&quot;385&quot;&gt;&lt;/object&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
   But I didn&#39;t know who they were until today when I watched this Filmography 2010 video (via &lt;a href=&quot;http://kottke.org/10/12/the-year-in-film-2010&quot;&gt;Kottke&lt;/a&gt;)&lt;br&gt;&lt;br&gt;&lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://www.youtube.com/v/I4dEWOB6THE?fs=1&amp;amp;hl=en_US&quot;&gt;&lt;param name=&quot;allowFullScreen&quot; value=&quot;true&quot;&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;embed src=&quot;http://www.youtube.com/v/I4dEWOB6THE?fs=1&amp;amp;hl=en_US&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; allowfullscreen=&quot;true&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/object&gt;&lt;br&gt;&lt;br&gt;
@@ -2437,9 +2437,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Console Build Window Jump Lists Tool</title>
-		<link href="https://dave.deletethis.net/post/2010-12/Console+Build+Window+Jump+Lists+Tool/"/>
+		<link href="https://deletethis.net/dave/2010-12/Console+Build+Window+Jump+Lists+Tool/"/>
 		<updated>2010-12-13T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2010-12/Console+Build+Window+Jump+Lists+Tool/</id>
+		<id>https://deletethis.net/dave/2010-12/Console+Build+Window+Jump+Lists+Tool/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     I&#39;ve made two simple command line tools related to the console window and Win7 jump lists. The source is available for both but neither is much more than the sort of samples you&#39;d find on MSDN
     =).
@@ -2459,9 +2459,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Windows 7 Accelerator Platform COM / C# Interop</title>
-		<link href="https://dave.deletethis.net/post/2010-08/Windows+7+Accelerator+Platform+COM+-+C-+Interop/"/>
+		<link href="https://deletethis.net/dave/2010-08/Windows+7+Accelerator+Platform+COM+-+C-+Interop/"/>
 		<updated>2010-08-20T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2010-08/Windows+7+Accelerator+Platform+COM+-+C-+Interop/</id>
+		<id>https://deletethis.net/dave/2010-08/Windows+7+Accelerator+Platform+COM+-+C-+Interop/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     For a new project I&#39;m working on involving IE&#39;s installed Accelerators and OpenSearch search providers via the &lt;a href=&quot;http://msdn.microsoft.com/en-us/library/dd565720(v=VS.85).aspx&quot;&gt;Windows 7
     Accelerator Platform&lt;/a&gt;, I&#39;ve created a C#/COM interop class for those APIs.
@@ -2473,9 +2473,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>DVD Ripping and Viewing in Windows Media Center</title>
-		<link href="https://dave.deletethis.net/post/2010-08/DVD+Ripping+and+Viewing+in+Windows+Media+Center/"/>
+		<link href="https://deletethis.net/dave/2010-08/DVD+Ripping+and+Viewing+in+Windows+Media+Center/"/>
 		<updated>2010-08-17T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2010-08/DVD+Ripping+and+Viewing+in+Windows+Media+Center/</id>
+		<id>https://deletethis.net/dave/2010-08/DVD+Ripping+and+Viewing+in+Windows+Media+Center/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;&lt;p&gt;
     I&#39;ve just got a new media center PC connected directly to my television with lots of HD space and so I&#39;m ripping a bunch of my DVDs to the PC so I don&#39;t have to fuss with the physical media. I&#39;m
     ripping with &lt;a href=&quot;http://lifehacker.com/355281/dvd-rip-automates-one+click-dvd-ripping&quot;&gt;DVD Rip&lt;/a&gt;, viewing the results in Windows 7&#39;s Windows Media Center after turning on the &lt;a href=&quot;http://support.microsoft.com/kb/930526&quot;&gt;WMC DVD Library&lt;/a&gt;, and using a powershell script I wrote to copy over cover art and metadata.
@@ -2495,9 +2495,9 @@ var post_data= [];//&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;Notes&lt;/h4&gt
 	
 	<entry>
 		<title>Google and Outlook Calendar Sync&#39;ing</title>
-		<link href="https://dave.deletethis.net/post/2010-07/Google+and+Outlook+Calendar+Sync-ing/"/>
+		<link href="https://deletethis.net/dave/2010-07/Google+and+Outlook+Calendar+Sync-ing/"/>
 		<updated>2010-07-08T00:00:00Z</updated>
-		<id>https://dave.deletethis.net/post/2010-07/Google+and+Outlook+Calendar+Sync-ing/</id>
+		<id>https://deletethis.net/dave/2010-07/Google+and+Outlook+Calendar+Sync-ing/</id>
 		<content type="html">&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;div&gt;
   I previously described my desire to &lt;a href=&quot;http://deletethis.net/dave/?uri=http%3A%2F%2Fwww.google.com%2Fsupport%2Fcalendar%2Fbin%2Fanswer.py%3Fanswer%3D89955&quot;&gt;hook my Outlook calendar up to my
   Google calendar&lt;/a&gt;. I just found out that I can do this and the reverse as both support publishing calendars to the Internet. The following are how I set this up under Outlook 2010 and Google

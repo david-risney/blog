@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" class="gradient-background">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Features of image type input tags in HTML</title>
+		<meta name="description" content="Dave Risney&#39;s blog on web, coding, and things">
+		<link rel="alternate" href="/dave/feed/feed.xml" type="application/atom+xml" title="deletethis.net">
+		<link rel="alternate" href="/dave/feed/feed.json" type="application/json" title="deletethis.net">
+
+		<meta name="generator" content="Eleventy v2.0.0">
+
+		<link rel="icon" type="image/svg+xml" href="/dave/img/semicolon.svg">
+		<link rel="stylesheet" href="/dave/css/index.css">
+
+		<script>
+window.addEventListener("pageswap", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+
+window.addEventListener("pagereveal", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+		</script>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/dave/" class="home-link">deletethis.net<!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/dave/post/">Blog</a></li>
+					<li class="nav-item"><a href="/dave/about/">About</a></li>
+					<li class="nav-item"><a href="/dave/feed/feed.xml"><!-- img class="logo" src="/img/rss-dark.svg" -->Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<h1>Features of image type input tags in HTML</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2011-11-21">21 November 2011</time></li>
+</ul>
+
+<div xmlns="http://www.w3.org/1999/xhtml"><div><p>
+    A bug came up the other day involving markup containing <code>&lt;input type="image" src="http://example.com/...</code>. I knew that "image" was a valid input type but it wasn't until that moment
+    that I realized I didn't know what it did. Looking it up I found that it displays the specified image and when the user clicks on the image, the form is submitted with an additional two name
+    value pairs: the x and y positions of the point at which the user clicked the image.
+  </p><p>
+    Take for example the following HTML:
+  </p><pre><code>&lt;form action="http://example.com/"&gt;<br>&lt;input type="image" name="foo" src="http://deletethis.net/dave/images/davebefore.jpg"&gt;<br>&lt;/form&gt;</code></pre>If the user
+  clicks on the image, the browser will submit the form with a URI like the following:<code>http://example.com/?foo.x=145&amp;foo.y=124</code>.
+  <p>
+    This seemed like an incredibly specific feature to be built directly into the language when this could instead be done with javascript. I looked a bit further and saw that its been in HTML since
+    at least <a href="http://tools.ietf.org/html/rfc1866#section-8.1.2.5">HTML2</a>, which of course makes much more sense. Javascript barely existed at that point and sending off the user's click
+    location in a form may have been the only way to do something interesting with that action.
+  </p><div class="blogger-post-footer"><img width="1" height="1" src="https://blogger.googleusercontent.com/tracker/1670048653123050463-3312444837591781292?l=davescoolblog.blogspot.com" alt=""></div></div></div>
+
+<ul class="links-nextprev"><li>Previous: <a href="/dave/2011-11/Replacing+Delicious+with+Google+Reader/">Replacing Delicious with Google Reader</a></li><li>Next: <a href="/dave/2011-11/URI+Empty+Path+Segments+Matter/">URI Empty Path Segments Matter</a></li>
+</ul>
+
+		</main>
+
+		<footer></footer>
+
+		<!-- Current page: /dave/2011-11/Features+of+image+type+input+tags+in+HTML/ -->
+	</body>
+</html>

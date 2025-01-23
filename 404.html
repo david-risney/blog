@@ -3,15 +3,15 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>dave.deletethis.net</title>
-		<meta name="description" content="David Risney&#39;s blog on web, coding, and things">
-		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="dave.deletethis.net">
-		<link rel="alternate" href="/feed/feed.json" type="application/json" title="dave.deletethis.net">
+		<title>deletethis.net</title>
+		<meta name="description" content="Dave Risney&#39;s blog on web, coding, and things">
+		<link rel="alternate" href="/dave/feed/feed.xml" type="application/atom+xml" title="deletethis.net">
+		<link rel="alternate" href="/dave/feed/feed.json" type="application/json" title="deletethis.net">
 
 		<meta name="generator" content="Eleventy v2.0.0">
 
-		<link rel="icon" type="image/svg+xml" href="/img/semicolon.svg">
-		<link rel="stylesheet" href="/css/index.css">
+		<link rel="icon" type="image/svg+xml" href="/dave/img/semicolon.svg">
+		<link rel="stylesheet" href="/dave/css/index.css">
 
 		<script>
 window.addEventListener("pageswap", async (e) => {
@@ -39,13 +39,13 @@ window.addEventListener("pagereveal", async (e) => {
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
 
 		<header>
-			<a href="/" class="home-link">dave.deletethis.net <img src="/img/semicolon-dark.svg" class="logo"></a>
+			<a href="/dave/" class="home-link">deletethis.net<!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
 			<nav>
 				<h2 class="visually-hidden">Top level navigation menu</h2>
 				<ul class="nav">
-					<li class="nav-item"><a href="/post/">Blog</a></li>
-					<li class="nav-item"><a href="/about/">About</a></li>
-					<li class="nav-item"><a href="/feed/feed.xml"><img class="logo" src="/img/rss-dark.svg"> Feed</a></li>
+					<li class="nav-item"><a href="/dave/post/">Blog</a></li>
+					<li class="nav-item"><a href="/dave/about/">About</a></li>
+					<li class="nav-item"><a href="/dave/feed/feed.xml"><!-- img class="logo" src="/img/rss-dark.svg" -->Feed</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -53,23 +53,22 @@ window.addEventListener("pagereveal", async (e) => {
 		<main id="skip">
 			
 <h1 id="content-not-found" tabindex="-1">Content not found. <a class="header-anchor" href="#content-not-found">#</a></h1>
-<p>Go <a href="/">home</a>.</p>
-<!--
-
-Read more: https://www.11ty.dev/docs/quicktips/not-found/
-
-This will work for both GitHub pages and Netlify:
-
-* https://help.github.com/articles/creating-a-custom-404-page-for-your-github-pages-site/
-* https://www.netlify.com/docs/redirects/#custom-404
-
--->
+<p>So you can't find some content.</p>
+<ul>
+<li>Try going <a href="/dave/">home</a> and looking around.</li>
+<li>Maybe its on the <a id="oldBlogLink" href="https://please.deletethis.net/dave/">old blog</a>.</li>
+<li>Or I don't know... maybe <a id="waybackLink" href="https://web.archive.org/web/*/https://deletethis.net/dave/">the wayback machine</a> can help.</li>
+</ul>
+<script>
+    document.getElementById("oldBlogLink").setAttribute("href", `https://please.deletethis.net${location.pathname.replace(/\/$/, "") + location.search}`);
+    document.getElementById("waybackLink").setAttribute("href", `https://web.archive.org/web/*/${location.href.replace(/\/$/, "").replace(/\/\?/, "?")}`);
+</script>
 
 
 		</main>
 
 		<footer></footer>
 
-		<!-- Current page: /404.html -->
+		<!-- Current page: /dave/404.html -->
 	</body>
 </html>

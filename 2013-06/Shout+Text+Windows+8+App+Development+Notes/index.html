@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" class="gradient-background">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Shout Text Windows 8 App Development Notes</title>
+		<meta name="description" content="Dave Risney&#39;s blog on web, coding, and things">
+		<link rel="alternate" href="/dave/feed/feed.xml" type="application/atom+xml" title="deletethis.net">
+		<link rel="alternate" href="/dave/feed/feed.json" type="application/json" title="deletethis.net">
+
+		<meta name="generator" content="Eleventy v2.0.0">
+
+		<link rel="icon" type="image/svg+xml" href="/dave/img/semicolon.svg">
+		<link rel="stylesheet" href="/dave/css/index.css">
+
+		<script>
+window.addEventListener("pageswap", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+
+window.addEventListener("pagereveal", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+		</script>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/dave/" class="home-link">deletethis.net<!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/dave/post/">Blog</a></li>
+					<li class="nav-item"><a href="/dave/about/">About</a></li>
+					<li class="nav-item"><a href="/dave/feed/feed.xml"><!-- img class="logo" src="/img/rss-dark.svg" -->Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<h1>Shout Text Windows 8 App Development Notes</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2013-06-27">27 June 2013</time></li>
+</ul>
+
+<div xmlns="http://www.w3.org/1999/xhtml"><div><p>
+    My first app for Windows 8 was <a href="http://apps.microsoft.com/windows/en-us/app/shout-text/d3c22289-d1f6-4ead-a9ef-17abd0e6345a">Shout Text</a>. You type into Shout Text, and your text is
+    scaled up as large as possible while still fitting on the screen, as you type. It is the closest thing to a Hello World app as you'll find on the Windows Store that doesn't contain that phrase
+    (by default) and I approached it as the simplest app I could make to learn about Windows modern app development and Windows Store app submission.
+  </p><p>
+    I rely on WinJS's default layout to use CSS transforms to scale up the user's text as they type. And they are typing into a simple content editable div.
+  </p><p>
+    The app was too simple for me to even consider using ads or charging for it which I learned more about in future apps.
+  </p><p>
+    The first interesting issue I ran into was that copying from and then pasting into the content editable div resulted in duplicates of the containing div with copied CSS appearing recursively
+    inside of the content editable div. To fix this I had to catch the paste operation and remove the HTML data from the clipboard to ensure only the plain text data is pasted:
+  </p><pre><code>        function onPaste() {<br>            var text;<br><br>            if (window.clipboardData) {<br>                text = window.clipboardData.getData("Text").toString();<br>                window.clipboardData.clearData("Html");<br>                window.clipboardData.setData("Text", util.normalizeContentEditableText(text));<br>            }<br>        }<br>        shoutText.addEventListener("beforepaste", function () { return false; }, false);<br>        shoutText.addEventListener("paste", onPaste, false);</code></pre><p>
+    I additionally found an issue in IE in which applying a CSS transform to a content editable div that has focus doesn't move the screen position of the user input caret - the text is scaled up or
+    down but the caret remains the same size and in the same place on the screen. To fix this I made the following hack to reapply the current cursor position and text selection which resets the
+    screen position of the user input caret.
+  </p><pre><code>        function resetCaret() {<br>            setTimeout(function () {<br>                var cursorPos = document.selection.createRange().duplicate();<br>                cursorPos.select();<br>            }, 200);<br>        }<br><br>        shoutText.attachEvent("onresize", function () { resetCaret(); }, true);</code></pre></div></div>
+
+<ul class="links-nextprev"><li>Previous: <a href="/dave/2013-06/Windows+Store+on+Windows+8+Fun+For+Independent+Developers/">Windows Store on Windows 8 Fun For Independent Developers</a></li><li>Next: <a href="/dave/2013-07/MSVC--+64bit+Enums/">MSVC++ 64bit Enums</a></li>
+</ul>
+
+		</main>
+
+		<footer></footer>
+
+		<!-- Current page: /dave/2013-06/Shout+Text+Windows+8+App+Development+Notes/ -->
+	</body>
+</html>

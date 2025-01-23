@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" class="gradient-background">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>WinRT PropertySet Changed Event Danger</title>
+		<meta name="description" content="Dave Risney&#39;s blog on web, coding, and things">
+		<link rel="alternate" href="/dave/feed/feed.xml" type="application/atom+xml" title="deletethis.net">
+		<link rel="alternate" href="/dave/feed/feed.json" type="application/json" title="deletethis.net">
+
+		<meta name="generator" content="Eleventy v2.0.0">
+
+		<link rel="icon" type="image/svg+xml" href="/dave/img/semicolon.svg">
+		<link rel="stylesheet" href="/dave/css/index.css">
+
+		<script>
+window.addEventListener("pageswap", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+
+window.addEventListener("pagereveal", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+		</script>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/dave/" class="home-link">deletethis.net<!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/dave/post/">Blog</a></li>
+					<li class="nav-item"><a href="/dave/about/">About</a></li>
+					<li class="nav-item"><a href="/dave/feed/feed.xml"><!-- img class="logo" src="/img/rss-dark.svg" -->Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<h1>WinRT PropertySet Changed Event Danger</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2013-07-08">08 July 2013</time></li>
+</ul>
+
+<div xmlns="http://www.w3.org/1999/xhtml"><div><div><p>
+      The Windows Runtime API <a href="http://msdn.microsoft.com/en-us/library/windows/apps/windows.foundation.collections.propertyset.aspx">Windows.Foundation.Collections.PropertySet</a> class​ is a
+      nice string name to object value map that has a changed event that fires when the contents of the map is modified. Be careful with this event because it fires synchronously from the thread on
+      which the PropertySet was modified. If modified from the UI thread, the UI thread will then wait as it synchronously dispatches the changed event to all listeners which could lead to
+      performance issues or especially from the UI thread deadlock. For instance, deadlock if you have two threads both trying to tell each other about changed events for different PropertySets.
+    </p></div></div></div>
+
+<ul class="links-nextprev"><li>Previous: <a href="/dave/2013-07/Words+with+Hints+Windows+8+App+Development+Notes/">Words with Hints Windows 8 App Development Notes</a></li><li>Next: <a href="/dave/2013-07/Percent+Clcok+Windows+Store+App+Development+Notes/">Percent Clcok Windows Store App Development Notes</a></li>
+</ul>
+
+		</main>
+
+		<footer></footer>
+
+		<!-- Current page: /dave/2013-07/WinRT+PropertySet+Changed+Event+Danger/ -->
+	</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" class="gradient-background">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Let&#39;s Encrypt NearlyFreeSpeech.net Update</title>
+		<meta name="description" content="Dave Risney&#39;s blog on web, coding, and things">
+		<link rel="alternate" href="/dave/feed/feed.xml" type="application/atom+xml" title="deletethis.net">
+		<link rel="alternate" href="/dave/feed/feed.json" type="application/json" title="deletethis.net">
+
+		<meta name="generator" content="Eleventy v2.0.0">
+
+		<link rel="icon" type="image/svg+xml" href="/dave/img/semicolon.svg">
+		<link rel="stylesheet" href="/dave/css/index.css">
+
+		<script>
+window.addEventListener("pageswap", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+
+window.addEventListener("pagereveal", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+		</script>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/dave/" class="home-link">deletethis.net<!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/dave/post/">Blog</a></li>
+					<li class="nav-item"><a href="/dave/about/">About</a></li>
+					<li class="nav-item"><a href="/dave/feed/feed.xml"><!-- img class="logo" src="/img/rss-dark.svg" -->Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<h1>Let&#39;s Encrypt NearlyFreeSpeech.net Update</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2016-11-05">05 November 2016</time></li>
+</ul>
+
+<div xmlns="http://www.w3.org/1999/xhtml"><div><p>
+    Since I had last <a href="https://deletethis.net/dave/2016-02/Let%27s+Encrypt+NearlyFreeSpeech.net+Setup">posted about using Let's Encrypt with NearlyFreeSpeech</a>, NFS has changed their process
+    for setting TLS info. Instead of putting the various files in /home/protected/ssl and submitting an assistance request, now there is a command to submit the certificate info and a webpage for
+    submitting the certificate info.
+  </p><p>
+    The webpage is <code>https://members.nearlyfreespeech.net/{username}/sites/{sitename}/add_tls</code> and has a textbox for you to paste in all the cert info in PEM form into the textbox. The
+    domain key, the domain certificate, and the Let's Encrypt intermediate cert must be pasted into the textbox and submitted.
+  </p><p>
+    Alternatively, that same info may be provided as standard input to <code>nfsn -i set-tls</code></p><p>
+    To renew my certificate with the updated NFS process I followed the commands from <a href="https://twitter.com/tehnicaorg">Andrei Damian-Fekete</a>'s script which depends on <a href="https://github.com/diafygi/acme-tiny">acme_tiny.py</a>:
+  </p><pre><code>python acme_tiny.py --account-key account.key --csr domain.csr --acme-dir /home/public/.well-known/acme-challenge/ &gt; signed.crt<br>wget -O - https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem &gt; intermediate.pem<br>cat domain.key signed.crt intermediate.pem &gt; chained.pem<br>nfsn -i set-tls &lt; chained.pem</code></pre>Because
+  my certificate had already expired I needed to comment out the section in acme_tiny.py that validates the challenge file. The filenames in the above map to the following:
+  <ul><li>signed.crt is the Let's Encrypt provided certificate
+    </li><li>account.key is the user private key registered with LE
+    </li><li>domain.csr is the cert request
+    </li><li>domain.key is the key for the domain cert
+    </li></ul></div></div>
+
+<ul class="links-nextprev"><li>Previous: <a href="/dave/2016-11/Parsing+WinMD+with+.NET+reflection+APIs/">Parsing WinMD with .NET reflection APIs</a></li><li>Next: <a href="/dave/2017-05/Application+Content+URI+Rules+wildcard+syntax/">Application Content URI Rules wildcard syntax</a></li>
+</ul>
+
+		</main>
+
+		<footer></footer>
+
+		<!-- Current page: /dave/2016-11/Let-s+Encrypt+NearlyFreeSpeech.net+Update/ -->
+	</body>
+</html>

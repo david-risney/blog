@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" class="gradient-background">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Command line for finding missing URLACTIONs</title>
+		<meta name="description" content="Dave Risney&#39;s blog on web, coding, and things">
+		<link rel="alternate" href="/dave/feed/feed.xml" type="application/atom+xml" title="deletethis.net">
+		<link rel="alternate" href="/dave/feed/feed.json" type="application/json" title="deletethis.net">
+
+		<meta name="generator" content="Eleventy v2.0.0">
+
+		<link rel="icon" type="image/svg+xml" href="/dave/img/semicolon.svg">
+		<link rel="stylesheet" href="/dave/css/index.css">
+
+		<script>
+window.addEventListener("pageswap", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+
+window.addEventListener("pagereveal", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+		</script>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/dave/" class="home-link">deletethis.net<!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/dave/post/">Blog</a></li>
+					<li class="nav-item"><a href="/dave/about/">About</a></li>
+					<li class="nav-item"><a href="/dave/feed/feed.xml"><!-- img class="logo" src="/img/rss-dark.svg" -->Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<h1>Command line for finding missing URLACTIONs</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2011-05-28">28 May 2011</time></li>
+</ul>
+
+<div xmlns="http://www.w3.org/1999/xhtml"><div><p>
+    I wanted to ensure that my switch statement in my implementation of IInternetSecurityManager::ProcessURLAction had a case for every possible documented URLACTION. I wrote the following short
+    command line sequence to see the list of all URLACTIONs in the SDK header file not found in my source file:
+  </p><pre><code>grep URLACTION urlmon.idl | sed 's/.*\(URLACTION[a-zA-Z0-9_]*\).*/\1/g;' | sort | uniq &gt; allURLACTIONs.txt<br>grep URLACTION MySecurityManager.cpp | sed 's/.*\(URLACTION[a-zA-Z0-9_]*\).*/\1/g;' | sort | uniq &gt; myURLACTIONs.txt<br>comm -23 allURLACTIONs.txt myURLACTIONs.txt</code></pre>I'm
+  not a sed expert so I had to read the <a href="http://www.gnu.org/software/sed/manual/sed.html">sed documentation</a>, and I heard about <a href="http://askawizard.blogspot.com/2008/01/some-handy-commands.html">comm from Kris Kowal's blog</a> which happilly was in the <a href="http://unxutils.sourceforge.net/">Win32 GNU tools pack</a> I
+  already run.
+  <p>
+    But in my effort to learn and use PowerShell I found the following similar command line:
+  </p><pre><code>diff <br>(more urlmon.idl | %{ if ($_ -cmatch "URLACTION[a-zA-Z0-9_]*") { $matches[0] } } | sort -uniq) <br>(more MySecurityManager.cpp | %{ if ($_ -cmatch "URLACTION[a-zA-Z0-9_]*") { $matches[0] } } | sort -uniq)</code></pre>In
+  the PowerShell version I can skip the temporary files which is nice. 'diff' is mapped to 'compare-object' which seems similar to comm but with no parameters to filter out the different streams
+  (although this could be done more verbosely with the ?{ } filter syntax). In PowerShell uniq functionality is built into sort. The builtin -cmatch operator (c is for case sensitive) to do regexp is
+  nice plus the side effect of generating the $matches variable with the regexp results.
+  <div class="blogger-post-footer"><img width="1" height="1" src="https://blogger.googleusercontent.com/tracker/1670048653123050463-4657842629995936098?l=davescoolblog.blogspot.com" alt=""></div></div></div>
+
+<ul class="links-nextprev"><li>Previous: <a href="/dave/2011-05/clip.exe+-+Useful+tool+I+didn-t+know+shipped+with+Windows/">clip.exe - Useful tool I didn&#39;t know shipped with Windows</a></li><li>Next: <a href="/dave/2011-06/WPAD+Server+Fiddler+Extension+Update+v1.0.1/">WPAD Server Fiddler Extension Update v1.0.1</a></li>
+</ul>
+
+		</main>
+
+		<footer></footer>
+
+		<!-- Current page: /dave/2011-05/Command+line+for+finding+missing+URLACTIONs/ -->
+	</body>
+</html>

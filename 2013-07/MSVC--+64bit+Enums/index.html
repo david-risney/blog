@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" class="gradient-background">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>MSVC++ 64bit Enums</title>
+		<meta name="description" content="Dave Risney&#39;s blog on web, coding, and things">
+		<link rel="alternate" href="/dave/feed/feed.xml" type="application/atom+xml" title="deletethis.net">
+		<link rel="alternate" href="/dave/feed/feed.json" type="application/json" title="deletethis.net">
+
+		<meta name="generator" content="Eleventy v2.0.0">
+
+		<link rel="icon" type="image/svg+xml" href="/dave/img/semicolon.svg">
+		<link rel="stylesheet" href="/dave/css/index.css">
+
+		<script>
+window.addEventListener("pageswap", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+
+window.addEventListener("pagereveal", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+		</script>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/dave/" class="home-link">deletethis.net<!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/dave/post/">Blog</a></li>
+					<li class="nav-item"><a href="/dave/about/">About</a></li>
+					<li class="nav-item"><a href="/dave/feed/feed.xml"><!-- img class="logo" src="/img/rss-dark.svg" -->Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<h1>MSVC++ 64bit Enums</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2013-07-01">01 July 2013</time></li>
+</ul>
+
+<div xmlns="http://www.w3.org/1999/xhtml"><div><div><p>
+      If you want to represent a value larger than 32bits in an enum in MSVC++ you can use C++0x style syntax to tell the compiler exactly what kind of integral type to store the enum values.
+      Unfortunately by default an enum is always 32bits, and additionally while you can specify constants larger than 32bits for the enum values, they are silently truncated to 32bits.
+    </p><p>
+      For instance the following doesn't compile because Lorem::a and Lorem::b have the same value of '1':
+    </p><pre><br><code>enum Lorem {<br>    a = 0x1,<br>    b = 0x100000001<br>} val;<br><br>switch (val) {<br>    case Lorem::a:<br>        break;<br>    case Lorem::b:<br>        break;<br>}<br></code></pre><p>
+      Unfortunately it is not an error to have b's constant truncated, and the previous without the switch statement does compile just fine:
+    </p><pre><br><code>enum Lorem {<br>    a = 0x1,<br>    b = 0x100000001<br>} val;<br></code></pre><p>
+      But you can explicitly specify that the enum should be represented by a 64bit value and get expected compiling behavior with the following:
+    </p><pre><br><code>enum Lorem : UINT64 {<br>    a = 0x1,<br>    b = 0x100000001<br>} val;<br><br>switch (val) {<br>    case Lorem::a:<br>        break;<br>    case Lorem::b:<br>        break;<br>}<br></code></pre></div></div></div>
+
+<ul class="links-nextprev"><li>Previous: <a href="/dave/2013-06/Shout+Text+Windows+8+App+Development+Notes/">Shout Text Windows 8 App Development Notes</a></li><li>Next: <a href="/dave/2013-07/Words+with+Hints+Windows+8+App+Development+Notes/">Words with Hints Windows 8 App Development Notes</a></li>
+</ul>
+
+		</main>
+
+		<footer></footer>
+
+		<!-- Current page: /dave/2013-07/MSVC--+64bit+Enums/ -->
+	</body>
+</html>

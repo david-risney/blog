@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" class="gradient-background">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Windows Remote Desktop via Internet</title>
+		<meta name="description" content="Dave Risney&#39;s blog on web, coding, and things">
+		<link rel="alternate" href="/dave/feed/feed.xml" type="application/atom+xml" title="deletethis.net">
+		<link rel="alternate" href="/dave/feed/feed.json" type="application/json" title="deletethis.net">
+
+		<meta name="generator" content="Eleventy v2.0.0">
+
+		<link rel="icon" type="image/svg+xml" href="/dave/img/semicolon.svg">
+		<link rel="stylesheet" href="/dave/css/index.css">
+
+		<script>
+window.addEventListener("pageswap", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+
+window.addEventListener("pagereveal", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+		</script>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/dave/" class="home-link">deletethis.net<!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/dave/post/">Blog</a></li>
+					<li class="nav-item"><a href="/dave/about/">About</a></li>
+					<li class="nav-item"><a href="/dave/feed/feed.xml"><!-- img class="logo" src="/img/rss-dark.svg" -->Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<h1>Windows Remote Desktop via Internet</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2012-12-07">07 December 2012</time></li>
+</ul>
+
+<div xmlns="http://www.w3.org/1999/xhtml"><div>
+  To setup my home Windows dev box to be accessible from outside I followed two main steps:<br><ul><li> Configure <a href="http://windows.microsoft.com/en-US/windows7/allow-remote-desktop-connections-from-outside-your-home-network">my router to forward the remote desktop port.</a></li><li> Setup a <a href="http://www.dnsdynamic.org/">free dynamic DNS service.</a></li></ul>Last time I had to do this there was a service named dynamicdns.org which seems to still exist but no longer appears to be free. Instead I used dnsdynamic.org which is free and has a web API
+  as well as links to and instructions for setting up native tools to dynamically update my IP address.
+</div></div>
+
+<ul class="links-nextprev"><li>Previous: <a href="/dave/2012-12/Stripe+CTF+-+Level+8/">Stripe CTF - Level 8</a></li><li>Next: <a href="/dave/2013-05/Sci-fi+short+stories+disguised+as+Internet+docs/">Sci-fi short stories disguised as Internet docs</a></li>
+</ul>
+
+		</main>
+
+		<footer></footer>
+
+		<!-- Current page: /dave/2012-12/Windows+Remote+Desktop+via+Internet/ -->
+	</body>
+</html>

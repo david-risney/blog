@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" class="gradient-background">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>JavaScript Array methods in the latest browsers</title>
+		<meta name="description" content="Dave Risney&#39;s blog on web, coding, and things">
+		<link rel="alternate" href="/dave/feed/feed.xml" type="application/atom+xml" title="deletethis.net">
+		<link rel="alternate" href="/dave/feed/feed.json" type="application/json" title="deletethis.net">
+
+		<meta name="generator" content="Eleventy v2.0.0">
+
+		<link rel="icon" type="image/svg+xml" href="/dave/img/semicolon.svg">
+		<link rel="stylesheet" href="/dave/css/index.css">
+
+		<script>
+window.addEventListener("pageswap", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+
+window.addEventListener("pagereveal", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+		</script>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/dave/" class="home-link">deletethis.net<!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/dave/post/">Blog</a></li>
+					<li class="nav-item"><a href="/dave/about/">About</a></li>
+					<li class="nav-item"><a href="/dave/feed/feed.xml"><!-- img class="logo" src="/img/rss-dark.svg" -->Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<h1>JavaScript Array methods in the latest browsers</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2011-12-03">03 December 2011</time></li>
+</ul>
+
+<div xmlns="http://www.w3.org/1999/xhtml"><div><p>
+    Cool and (relatively) <a href="http://dev.opera.com/articles/view/javascript-array-extras-in-detail/">new methods on the JavaScript Array object</a> are here in the most recent versions of your
+    favorite browser! More about them on <a href="http://es5.github.com/#x15.4.4.16">ECMAScript5</a>, <a href="http://msdn.microsoft.com/en-us/library/k4h76zbx(v=VS.94).aspx">MSDN</a>, the <a href="http://blogs.msdn.com/b/ie/archive/2010/06/25/enhanced-scripting-in-ie9-ecmascript-5-support-and-more.aspx">IE blog</a>, or <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array">Mozilla's</a> documentation. Here's the list that's got me excited:
+  </p><dl><dt><a href="http://es5.github.com/#x15.4.4.17">some</a> &amp; <a href="http://es5.github.com/#x15.4.4.16">every</a></dt><dd>
+      Does your callback function return true for any (some) or all (every) of the array's elements?
+    </dd><dt><a href="http://es5.github.com/#x15.4.4.20">filter</a></dt><dd>
+      Filters out elements for which your callback function returns false (in a new copy of the Array).
+    </dd><dt><a href="http://es5.github.com/#x15.4.4.19">map</a></dt><dd>
+      Each element is replaced with the result of it run through your callback function (in a new copy of the Array).
+    </dd><dt><a href="http://es5.github.com/#x15.4.4.21">reduce</a> &amp; <a href="http://es5.github.com/#x15.4.4.22">reduceRight</a></dt><dd>
+      Your callback is called on each element in the array in sequence (from start to finish in reduce and from finish to start in reduceRight) with the result of the previous callback call passed to
+      the next. Reduce your array to a single value aggregated in any manner you like via your callback function.
+    </dd><dt><a href="http://es5.github.com/#x15.4.4.18">forEach</a></dt><dd>
+      Simply calls your callback passing in each element of your array in turn. I have vague performance concerns as compared to using a normal for loop.
+    </dd><dt><a href="http://es5.github.com/#x15.4.4.14">indexOf</a> &amp; <a href="http://es5.github.com/#x15.4.4.15">lastIndexOf</a></dt><dd>
+      Finds the first or last (respectively) element in the array that matches the provided value via strict equality operator and returns the index of that element or -1 if there is no such element.
+      Surprisingly, no custom comparison callback method mechanism is provided.
+    </dd><dd><div class="blogger-post-footer"><img width="1" height="1" src="https://blogger.googleusercontent.com/tracker/1670048653123050463-4312179088768580080?l=davescoolblog.blogspot.com" alt=""></div></dd></dl></div></div>
+
+<ul class="links-nextprev"><li>Previous: <a href="/dave/2011-12/Bug+Spotting-+Ctors+with+default+parameters/">Bug Spotting: Ctors with default parameters</a></li><li>Next: <a href="/dave/2012-02/URI+Percent+Encoding+Ignorance+Level+0+-+Existence/">URI Percent Encoding Ignorance Level 0 - Existence</a></li>
+</ul>
+
+		</main>
+
+		<footer></footer>
+
+		<!-- Current page: /dave/2011-12/JavaScript+Array+methods+in+the+latest+browsers/ -->
+	</body>
+</html>

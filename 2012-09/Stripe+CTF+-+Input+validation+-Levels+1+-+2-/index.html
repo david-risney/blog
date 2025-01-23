@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" class="gradient-background">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Stripe CTF - Input validation (Levels 1 &amp; 2)</title>
+		<meta name="description" content="Dave Risney&#39;s blog on web, coding, and things">
+		<link rel="alternate" href="/dave/feed/feed.xml" type="application/atom+xml" title="deletethis.net">
+		<link rel="alternate" href="/dave/feed/feed.json" type="application/json" title="deletethis.net">
+
+		<meta name="generator" content="Eleventy v2.0.0">
+
+		<link rel="icon" type="image/svg+xml" href="/dave/img/semicolon.svg">
+		<link rel="stylesheet" href="/dave/css/index.css">
+
+		<script>
+window.addEventListener("pageswap", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+
+window.addEventListener("pagereveal", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+		</script>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/dave/" class="home-link">deletethis.net<!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/dave/post/">Blog</a></li>
+					<li class="nav-item"><a href="/dave/about/">About</a></li>
+					<li class="nav-item"><a href="/dave/feed/feed.xml"><!-- img class="logo" src="/img/rss-dark.svg" -->Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<h1>Stripe CTF - Input validation (Levels 1 &amp; 2)</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2012-09-06">06 September 2012</time></li>
+</ul>
+
+<div xmlns="http://www.w3.org/1999/xhtml"><div><p><a href="http://davescoolblog.blogspot.com/2012/08/stripe-web-security-ctf-summary.html">Stripe's web security CTF</a>'s <a href="https://stripe-ctf.com/levels/1">Level 1</a> and <a href="https://stripe-ctf.com/levels/2">level 2</a> of the Stripe CTF had issues with missing input validation solutions described below.
+  </p><h3>
+    Level 1
+  </h3><h4>
+    Code
+  </h4><pre><code>    &lt;?php<br>      $filename = 'secret-combination.txt';<br>      extract($_GET);<br>      if (isset($attempt)) {<br>        $combination = trim(file_get_contents($filename));<br>        if ($attempt === $combination) {</code></pre><h4>Issue</h4><p>The issue here is the usage of the <a href="http://www.php.net/manual/en/function.extract.php">extract</a> php method which extracts name value pairs from the map input parameter and creates corresponding local variables. However this code uses $_GET which contains a map of name value pairs passed in the query of the URI. The expected behavior is to get an attempt variable out, but since no input validation is done I can provide a filename variable and overwrite the value of $filename. Providing an empty string gives an empty string $combination which I can match with an empty string $attempt. So without knowing the combination I can get past the combination check.</p><h4>Notes</h4><p>Code review red flag in this case was the direct use of $_GET with no validation. Instead of using extract the developer could try to extract specifically the attempt variable manually without using extract.</p><h3>Level 2</h3><h4>Code</h4><code><pre>    $dest_dir = "uploads/";<br>    $dest = $dest_dir . basename($_FILES["dispic"]["name"]);<br>    $src = $_FILES["dispic"]["tmp_name"];<br>    if (move_uploaded_file($src, $dest)) {<br>      $_SESSION["dispic_url"] = $dest;<br>      chmod($dest, 0644);<br>      echo "<p>Successfully uploaded your display picture.</p>";<br>    }</pre></code><h4>Issue</h4><p>This code accepts POST uploads of images but with no validation to ensure it is not an arbitrary file. And even though it uses chmod to ensure the file is not executable, things like PHP don't require a file to be executable in order to run them. Accordingly, one can upload a PHP script, then navigate to that script to run it. My PHP script dumped out the contents of the file we're interested in for this level:</p><pre><code></code></pre><h4>
+    Notes
+  </h4><p>
+    Code review red flags include manual file management, chmod, and use of file and filename inputs without any kind of validation. If this code controlled the filename and ensured that the
+    extension was one of a set of image extensions, this would solve this issue. Due to browser mime sniffing its additionally a good idea to serve a content-type that starts with "image/" for these
+    uploads to ensure browsers treat these as images and not sniff for script or HTML.
+  </p><p></p></div></div>
+
+<ul class="links-nextprev"><li>Previous: <a href="/dave/2012-09/Stripe+CTF+-+SQL+injections+-Levels+0+-+3-/">Stripe CTF - SQL injections (Levels 0 &amp; 3)</a></li><li>Next: <a href="/dave/2012-09/Stripe+CTF+-+XSS-+CSRF+-Levels+4+-+6-/">Stripe CTF - XSS, CSRF (Levels 4 &amp; 6)</a></li>
+</ul>
+
+		</main>
+
+		<footer></footer>
+
+		<!-- Current page: /dave/2012-09/Stripe+CTF+-+Input+validation+-Levels+1+-+2-/ -->
+	</body>
+</html>

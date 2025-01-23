@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" class="gradient-background">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Eleventy on GitHub Pages (Part 2)</title>
+		<meta name="description" content="Building this blog using Eleventy and GitHub Pages">
+		<link rel="alternate" href="/dave/feed/feed.xml" type="application/atom+xml" title="deletethis.net">
+		<link rel="alternate" href="/dave/feed/feed.json" type="application/json" title="deletethis.net">
+
+		<meta name="generator" content="Eleventy v2.0.0">
+
+		<link rel="icon" type="image/svg+xml" href="/dave/img/semicolon.svg">
+		<link rel="stylesheet" href="/dave/css/index.css">
+
+		<script>
+window.addEventListener("pageswap", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+
+window.addEventListener("pagereveal", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+		</script>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/dave/" class="home-link">deletethis.net<!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/dave/post/">Blog</a></li>
+					<li class="nav-item"><a href="/dave/about/">About</a></li>
+					<li class="nav-item"><a href="/dave/feed/feed.xml"><!-- img class="logo" src="/img/rss-dark.svg" -->Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<h1>Eleventy on GitHub Pages (Part 2)</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2024-05-28">28 May 2024</time></li>
+	<li><a href="/dave/tags/eleventy/" class="post-tag">eleventy</a>, </li>
+	<li><a href="/dave/tags/github/" class="post-tag">github</a>, </li>
+	<li><a href="/dave/tags/dns/" class="post-tag">dns</a></li>
+</ul>
+
+<p><a href="eleventy-github-pages.md">Previously</a>, I made an Eleventy based GitHub project with GitHub automation to run Eleventy when checking in changes. I stopped at that point because hooking in all my old blog's posts without changing their URIs sounded like a big pain, but now I've decided to go ahead and just link from old blog to new blog and not try to move them.</p>
+<p>This time, I've hooked up a custom subdomain (dave.deletethis.net) to the GitHub output which was surprisingly easy:</p>
+<ol>
+<li>GitHub has <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain">docs on using a custom subdomain</a> which I followed mostly trouble free. The first step is in the GitHub project's Settings, Pages, Custom domain section to set your subdomain. However, this starts a domain check which fails because I haven't done the next step yet.</li>
+<li>I had to edit my DNS records. Previously I had some A records for '*' subdomains which I removed because I realized they weren't in use and added a CNAME record for subdomain <code>dave</code> to <code>david-risney.github.io</code>.</li>
+<li>After waiting a while (for the A record entries to expire) GitHub's domain check succeeded.</li>
+<li>In step 3 GitHub will check in a file named <code>CNAME</code> to your <code>gh-pages</code> branch for you. However, I'm auto generating the contents of the <code>gh-pages</code> branch from my <code>main</code> branch. So I copy the <code>CNAME</code> file to the <code>public</code> folder. Eleventy will copy the contents of the public folder over directly.</li>
+<li>Now that I'm using a custom domain I updated my <code>/eleventy.config.js</code> file's pathPrefix property to <code>/</code> since now the content is rooted at the root path of the domain rather than in a subfolder.</li>
+<li>I also updated <code>/_data/metadata.js</code> to update the name of the blog and the URI of the blog.</li>
+</ol>
+<p>After pushing all these changes I have my Eleventy GitHub blog running on a custom domain. In the future I need to update the template and see if I can start importing content from the old blog.</p>
+
+<ul class="links-nextprev"><li>Previous: <a href="/dave/2023-01/eleventy-on-github-pages/">Eleventy on GitHub Pages</a></li>
+</ul>
+
+		</main>
+
+		<footer></footer>
+
+		<!-- Current page: /dave/2024-05/eleventy-on-github-pages--part-2-/ -->
+	</body>
+</html>
