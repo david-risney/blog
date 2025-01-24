@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en" class="gradient-background">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Shout Text Windows 8 App Development Notes</title>
+		<meta name="description" content="Dave Risney&#39;s blog on web, coding, and things">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="deletethis.net">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="deletethis.net">
+
+		<meta name="generator" content="Eleventy v2.0.0">
+
+		<link rel="icon" type="image/svg+xml" href="/img/semicolon.svg">
+
+		<style>
+		@view-transition { navigation: auto; }
+
+::view-transition-group(*) { animation-duration: 0.2s; }
+
+@keyframes slide-in-from-left { from { translate: -150vw 0; } }
+@keyframes slide-in-from-right { from { translate: 150vw 0; } }
+@keyframes slide-out-to-left { to { translate: -150vw 0; } }
+@keyframes slide-out-to-right { to { translate: 150vw 0; } }
+@keyframes scale-up { from { scale: 0; } }
+@keyframes scale-down { to { scale: 0; } }
+@keyframes fade-in { from { opacity: 0; } }
+@keyframes fade-out { to { opacity: 0; } }
+
+html:active-view-transition-type(forwards, backwards) {
+	:root { view-transition-name: none; }
+	header { view-transition-name: header; }
+	main { view-transition-name: main; }
+	footer { view-transition-name: footer; }
+}
+
+html:active-view-transition-type(forwards) {
+	&::view-transition-old(main) { animation-name: fade-out; }
+	&::view-transition-new(main) { animation-name: fade-in; }
+}
+
+html:active-view-transition-type(backwards) {
+	&::view-transition-old(main) { animation-name: fade-out; }
+	&::view-transition-new(main) { animation-name: fade-in; }
+}
+
+html:active-view-transition-type(reload) {
+	&::view-transition-old(root) { animation-name: fade-out; }
+	&::view-transition-new(root) { animation-name: fade-in; }
+}
+
+/* Defaults */
+:root {
+	--font-family: -apple-system, system-ui, sans-serif;
+	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
+}
+
+/* Theme colors */
+:root {
+	--color-gray-20: #e0e0e0;
+	--color-gray-50: #C0C0C0;
+	--color-gray-90: #333;
+
+	--background-color-rgb: 255, 255, 255;
+	--background-color: rgb(var(--background-color-rgb));
+	--background-color-slightly-transparent: rgba(var(--background-color-rgb), 0.75);
+
+	--text-color: var(--color-gray-90);
+	--text-color-link: #082840;
+	--text-color-link-active: #5f2b48;
+	--text-color-link-visited: #17050F;
+
+	--syntax-tab-size: 2;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-gray-20: #e0e0e0;
+		--color-gray-50: #C0C0C0;
+		--color-gray-90: #dad8d8;
+
+		--background-color-rgb: 21, 32, 43;
+
+		/* --text-color is assigned to --color-gray-_ above */
+		--text-color-link: #1493fb;
+		--text-color-link-active: #6969f7;
+		--text-color-link-visited: #a6a6f8;
+
+		--content-border: #dad8d8;
+		--content-background: #272727;
+	}
+}
+
+
+/* Global stylesheet */
+* {
+	box-sizing: border-box;
+}
+
+html {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+	background-color: var(--background-color);
+}
+
+body {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+}
+html {
+	overflow-y: scroll;
+}
+
+@media (width <= 50em) {
+	body {
+		max-width: 25em;
+	}
+
+	#recap-container {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(1, 1fr);
+		gap: 1em;
+	}
+
+	#blog-posts {
+		grid-column: 1 / 2;
+		grid-row: 1 / 2;
+	}
+
+	#mastodon-posts {
+		grid-column: 1 / 2;
+		grid-row: 2 / 3;
+	}
+}
+
+@media (width > 50em) {
+	body {
+		max-width: 50em;
+	}
+
+	#recap-container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1em;
+	}
+
+	#blog-posts {
+		grid-column: 1 / 2;
+	}
+
+	#mastodon-posts {
+		grid-column: 2 / 3;
+	}
+}
+
+header {
+	top: 0px;
+	position: sticky;
+	background: var(--background-color-slightly-transparent);
+	backdrop-filter: blur(5px) saturate(200%);
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+p {
+	line-height: 1.5;
+}
+
+li {
+	line-height: 1.5;
+}
+
+a[href] {
+	color: var(--text-color-link);
+}
+a[href]:visited {
+	color: var(--text-color-link-visited);
+}
+a[href]:hover,
+a[href]:active {
+	color: var(--text-color-link-active);
+}
+
+main {
+	padding: 1rem;
+	background-color: var(--content-background);
+}
+main :first-child {
+	margin-top: 0;
+}
+
+header {
+	border-bottom: 5px dashed var(--color-gray-20);
+}
+header:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.links-nextprev {
+	list-style: none;
+	border-top: 1px dashed var(--color-gray-20);
+	padding: 1em 0;
+}
+
+table {
+	margin: 1em 0;
+}
+table td,
+table th {
+	padding-right: 1em;
+}
+
+pre,
+code {
+	font-family: var(--font-family-monospace);
+}
+pre:not([class*="language-"]) {
+	margin: .5em 0;
+	line-height: 1.375; /* 22px /16 */
+	-moz-tab-size: var(--syntax-tab-size);
+	-o-tab-size: var(--syntax-tab-size);
+	tab-size: var(--syntax-tab-size);
+	-webkit-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+}
+code {
+	word-break: break-all;
+}
+
+/* Header */
+/* header is flex with the items aligned to the ends 
+   so that the first item is left aligned and the
+   last is right aligned */
+header {
+	display: grid;
+	align-items: center;
+	padding: 1em;
+	grid-template-columns: 1fr auto;
+}
+.home-link {
+	grid-column: 1 / 2;
+}
+nav {
+	grid-column: 2 / 3;
+}
+.home-link {
+	font-size: 1em; /* 16px /16 */
+	font-weight: 700;
+	margin-right: 2em;
+}
+.home-link:link:not(:hover) {
+	text-decoration: none;
+}
+
+/* Nav */
+.nav {
+	display: flex;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.nav-item {
+	display: inline-block;
+	margin-right: 1em;
+}
+.nav-item a[href]:not(:hover) {
+	text-decoration: none;
+}
+.nav a[href][aria-current="page"] {
+	text-decoration: underline;
+}
+
+/* Posts list */
+.postlist {
+	list-style: none;
+	padding: 0;
+	padding-left: 1.5rem;
+}
+.postlist-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	counter-increment: start-from -1;
+	margin-bottom: 1em;
+}
+.postlist-item:before {
+	display: inline-block;
+	pointer-events: none;
+	content: "" counter(start-from, decimal-leading-zero) ". ";
+	line-height: 100%;
+	text-align: right;
+	margin-left: -1.5rem;
+}
+.postlist-date,
+.postlist-item:before {
+	font-size: 0.8125em; /* 13px /16 */
+	color: var(--color-gray-90);
+}
+.postlist-date {
+	word-spacing: -0.5px;
+}
+.postlist-link {
+	font-size: 1.1875em; /* 19px /16 */
+	font-weight: 700;
+	flex-basis: calc(100% - 1.5rem);
+	padding-left: .25em;
+	padding-right: .5em;
+	text-underline-position: from-font;
+	text-underline-offset: 0;
+	text-decoration-thickness: 1px;
+}
+.postlist-item-active .postlist-link {
+	font-weight: bold;
+}
+
+/* Tags */
+.post-tag {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: capitalize;
+	font-style: italic;
+}
+.postlist-item > .post-tag {
+	align-self: center;
+}
+
+/* Tags list */
+.post-metadata {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: .5em;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.post-metadata time {
+	margin-right: 1em;
+}
+
+/* Direct Links / Markdown Headers */
+.header-anchor {
+	text-decoration: none;
+	font-style: normal;
+	font-size: 1em;
+	margin-left: .1em;
+}
+a[href].header-anchor,
+a[href].header-anchor:visited {
+	color: transparent;
+}
+a[href].header-anchor:focus,
+a[href].header-anchor:hover {
+	text-decoration: underline;
+}
+a[href].header-anchor:focus,
+:hover > a[href].header-anchor {
+	color: #aaa;
+}
+
+h2 + .header-anchor {
+	font-size: 1.5em;
+}
+
+/* logo is the size of the text and center aligned 
+against the center of the text */
+.logo {
+	width: 1em;
+	height: 1em;
+	vertical-align: middle;
+}
+		</style>
+		<script>
+window.addEventListener("pageswap", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+
+window.addEventListener("pagereveal", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+		</script>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/dave/" class="home-link">deletethis.net<!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/dave/post/">Blog</a></li>
+					<li class="nav-item"><a href="/dave/about/">About</a></li>
+					<li class="nav-item"><a href="/feed/feed.xml"><!-- img class="logo" src="/img/rss-dark.svg" -->Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<h1>Shout Text Windows 8 App Development Notes</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2013-06-27">27 June 2013</time></li>
+</ul>
+
+<div xmlns="http://www.w3.org/1999/xhtml"><div><p>
+    My first app for Windows 8 was <a href="http://apps.microsoft.com/windows/en-us/app/shout-text/d3c22289-d1f6-4ead-a9ef-17abd0e6345a">Shout Text</a>. You type into Shout Text, and your text is
+    scaled up as large as possible while still fitting on the screen, as you type. It is the closest thing to a Hello World app as you'll find on the Windows Store that doesn't contain that phrase
+    (by default) and I approached it as the simplest app I could make to learn about Windows modern app development and Windows Store app submission.
+  </p><p>
+    I rely on WinJS's default layout to use CSS transforms to scale up the user's text as they type. And they are typing into a simple content editable div.
+  </p><p>
+    The app was too simple for me to even consider using ads or charging for it which I learned more about in future apps.
+  </p><p>
+    The first interesting issue I ran into was that copying from and then pasting into the content editable div resulted in duplicates of the containing div with copied CSS appearing recursively
+    inside of the content editable div. To fix this I had to catch the paste operation and remove the HTML data from the clipboard to ensure only the plain text data is pasted:
+  </p><pre><code>        function onPaste() {<br />            var text;<br /><br />            if (window.clipboardData) {<br />                text = window.clipboardData.getData("Text").toString();<br />                window.clipboardData.clearData("Html");<br />                window.clipboardData.setData("Text", util.normalizeContentEditableText(text));<br />            }<br />        }<br />        shoutText.addEventListener("beforepaste", function () { return false; }, false);<br />        shoutText.addEventListener("paste", onPaste, false);</code></pre><p>
+    I additionally found an issue in IE in which applying a CSS transform to a content editable div that has focus doesn't move the screen position of the user input caret - the text is scaled up or
+    down but the caret remains the same size and in the same place on the screen. To fix this I made the following hack to reapply the current cursor position and text selection which resets the
+    screen position of the user input caret.
+  </p><pre><code>        function resetCaret() {<br />            setTimeout(function () {<br />                var cursorPos = document.selection.createRange().duplicate();<br />                cursorPos.select();<br />            }, 200);<br />        }<br /><br />        shoutText.attachEvent("onresize", function () { resetCaret(); }, true);</code></pre></div></div>
+
+<ul class="links-nextprev"><li>Previous: <a href="/dave/2013-06/Windows+Store+on+Windows+8+Fun+For+Independent+Developers/">Windows Store on Windows 8 Fun For Independent Developers</a></li><li>Next: <a href="/dave/2013-07/MSVC--+64bit+Enums/">MSVC++ 64bit Enums</a></li>
+</ul>
+
+		</main>
+
+		<footer></footer>
+
+		<!-- Current page: /dave/2013-06/Shout+Text+Windows+8+App+Development+Notes/ -->
+	</body>
+</html>

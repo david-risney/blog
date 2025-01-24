@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en" class="gradient-background">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Tiny browser features: JSBrowser zoom</title>
+		<meta name="description" content="Dave Risney&#39;s blog on web, coding, and things">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="deletethis.net">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="deletethis.net">
+
+		<meta name="generator" content="Eleventy v2.0.0">
+
+		<link rel="icon" type="image/svg+xml" href="/img/semicolon.svg">
+
+		<style>
+		@view-transition { navigation: auto; }
+
+::view-transition-group(*) { animation-duration: 0.2s; }
+
+@keyframes slide-in-from-left { from { translate: -150vw 0; } }
+@keyframes slide-in-from-right { from { translate: 150vw 0; } }
+@keyframes slide-out-to-left { to { translate: -150vw 0; } }
+@keyframes slide-out-to-right { to { translate: 150vw 0; } }
+@keyframes scale-up { from { scale: 0; } }
+@keyframes scale-down { to { scale: 0; } }
+@keyframes fade-in { from { opacity: 0; } }
+@keyframes fade-out { to { opacity: 0; } }
+
+html:active-view-transition-type(forwards, backwards) {
+	:root { view-transition-name: none; }
+	header { view-transition-name: header; }
+	main { view-transition-name: main; }
+	footer { view-transition-name: footer; }
+}
+
+html:active-view-transition-type(forwards) {
+	&::view-transition-old(main) { animation-name: fade-out; }
+	&::view-transition-new(main) { animation-name: fade-in; }
+}
+
+html:active-view-transition-type(backwards) {
+	&::view-transition-old(main) { animation-name: fade-out; }
+	&::view-transition-new(main) { animation-name: fade-in; }
+}
+
+html:active-view-transition-type(reload) {
+	&::view-transition-old(root) { animation-name: fade-out; }
+	&::view-transition-new(root) { animation-name: fade-in; }
+}
+
+/* Defaults */
+:root {
+	--font-family: -apple-system, system-ui, sans-serif;
+	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
+}
+
+/* Theme colors */
+:root {
+	--color-gray-20: #e0e0e0;
+	--color-gray-50: #C0C0C0;
+	--color-gray-90: #333;
+
+	--background-color-rgb: 255, 255, 255;
+	--background-color: rgb(var(--background-color-rgb));
+	--background-color-slightly-transparent: rgba(var(--background-color-rgb), 0.75);
+
+	--text-color: var(--color-gray-90);
+	--text-color-link: #082840;
+	--text-color-link-active: #5f2b48;
+	--text-color-link-visited: #17050F;
+
+	--syntax-tab-size: 2;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-gray-20: #e0e0e0;
+		--color-gray-50: #C0C0C0;
+		--color-gray-90: #dad8d8;
+
+		--background-color-rgb: 21, 32, 43;
+
+		/* --text-color is assigned to --color-gray-_ above */
+		--text-color-link: #1493fb;
+		--text-color-link-active: #6969f7;
+		--text-color-link-visited: #a6a6f8;
+
+		--content-border: #dad8d8;
+		--content-background: #272727;
+	}
+}
+
+
+/* Global stylesheet */
+* {
+	box-sizing: border-box;
+}
+
+html {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+	background-color: var(--background-color);
+}
+
+body {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+}
+html {
+	overflow-y: scroll;
+}
+
+@media (width <= 50em) {
+	body {
+		max-width: 25em;
+	}
+
+	#recap-container {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(1, 1fr);
+		gap: 1em;
+	}
+
+	#blog-posts {
+		grid-column: 1 / 2;
+		grid-row: 1 / 2;
+	}
+
+	#mastodon-posts {
+		grid-column: 1 / 2;
+		grid-row: 2 / 3;
+	}
+}
+
+@media (width > 50em) {
+	body {
+		max-width: 50em;
+	}
+
+	#recap-container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1em;
+	}
+
+	#blog-posts {
+		grid-column: 1 / 2;
+	}
+
+	#mastodon-posts {
+		grid-column: 2 / 3;
+	}
+}
+
+header {
+	top: 0px;
+	position: sticky;
+	background: var(--background-color-slightly-transparent);
+	backdrop-filter: blur(5px) saturate(200%);
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+p {
+	line-height: 1.5;
+}
+
+li {
+	line-height: 1.5;
+}
+
+a[href] {
+	color: var(--text-color-link);
+}
+a[href]:visited {
+	color: var(--text-color-link-visited);
+}
+a[href]:hover,
+a[href]:active {
+	color: var(--text-color-link-active);
+}
+
+main {
+	padding: 1rem;
+	background-color: var(--content-background);
+}
+main :first-child {
+	margin-top: 0;
+}
+
+header {
+	border-bottom: 5px dashed var(--color-gray-20);
+}
+header:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.links-nextprev {
+	list-style: none;
+	border-top: 1px dashed var(--color-gray-20);
+	padding: 1em 0;
+}
+
+table {
+	margin: 1em 0;
+}
+table td,
+table th {
+	padding-right: 1em;
+}
+
+pre,
+code {
+	font-family: var(--font-family-monospace);
+}
+pre:not([class*="language-"]) {
+	margin: .5em 0;
+	line-height: 1.375; /* 22px /16 */
+	-moz-tab-size: var(--syntax-tab-size);
+	-o-tab-size: var(--syntax-tab-size);
+	tab-size: var(--syntax-tab-size);
+	-webkit-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+}
+code {
+	word-break: break-all;
+}
+
+/* Header */
+/* header is flex with the items aligned to the ends 
+   so that the first item is left aligned and the
+   last is right aligned */
+header {
+	display: grid;
+	align-items: center;
+	padding: 1em;
+	grid-template-columns: 1fr auto;
+}
+.home-link {
+	grid-column: 1 / 2;
+}
+nav {
+	grid-column: 2 / 3;
+}
+.home-link {
+	font-size: 1em; /* 16px /16 */
+	font-weight: 700;
+	margin-right: 2em;
+}
+.home-link:link:not(:hover) {
+	text-decoration: none;
+}
+
+/* Nav */
+.nav {
+	display: flex;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.nav-item {
+	display: inline-block;
+	margin-right: 1em;
+}
+.nav-item a[href]:not(:hover) {
+	text-decoration: none;
+}
+.nav a[href][aria-current="page"] {
+	text-decoration: underline;
+}
+
+/* Posts list */
+.postlist {
+	list-style: none;
+	padding: 0;
+	padding-left: 1.5rem;
+}
+.postlist-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	counter-increment: start-from -1;
+	margin-bottom: 1em;
+}
+.postlist-item:before {
+	display: inline-block;
+	pointer-events: none;
+	content: "" counter(start-from, decimal-leading-zero) ". ";
+	line-height: 100%;
+	text-align: right;
+	margin-left: -1.5rem;
+}
+.postlist-date,
+.postlist-item:before {
+	font-size: 0.8125em; /* 13px /16 */
+	color: var(--color-gray-90);
+}
+.postlist-date {
+	word-spacing: -0.5px;
+}
+.postlist-link {
+	font-size: 1.1875em; /* 19px /16 */
+	font-weight: 700;
+	flex-basis: calc(100% - 1.5rem);
+	padding-left: .25em;
+	padding-right: .5em;
+	text-underline-position: from-font;
+	text-underline-offset: 0;
+	text-decoration-thickness: 1px;
+}
+.postlist-item-active .postlist-link {
+	font-weight: bold;
+}
+
+/* Tags */
+.post-tag {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: capitalize;
+	font-style: italic;
+}
+.postlist-item > .post-tag {
+	align-self: center;
+}
+
+/* Tags list */
+.post-metadata {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: .5em;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.post-metadata time {
+	margin-right: 1em;
+}
+
+/* Direct Links / Markdown Headers */
+.header-anchor {
+	text-decoration: none;
+	font-style: normal;
+	font-size: 1em;
+	margin-left: .1em;
+}
+a[href].header-anchor,
+a[href].header-anchor:visited {
+	color: transparent;
+}
+a[href].header-anchor:focus,
+a[href].header-anchor:hover {
+	text-decoration: underline;
+}
+a[href].header-anchor:focus,
+:hover > a[href].header-anchor {
+	color: #aaa;
+}
+
+h2 + .header-anchor {
+	font-size: 1.5em;
+}
+
+/* logo is the size of the text and center aligned 
+against the center of the text */
+.logo {
+	width: 1em;
+	height: 1em;
+	vertical-align: middle;
+}
+		</style>
+		<script>
+window.addEventListener("pageswap", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+
+window.addEventListener("pagereveal", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+		</script>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/dave/" class="home-link">deletethis.net<!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/dave/post/">Blog</a></li>
+					<li class="nav-item"><a href="/dave/about/">About</a></li>
+					<li class="nav-item"><a href="/feed/feed.xml"><!-- img class="logo" src="/img/rss-dark.svg" -->Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<h1>Tiny browser features: JSBrowser zoom</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2018-05-10">10 May 2018</time></li>
+</ul>
+
+<div xmlns="http://www.w3.org/1999/xhtml"><div><p><a href="https://github.com/david-risney/JSBrowser">JSBrowser</a> is a basic browser built as a Win10 JavaScript UWP app around the WebView HTML element. Its fun and relatively simple to
+    implement tiny browser features in JavaScript and in this post I'm implementing zoom.
+  </p><p>
+    My plan to implement zoom is to add a zoom slider to the settings div that controls the scale of the WebView element via CSS transform. My <a href="https://github.com/david-risney/JSBrowser/commit/58987dcbc44b0818602e99574a3dec9406f4fa2e">resulting zoom change</a> is in git and you can try the whole thing out in my JSBrowser fork.
+  </p><h2>
+    Slider
+  </h2><p>
+    I can implement the zoom settings slider as a range type input HTML element. This conveniently provides me a min, max, and step property and suits exactly my purposes. I chose some values that I
+    thought would be reasonable so the browser can scale between half to 3x by increments of one quarter. This is a tiny browser feature after all so there's no custom zoom entry.
+  </p><pre><code>&lt;a&gt;&lt;label for="webviewZoom"&gt;Zoom&lt;/label&gt;&lt;input type="range" min="50" max="300" step="25" value="100" id="webviewZoom" /&gt;&lt;/a&gt;</code></pre><p>
+    To let the user know this slider is for controlling zoom, I make a label HTML element that says Zoom. The label HTML element has a for attribute which takes the id of another HTML element. This
+    lets the browser know what the label is labelling and lets the browser do things like when the label is clicked to put focus on the slider.
+  </p><h2>
+    Scale
+  </h2><p>
+    There are no explicit scale APIs for WebView so to change the size of the content in the WebView we use CSS.
+  </p><pre><code>        this.applyWebviewZoom = state =&gt; {<br />            const minValue = this.webviewZoom.getAttribute("min");<br />            const maxValue = this.webviewZoom.getAttribute("max");<br />            const scaleValue = Math.max(Math.min(parseInt(this.webviewZoom.value, 10), maxValue), minValue) / 100;<br /><br />            // Use setAttribute so they all change together to avoid weird visual glitches<br />            this.webview.setAttribute("style", [<br />                ["width", (100 / scaleValue) + "%"],<br />                ["height", "calc(" + (-40 / scaleValue) + "px + " + (100 / scaleValue) + "%)"],<br />                ["transform", "scale(" + scaleValue + ")"]<br />            ].map(pair =&gt; pair[0] + ": " + pair[1]).join("; "));<br />        };</code></pre><p>
+    Because the user changes the scale at runtime I accordingly replace the static CSS for the WebView element with the script above to programmatically modify the style of the WebView. I change the
+    style with one setAttribute call to do my best to avoid the browser performing unnecessary work or displaying the WebView in an intermediate and incomplete state. Applying the scale to the
+    element is as simple as adding 'transform: scale(X)' but then there are two interesting problems.
+  </p><p>
+    The first is that the size of the WebView is also scaled not just the content within it. To keep the WebView the same effective size so that it still fits properly into our browser UI, we must
+    compensate for the scale in the WebView width and height. Accordingly, you can see that we scale up by scaleValue and then in width and height we divide by the scaleValue.
+  </p><pre><code>transform-origin: 0% 0%;</code></pre><p>
+    The other issue is that by default the scale transform's origin is the center of the WebView element. This means when scaled up all sides of the WebView would expand out. But when modifying the
+    width and height those apply relative to the upper left of the element so our inverse scale application to the width and height above aren't quite enough. We also have to change the origin of the
+    scale transform to match the origin of the changes to the width and height.
+  </p></div></div>
+
+<ul class="links-nextprev"><li>Previous: <a href="/dave/2018-03/Multiple+Windows+in+Win10+JavaScript+UWP+apps/">Multiple Windows in Win10 JavaScript UWP apps</a></li><li>Next: <a href="/dave/2018-05/Tiny+browser+features-+JSBrowser+crash+resistance/">Tiny browser features: JSBrowser crash resistance</a></li>
+</ul>
+
+		</main>
+
+		<footer></footer>
+
+		<!-- Current page: /dave/2018-05/Tiny+browser+features-+JSBrowser+zoom/ -->
+	</body>
+</html>

@@ -2,8 +2,8 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:base="en">
 	<title>deletethis.net</title>
 	<subtitle>Dave Risney&#39;s blog on web, coding, and things</subtitle>
-	<link href="https://deletethis.net/dave/feed/feed.xml" rel="self"/>
-	<link href="https://deletethis.net/dave/dave/"/>
+	<link href="https://deletethis.net/feed/feed.xml" rel="self"/>
+	<link href="https://deletethis.net/dave/"/>
 	<updated>2024-05-28T00:00:00Z</updated>
 	<id>https://deletethis.net/dave/</id>
 	<author>
