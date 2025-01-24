@@ -21,8 +21,8 @@
 		<link rel="stylesheet" href="/css/prism-okaidia.css">
 		<link rel="stylesheet" href="/css/message-box.css">
 		<link rel="stylesheet" href="/css/prism-diff.css">
+		<link rel="stylesheet" href="css/index.css">
 #}
-		<link rel="stylesheet" href="/css/index.css">
 
 {#-
 		2. Inlined (fastest site performance in production)
@@ -41,6 +41,9 @@
 				e.g. Vite https://www.11ty.dev/docs/server-vite/
 				Or search for additional community plugins for esbuild, rollup, webpack, etc.
 #}
+		<style>
+		{% include "public/dave/css/index.css" %}
+		</style>
 		<script>
 window.addEventListener("pageswap", async (e) => {
 	if (e.viewTransition) {
@@ -67,7 +70,7 @@ window.addEventListener("pagereveal", async (e) => {
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
 
 		<header>
-			<a href="/" class="home-link">{{ metadata.title }}<!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
+			<a href="/dave/" class="home-link">{{ metadata.title }}<!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
 
 			{#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
 			<nav>

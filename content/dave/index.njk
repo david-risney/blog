@@ -5,13 +5,13 @@ layout: layouts/home.njk
 <div id="blog-posts">
 {% set postsCount = collections.posts | length %}
 {% set latestPostsCount = postsCount | min(10) %}
-<h1><a href="/post/">Blog</a></h1>
+<h1><a href="post/">Blog</a></h1>
 
 {% set postslist = collections.posts | head(-10) %}
 {% set postslistCounter = postsCount %}
 {% include "postsstart.njk" %}
 
-<p><a href="/post/">More posts</a>.</p>
+<p><a href="post/">More posts</a>.</p>
 </div>
 
 <div id="mastodon-posts">
