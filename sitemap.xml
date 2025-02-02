@@ -513,86 +513,86 @@
 	
 	<url>
 		<loc>https://deletethis.net/dave/about/</loc>
-		<lastmod>2025-01-31</lastmod>
+		<lastmod>2025-02-02</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://deletethis.net/dave/</loc>
-		<lastmod>2025-01-31</lastmod>
+		<lastmod>2025-02-02</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://deletethis.net/dave/post/</loc>
-		<lastmod>2025-01-31</lastmod>
+		<lastmod>2025-02-02</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://deletethis.net/dave/tags/</loc>
-		<lastmod>2025-01-31</lastmod>
+		<lastmod>2025-02-02</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://deletethis.net/dave/tags/404/</loc>
-		<lastmod>2025-01-31</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://deletethis.net/dave/tags/http/</loc>
-		<lastmod>2025-01-31</lastmod>
+		<lastmod>2025-02-02</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://deletethis.net/dave/tags/eleventy/</loc>
-		<lastmod>2025-01-31</lastmod>
+		<lastmod>2025-02-02</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://deletethis.net/dave/tags/github/</loc>
-		<lastmod>2025-01-31</lastmod>
+		<lastmod>2025-02-02</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://deletethis.net/dave/tags/dns/</loc>
-		<lastmod>2025-01-31</lastmod>
+		<lastmod>2025-02-02</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://deletethis.net/dave/tags/uwp/</loc>
-		<lastmod>2025-01-31</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://deletethis.net/dave/tags/msix/</loc>
-		<lastmod>2025-01-31</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://deletethis.net/dave/tags/sysinternals/</loc>
-		<lastmod>2025-01-31</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://deletethis.net/dave/tags/windows/</loc>
-		<lastmod>2025-01-31</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://deletethis.net/dave/tags/restricted-capabilities/</loc>
-		<lastmod>2025-01-31</lastmod>
+		<loc>https://deletethis.net/dave/tags/http/</loc>
+		<lastmod>2025-02-02</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://deletethis.net/dave/tags/javascript/</loc>
-		<lastmod>2025-01-31</lastmod>
+		<lastmod>2025-02-02</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://deletethis.net/dave/tags/array/</loc>
-		<lastmod>2025-01-31</lastmod>
+		<lastmod>2025-02-02</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://deletethis.net/dave/tags/uwp/</loc>
+		<lastmod>2025-02-02</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://deletethis.net/dave/tags/msix/</loc>
+		<lastmod>2025-02-02</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://deletethis.net/dave/tags/sysinternals/</loc>
+		<lastmod>2025-02-02</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://deletethis.net/dave/tags/windows/</loc>
+		<lastmod>2025-02-02</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://deletethis.net/dave/tags/restricted-capabilities/</loc>
+		<lastmod>2025-02-02</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://deletethis.net/dave/tags/proxy/</loc>
-		<lastmod>2025-01-31</lastmod>
+		<lastmod>2025-02-02</lastmod>
 	</url>
 </urlset>
