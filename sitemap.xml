@@ -512,6 +512,11 @@
 	</url>
 	
 	<url>
+		<loc>https://deletethis.net/dave/2025-01/css-scroll-animated-sticky-header/</loc>
+		<lastmod>2025-01-02</lastmod>
+	</url>
+	
+	<url>
 		<loc>https://deletethis.net/dave/about/</loc>
 		<lastmod>2025-02-02</lastmod>
 	</url>
@@ -537,6 +542,11 @@
 	</url>
 	
 	<url>
+		<loc>https://deletethis.net/dave/tags/http/</loc>
+		<lastmod>2025-02-02</lastmod>
+	</url>
+	
+	<url>
 		<loc>https://deletethis.net/dave/tags/eleventy/</loc>
 		<lastmod>2025-02-02</lastmod>
 	</url>
@@ -552,17 +562,17 @@
 	</url>
 	
 	<url>
-		<loc>https://deletethis.net/dave/tags/http/</loc>
+		<loc>https://deletethis.net/dave/tags/css/</loc>
 		<lastmod>2025-02-02</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://deletethis.net/dave/tags/javascript/</loc>
+		<loc>https://deletethis.net/dave/tags/sticky/</loc>
 		<lastmod>2025-02-02</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://deletethis.net/dave/tags/array/</loc>
+		<loc>https://deletethis.net/dave/tags/scroll-animation/</loc>
 		<lastmod>2025-02-02</lastmod>
 	</url>
 	
@@ -588,6 +598,16 @@
 	
 	<url>
 		<loc>https://deletethis.net/dave/tags/restricted-capabilities/</loc>
+		<lastmod>2025-02-02</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://deletethis.net/dave/tags/javascript/</loc>
+		<lastmod>2025-02-02</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://deletethis.net/dave/tags/array/</loc>
 		<lastmod>2025-02-02</lastmod>
 	</url>
 	

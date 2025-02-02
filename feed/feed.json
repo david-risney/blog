@@ -11,6 +11,14 @@
 	},
 	"items": [
 		{
+			"id": "https://deletethis.net/dave/2025-01/css-scroll-animated-sticky-header/",
+			"url": "https://deletethis.net/dave/2025-01/css-scroll-animated-sticky-header/",
+			"title": "CSS Scroll Animated Sticky Header",
+			"content_html": "<p>I've made a sticky header that scroll animates all using CSS. I'm using the new <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/position?v=example#sticky\"><code>position: sticky</code></a> to make my <code>&lt;header&gt;</code> stick to the top of the page as the user scrolls down. Then I'm using <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scroll-driven_animations\"><code>animation-timeline: scroll(root)</code></a> to animate the header and its content shorter when scrolling down the page.</p>\n<p>The big issue I ran into was a circular dependency: the header animates shorter based on the scroll position, and the header becoming shorter changes the document height and accordingly the scroll position. This resulted in strange jumping around while scrolling.</p>\n<p>To resolve it I'm adjusting the margin-bottom of the header so that the overall height including the margin remains the same.</p>\n<pre><code>  /* default size assuming scroll animation is not supported */\n  #floatyHeader {\n  \ttop: 0px;\n  \tposition: sticky;\n  \theight: 4em;\n  }\n\n  /* setup scroll animation */\n\t#floatyHeader {\n\t\tanimation: headerChange auto linear;\n\t\tanimation-timeline: scroll(root);\n\t}\n\n\t@keyframes headerChange {\n\t\t0% { \n\t\t\theight: 300px; \n\t\t\tmargin-bottom: 0px; \n\t\t}\n\t\t15% { \n\t\t\theight: 4em; \n      /* set the margin-bottom to the starting size minus the end size */\n\t\t\tmargin-bottom: calc(300px - 4em);\n\t\t}\n\t\t100% { \n\t\t\theight: 4em; \n\t\t\tmargin-bottom: calc(300px - 4em);\n\t\t}\n\t}\n</code></pre>\n<p>Here's an <a href=\"https://deletethis.net/dave/examples/sticky-scroll-animted-header.html\">example</a>.</p>\n",
+			"date_published": "2025-01-02T00:00:00Z"
+		}
+		,
+		{
 			"id": "https://deletethis.net/dave/2024-05/eleventy-on-github-pages--part-2-/",
 			"url": "https://deletethis.net/dave/2024-05/eleventy-on-github-pages--part-2-/",
 			"title": "Eleventy on GitHub Pages (Part 2)",
