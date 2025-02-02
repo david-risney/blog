@@ -70,9 +70,10 @@ window.addEventListener("pagereveal", async (e) => {
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
 
 		<header id="floatyHeader">
-			<a href="/dave/" class="home-link">{{ metadata.title }}<!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
+			<a href="/dave/" class="home-link"><code>{{ metadata.title }}</code><!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
 
 			{#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
+			<img alt="An old photo of me wearing a suit in a hotel room" id="meImage" src="/dave/img/me-old.png">
 			<nav>
 				<h2 class="visually-hidden">Top level navigation menu</h2>
 				<ul class="nav">
