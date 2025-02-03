@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Tagged “dns”</title>
-		<meta name="description" content="Dave Risney&#39;s blog on web, coding, and things">
+		<title>Eleventy on GitHub Pages (Part 3)</title>
+		<meta name="description" content="Building this blog using Eleventy and GitHub Pages">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="deletethis.net">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="deletethis.net">
 
@@ -562,32 +562,32 @@ window.addEventListener("pagereveal", async (e) => {
 		</header>
 
 		<main id="skip">
-			
-<h1>Tagged “dns”</h1>
+			<h1>Eleventy on GitHub Pages (Part 3)</h1>
 
+<ul class="post-metadata">
+	<li><time datetime="2025-02-02">02 February 2025</time></li>
+	<li><a href="/dave/tags/eleventy/" class="post-tag">eleventy</a>, </li>
+	<li><a href="/dave/tags/github/" class="post-tag">github</a>, </li>
+	<li><a href="/dave/tags/dns/" class="post-tag">dns</a></li>
+</ul>
 
-<ol reversed class="postlist" style="counter-reset: start-from 3">
-
-	<li class="postlist-item">
-		<a href="/dave/2025-02/eleventy-on-github-pages--part-3-/" class="postlist-link">Eleventy on GitHub Pages (Part 3)</a>
-		<time class="postlist-date" datetime="2025-02-02">February 2025</time>
-	</li>
-
-	<li class="postlist-item">
-		<a href="/dave/2024-05/eleventy-on-github-pages--part-2-/" class="postlist-link">Eleventy on GitHub Pages (Part 2)</a>
-		<time class="postlist-date" datetime="2024-05-28">May 2024</time>
-	</li>
-
+<p><a href="eleventy-github-pages-part-2.md">Previously</a>, I made an Eleventy based GitHub project with GitHub automation to run Eleventy when checking in changes and hooked up a custom subdomain to the GitHub pages thinking I would start a new domain for the new blog. But I changed my mind again and now have my old URI pointing to the new blog:</p>
+<ol>
+<li>I made a <a href="https://github.com/david-risney/blog/blob/main/feed-to-md.ps1">PowerShell script</a> to take my old blog's atom XML and turn them into post MD files for Eleventy. It was more difficult than I thought because my atom was not valid XML (eek). Rather than write code to fix it, it was easier to just edit the XML by hand to fix.</li>
+<li>I also customized my Eleventy URIs for blog posts to match my old blog's URIs. I added <a href="https://github.com/david-risney/blog/blob/main/content/dave/post/post.11tydata.js">post.11tydata.js files</a> that setup the URI using custom JS functions. I define the functions in <a href="https://github.com/david-risney/blog/blob/main/eleventy.config.js">eleventy.config.js</a> via <code>eleventyConfig.addFilter</code>.</li>
+<li>That covered most of the static blog content. For the rest I made a new subdomain to point to the old server and added a <a href="https://github.com/david-risney/blog/blob/main/content/404.md?plain=1">custom 404 page</a> that can help redirect to the old server. <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-custom-404-page-for-your-github-pages-site">GitHub Pages custom 404</a> are supported by putting a 404.html in the root path.</li>
+<li>I followed GitHub's directions for hooking up a top level domain name which was just to make A and AAAA records pointing to the GitHub IP addresses. It took a bit to populate but then worked great.</li>
+<li>I forgot to update the CNAME file. Doing a push reset my domain for my github pages back to the previous name which no longer points to anything and broke the site. I fixed the content in the CNAME file to address the issue.</li>
 </ol>
+<p>I'm going to call this transition complete! Its so much easier to work with Eleventy to add posts and not have to worry about server upgrades breaking things. For the new web content I've finished making a <a href="css-scroll-animated-sticky-header.md">sticky scroll animated header</a> but still have thoughts for the future like a share button, and Mastodon based comments.</p>
 
-
-<p>See <a href="/dave/tags/">all tags</a>.</p>
-
+<ul class="links-nextprev"><li>Previous: <a href="/dave/2025-01/css-scroll-animated-sticky-header/">CSS Scroll Animated Sticky Header</a></li>
+</ul>
 
 		</main>
 
 		<footer></footer>
 
-		<!-- Current page: /dave/tags/dns/ -->
+		<!-- Current page: /dave/2025-02/eleventy-on-github-pages--part-3-/ -->
 	</body>
 </html>

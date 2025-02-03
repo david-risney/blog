@@ -4,12 +4,29 @@
 	<subtitle>Dave Risney&#39;s blog on web, coding, and things</subtitle>
 	<link href="https://deletethis.net/feed/feed.xml" rel="self"/>
 	<link href="https://deletethis.net/dave/"/>
-	<updated>2025-01-02T00:00:00Z</updated>
+	<updated>2025-02-02T00:00:00Z</updated>
 	<id>https://deletethis.net/dave/</id>
 	<author>
 		<name>Dave Risney</name>
 		<email>david.risney+blog@gmail.com</email>
 	</author>
+	
+	<entry>
+		<title>Eleventy on GitHub Pages (Part 3)</title>
+		<link href="https://deletethis.net/dave/2025-02/eleventy-on-github-pages--part-3-/"/>
+		<updated>2025-02-02T00:00:00Z</updated>
+		<id>https://deletethis.net/dave/2025-02/eleventy-on-github-pages--part-3-/</id>
+		<content type="html">&lt;p&gt;&lt;a href=&quot;https://deletethis.net/dave/2025-02/eleventy-on-github-pages--part-3-/eleventy-github-pages-part-2.md&quot;&gt;Previously&lt;/a&gt;, I made an Eleventy based GitHub project with GitHub automation to run Eleventy when checking in changes and hooked up a custom subdomain to the GitHub pages thinking I would start a new domain for the new blog. But I changed my mind again and now have my old URI pointing to the new blog:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;I made a &lt;a href=&quot;https://github.com/david-risney/blog/blob/main/feed-to-md.ps1&quot;&gt;PowerShell script&lt;/a&gt; to take my old blog&#39;s atom XML and turn them into post MD files for Eleventy. It was more difficult than I thought because my atom was not valid XML (eek). Rather than write code to fix it, it was easier to just edit the XML by hand to fix.&lt;/li&gt;
+&lt;li&gt;I also customized my Eleventy URIs for blog posts to match my old blog&#39;s URIs. I added &lt;a href=&quot;https://github.com/david-risney/blog/blob/main/content/dave/post/post.11tydata.js&quot;&gt;post.11tydata.js files&lt;/a&gt; that setup the URI using custom JS functions. I define the functions in &lt;a href=&quot;https://github.com/david-risney/blog/blob/main/eleventy.config.js&quot;&gt;eleventy.config.js&lt;/a&gt; via &lt;code&gt;eleventyConfig.addFilter&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;That covered most of the static blog content. For the rest I made a new subdomain to point to the old server and added a &lt;a href=&quot;https://github.com/david-risney/blog/blob/main/content/404.md?plain=1&quot;&gt;custom 404 page&lt;/a&gt; that can help redirect to the old server. &lt;a href=&quot;https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-custom-404-page-for-your-github-pages-site&quot;&gt;GitHub Pages custom 404&lt;/a&gt; are supported by putting a 404.html in the root path.&lt;/li&gt;
+&lt;li&gt;I followed GitHub&#39;s directions for hooking up a top level domain name which was just to make A and AAAA records pointing to the GitHub IP addresses. It took a bit to populate but then worked great.&lt;/li&gt;
+&lt;li&gt;I forgot to update the CNAME file. Doing a push reset my domain for my github pages back to the previous name which no longer points to anything and broke the site. I fixed the content in the CNAME file to address the issue.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I&#39;m going to call this transition complete! Its so much easier to work with Eleventy to add posts and not have to worry about server upgrades breaking things. For the new web content I&#39;ve finished making a &lt;a href=&quot;https://deletethis.net/dave/2025-02/eleventy-on-github-pages--part-3-/css-scroll-animated-sticky-header.md&quot;&gt;sticky scroll animated header&lt;/a&gt; but still have thoughts for the future like a share button, and Mastodon based comments.&lt;/p&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>CSS Scroll Animated Sticky Header</title>
