@@ -76,7 +76,7 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addFilter("customExcerpt", function(value) {
 		let paraEndIndex = value.indexOf("</p>");
 		if (paraEndIndex === -1) {
-			paraEndIndex = 200;
+			paraEndIndex = 400;
 		}
 		value = value.substring(0, paraEndIndex);
 		value = value.replace(/<[^>]+>/g, '');
