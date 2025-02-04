@@ -56,13 +56,16 @@ html:active-view-transition-type(reload) {
 
 /* Theme colors */
 :root {
-	--color-gray-20: #e0e0e0;
+	--color-gray-20: #d0d0d0;
 	--color-gray-50: #C0C0C0;
 	--color-gray-90: #333;
 
-	--background-color-rgb: 255, 255, 255;
+	--background-color-rgb: 233, 233, 254;
 	--background-color: rgb(var(--background-color-rgb));
 	--background-color-slightly-transparent: rgba(var(--background-color-rgb), 0.75);
+
+    --content-border: #272727;
+    --content-background: #f0f0f5;
 
 	--text-color: var(--color-gray-90);
 	--text-color-link: #082840;
@@ -550,7 +553,8 @@ window.addEventListener("pagereveal", async (e) => {
 
 		<header id="floatyHeader">
 			<a href="/dave/" class="home-link"><code>deletethis.net</code><!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
-			<img alt="An old photo of me wearing a suit in a hotel room" id="meImage" src="/dave/img/me-old.png">
+			<!-- img alt="An old photo of me wearing a suit in a hotel room" id="meImage" src="/dave/img/me-old.png"-->
+			<img alt="A photo of me wearing a white button up shirt standing in front of generic office building windows." id="meImage" src="/dave/img/me-now.jpeg"-->
 			<nav>
 				<h2 class="visually-hidden">Top level navigation menu</h2>
 				<ul class="nav">
