@@ -123,6 +123,10 @@ html {
 	#mastodon-posts {
 		grid-area: mastodon;
 	}
+
+	#meImage {
+		display: none;
+	}
 }
 
 @media (width > 50em) {
@@ -332,6 +336,9 @@ code {
 
 .home-link {
 	grid-area: home;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
 }
 
 nav {
