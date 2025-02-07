@@ -231,6 +231,7 @@ html {
 
 #recap-container > * {
 	width: 100%;
+	max-width: 384px; /* based on width of recap container and margins in grid */
 }
 
 /* https://www.a11yproject.com/posts/how-to-hide-content/ */
@@ -306,6 +307,7 @@ pre:not([class*="language-"]) {
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
+	overflow: auto;
 }
 code {
 	word-break: break-all;
