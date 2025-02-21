@@ -277,7 +277,7 @@ main :first-child {
 
 .links-nextprev {
 	list-style: none;
-	border-top: 1px dashed var(--color-gray-20);
+	/* border-top: 1px dashed var(--color-gray-20); */
 	padding: 1em 0;
 }
 
@@ -561,9 +561,9 @@ window.addEventListener("pagereveal", async (e) => {
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
 
 		<header id="floatyHeader">
-			<a href="/dave/" class="home-link"><code>deletethis.net</code><!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
-			<!-- img alt="An old photo of me wearing a suit in a hotel room" id="meImage" src="/dave/img/me-old.png"-->
-			<img alt="A photo of me wearing a white button up shirt standing in front of generic office building windows." id="meImage" src="/dave/img/me-now.jpeg"-->
+			<a href="/dave/" class="home-link"><code>deletethis.net</code></a>
+			
+			<a href="/dave/about/"><img alt="A photo of me wearing a white button up shirt standing in front of generic office building windows." id="meImage" src="/dave/img/me-now.jpeg"></a>
 			<nav>
 				<h2 class="visually-hidden">Top level navigation menu</h2>
 				<ul class="nav">
@@ -578,7 +578,7 @@ window.addEventListener("pagereveal", async (e) => {
 			<h1>Shout Text Windows 8 App Development Notes</h1>
 
 <ul class="post-metadata">
-	<li><time datetime="2013-06-27">27 June 2013</time></li>
+	<li><time datetime="2013-06-27">2013 June 27</time></li>
 </ul>
 
 <div xmlns="http://www.w3.org/1999/xhtml"><div><p>
@@ -598,7 +598,7 @@ window.addEventListener("pagereveal", async (e) => {
     screen position of the user input caret.
   </p><pre><code>        function resetCaret() {<br />            setTimeout(function () {<br />                var cursorPos = document.selection.createRange().duplicate();<br />                cursorPos.select();<br />            }, 200);<br />        }<br /><br />        shoutText.attachEvent("onresize", function () { resetCaret(); }, true);</code></pre></div></div>
 
-<ul class="links-nextprev"><li>Previous: <a href="/dave/2013-06/Windows+Store+on+Windows+8+Fun+For+Independent+Developers/">Windows Store on Windows 8 Fun For Independent Developers</a></li><li>Next: <a href="/dave/2013-07/MSVC--+64bit+Enums/">MSVC++ 64bit Enums</a></li>
+<ul class="links-nextprev"><li>Previous: <a rel="prev" href="/dave/2013-06/Windows+Store+on+Windows+8+Fun+For+Independent+Developers/">Windows Store on Windows 8 Fun For Independent Developers</a></li><li>Next: <a rel="next" href="/dave/2013-07/MSVC--+64bit+Enums/">MSVC++ 64bit Enums</a></li>
 </ul>
 
 		</main>

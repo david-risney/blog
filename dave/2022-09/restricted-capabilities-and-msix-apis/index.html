@@ -277,7 +277,7 @@ main :first-child {
 
 .links-nextprev {
 	list-style: none;
-	border-top: 1px dashed var(--color-gray-20);
+	/* border-top: 1px dashed var(--color-gray-20); */
 	padding: 1em 0;
 }
 
@@ -561,9 +561,9 @@ window.addEventListener("pagereveal", async (e) => {
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
 
 		<header id="floatyHeader">
-			<a href="/dave/" class="home-link"><code>deletethis.net</code><!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
-			<!-- img alt="An old photo of me wearing a suit in a hotel room" id="meImage" src="/dave/img/me-old.png"-->
-			<img alt="A photo of me wearing a white button up shirt standing in front of generic office building windows." id="meImage" src="/dave/img/me-now.jpeg"-->
+			<a href="/dave/" class="home-link"><code>deletethis.net</code></a>
+			
+			<a href="/dave/about/"><img alt="A photo of me wearing a white button up shirt standing in front of generic office building windows." id="meImage" src="/dave/img/me-now.jpeg"></a>
 			<nav>
 				<h2 class="visually-hidden">Top level navigation menu</h2>
 				<ul class="nav">
@@ -578,7 +578,7 @@ window.addEventListener("pagereveal", async (e) => {
 			<h1>Restricted Capabilities and MSIX APIs</h1>
 
 <ul class="post-metadata">
-	<li><time datetime="2022-09-16">16 September 2022</time></li>
+	<li><time datetime="2022-09-16">2022 September 16</time></li>
 	<li><a href="/dave/tags/uwp/" class="post-tag">uwp</a>, </li>
 	<li><a href="/dave/tags/msix/" class="post-tag">msix</a>, </li>
 	<li><a href="/dave/tags/sysinternals/" class="post-tag">sysinternals</a>, </li>
@@ -611,7 +611,7 @@ window.addEventListener("pagereveal", async (e) => {
 <p>I started looking into all this to see if I should move WebView2Utilities over to MSIX and seems like I really should. Although until I get a <a href="https://learn.microsoft.com/en-us/windows/msix/app-installer/installing-windows10-apps-web#signing-the-app-package">proper code signing certificate</a> seems like this isn't going to happen.</p>
 <p>(Unless I just tell folks to do something dangerous like run a .ps1 file off the github repo that gets the msix, extracts and trusts its cert, then installs the msix...)</p>
 
-<ul class="links-nextprev"><li>Previous: <a href="/dave/2022-09/404-good-news--bad-news/">404 Good News, Bad News</a></li><li>Next: <a href="/dave/2023-01/eleventy-on-github-pages/">Eleventy on GitHub Pages</a></li>
+<ul class="links-nextprev"><li>Previous: <a rel="prev" href="/dave/2022-09/404-good-news--bad-news/">404 Good News, Bad News</a></li><li>Next: <a rel="next" href="/dave/2023-01/eleventy-on-github-pages/">Eleventy on GitHub Pages</a></li>
 </ul>
 
 		</main>

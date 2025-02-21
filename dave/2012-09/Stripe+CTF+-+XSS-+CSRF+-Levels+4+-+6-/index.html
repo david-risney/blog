@@ -277,7 +277,7 @@ main :first-child {
 
 .links-nextprev {
 	list-style: none;
-	border-top: 1px dashed var(--color-gray-20);
+	/* border-top: 1px dashed var(--color-gray-20); */
 	padding: 1em 0;
 }
 
@@ -561,9 +561,9 @@ window.addEventListener("pagereveal", async (e) => {
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
 
 		<header id="floatyHeader">
-			<a href="/dave/" class="home-link"><code>deletethis.net</code><!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
-			<!-- img alt="An old photo of me wearing a suit in a hotel room" id="meImage" src="/dave/img/me-old.png"-->
-			<img alt="A photo of me wearing a white button up shirt standing in front of generic office building windows." id="meImage" src="/dave/img/me-now.jpeg"-->
+			<a href="/dave/" class="home-link"><code>deletethis.net</code></a>
+			
+			<a href="/dave/about/"><img alt="A photo of me wearing a white button up shirt standing in front of generic office building windows." id="meImage" src="/dave/img/me-now.jpeg"></a>
 			<nav>
 				<h2 class="visually-hidden">Top level navigation menu</h2>
 				<ul class="nav">
@@ -578,7 +578,7 @@ window.addEventListener("pagereveal", async (e) => {
 			<h1>Stripe CTF - XSS, CSRF (Levels 4 &amp; 6)</h1>
 
 <ul class="post-metadata">
-	<li><time datetime="2012-09-10">10 September 2012</time></li>
+	<li><time datetime="2012-09-10">2012 September 10</time></li>
 </ul>
 
 <div xmlns="http://www.w3.org/1999/xhtml"><div><p><a href="https://stripe-ctf.com/levels/4">Level 4</a> and <a href="https://stripe-ctf.com/levels/6">level 6</a> of the Stripe CTF had solutions around XSS.
@@ -630,7 +630,7 @@ var code = /%6A%51%75%65%72%79%2E%67%65%74%28%22%68%74%74%70%73%3A%2F%2F%6C%65%7
 var post_data= [];//</pre></code></p><h4>Notes</h4><p>Code review red flags included storing the password in plain text, displaying the password in an HTML page, lack of encoding when generating script on the server side, and a deny list of dangerous characters (quotes). Generally folks should use allow lists not deny lists.  You'll always forget something from your deny list or the platform will change out from under you adding new dangerous entries you didn't consider in your deny list.  In this case an allow list probably also doesn't make as much sense as encoding correctly. The first issue I ran into, was when posting the password I forgot to encode and the password did contain quotes. The second issue I ran into was that my injected script posts a message which results in a page refresh, which results in my injected script running again. This continues five times until my injected script message is pushed off the end. I had to be patient waiting for the target attacked user to login before I would refresh and post my own password.</p></div>
 ]]></script></pre></ul></div></div>
 
-<ul class="links-nextprev"><li>Previous: <a href="/dave/2012-09/Stripe+CTF+-+Input+validation+-Levels+1+-+2-/">Stripe CTF - Input validation (Levels 1 &amp; 2)</a></li><li>Next: <a href="/dave/2012-09/Stripe+CTF+-+Level+5/">Stripe CTF - Level 5</a></li>
+<ul class="links-nextprev"><li>Previous: <a rel="prev" href="/dave/2012-09/Stripe+CTF+-+Input+validation+-Levels+1+-+2-/">Stripe CTF - Input validation (Levels 1 &amp; 2)</a></li><li>Next: <a rel="next" href="/dave/2012-09/Stripe+CTF+-+Level+5/">Stripe CTF - Level 5</a></li>
 </ul>
 
 		</main>

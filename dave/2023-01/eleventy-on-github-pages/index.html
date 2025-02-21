@@ -277,7 +277,7 @@ main :first-child {
 
 .links-nextprev {
 	list-style: none;
-	border-top: 1px dashed var(--color-gray-20);
+	/* border-top: 1px dashed var(--color-gray-20); */
 	padding: 1em 0;
 }
 
@@ -561,9 +561,9 @@ window.addEventListener("pagereveal", async (e) => {
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
 
 		<header id="floatyHeader">
-			<a href="/dave/" class="home-link"><code>deletethis.net</code><!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
-			<!-- img alt="An old photo of me wearing a suit in a hotel room" id="meImage" src="/dave/img/me-old.png"-->
-			<img alt="A photo of me wearing a white button up shirt standing in front of generic office building windows." id="meImage" src="/dave/img/me-now.jpeg"-->
+			<a href="/dave/" class="home-link"><code>deletethis.net</code></a>
+			
+			<a href="/dave/about/"><img alt="A photo of me wearing a white button up shirt standing in front of generic office building windows." id="meImage" src="/dave/img/me-now.jpeg"></a>
 			<nav>
 				<h2 class="visually-hidden">Top level navigation menu</h2>
 				<ul class="nav">
@@ -578,7 +578,7 @@ window.addEventListener("pagereveal", async (e) => {
 			<h1>Eleventy on GitHub Pages</h1>
 
 <ul class="post-metadata">
-	<li><time datetime="2023-01-27">27 January 2023</time></li>
+	<li><time datetime="2023-01-27">2023 January 27</time></li>
 	<li><a href="/dave/tags/eleventy/" class="post-tag">eleventy</a>, </li>
 	<li><a href="/dave/tags/github/" class="post-tag">github</a></li>
 </ul>
@@ -594,7 +594,7 @@ window.addEventListener("pagereveal", async (e) => {
 </ol>
 <p>With this I've got Eleventy mostly setup and running on GitHub with GitHub Pages to serve the blog and GitHub Actions to rebuild the site whenever I push. Next up, how do I find a better site layout? And after that, the much harder problem of can I move my existing blog content over to this? Maybe in the interim just merge this blog content into deletethis.net.</p>
 
-<ul class="links-nextprev"><li>Previous: <a href="/dave/2022-09/restricted-capabilities-and-msix-apis/">Restricted Capabilities and MSIX APIs</a></li><li>Next: <a href="/dave/2024-05/eleventy-on-github-pages--part-2-/">Eleventy on GitHub Pages (Part 2)</a></li>
+<ul class="links-nextprev"><li>Previous: <a rel="prev" href="/dave/2022-09/restricted-capabilities-and-msix-apis/">Restricted Capabilities and MSIX APIs</a></li><li>Next: <a rel="next" href="/dave/2024-05/eleventy-on-github-pages--part-2-/">Eleventy on GitHub Pages (Part 2)</a></li>
 </ul>
 
 		</main>

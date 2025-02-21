@@ -277,7 +277,7 @@ main :first-child {
 
 .links-nextprev {
 	list-style: none;
-	border-top: 1px dashed var(--color-gray-20);
+	/* border-top: 1px dashed var(--color-gray-20); */
 	padding: 1em 0;
 }
 
@@ -561,9 +561,9 @@ window.addEventListener("pagereveal", async (e) => {
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
 
 		<header id="floatyHeader">
-			<a href="/dave/" class="home-link"><code>deletethis.net</code><!-- img src="/img/semicolon-dark.svg" class="logo" --></a>
-			<!-- img alt="An old photo of me wearing a suit in a hotel room" id="meImage" src="/dave/img/me-old.png"-->
-			<img alt="A photo of me wearing a white button up shirt standing in front of generic office building windows." id="meImage" src="/dave/img/me-now.jpeg"-->
+			<a href="/dave/" class="home-link"><code>deletethis.net</code></a>
+			
+			<a href="/dave/about/"><img alt="A photo of me wearing a white button up shirt standing in front of generic office building windows." id="meImage" src="/dave/img/me-now.jpeg"></a>
 			<nav>
 				<h2 class="visually-hidden">Top level navigation menu</h2>
 				<ul class="nav">
@@ -578,7 +578,7 @@ window.addEventListener("pagereveal", async (e) => {
 			<h1>Stripe CTF - Level 8</h1>
 
 <ul class="post-metadata">
-	<li><time datetime="2012-12-07">07 December 2012</time></li>
+	<li><time datetime="2012-12-07">2012 December 07</time></li>
 </ul>
 
 <div xmlns="http://www.w3.org/1999/xhtml"><div><a href="https://stripe-ctf.com/levels/8">Level 8</a> of the Stripe CTF is a password server that returns success: true if and only if the password provided matches the password stored directly via
@@ -604,7 +604,7 @@ window.addEventListener("pagereveal", async (e) => {
   that gets a two port increase and keeping all others. Eventually I could remove all but the correct first fourth of the password. And so on for the next parts of the password.<br />
   I wrote my app to brute force this in Python. This was my first time writing Python code so it is not pretty.<br /></div></div>
 
-<ul class="links-nextprev"><li>Previous: <a href="/dave/2012-09/Stripe+CTF+-+Level+7/">Stripe CTF - Level 7</a></li><li>Next: <a href="/dave/2012-12/Windows+Remote+Desktop+via+Internet/">Windows Remote Desktop via Internet</a></li>
+<ul class="links-nextprev"><li>Previous: <a rel="prev" href="/dave/2012-09/Stripe+CTF+-+Level+7/">Stripe CTF - Level 7</a></li><li>Next: <a rel="next" href="/dave/2012-12/Windows+Remote+Desktop+via+Internet/">Windows Remote Desktop via Internet</a></li>
 </ul>
 
 		</main>
