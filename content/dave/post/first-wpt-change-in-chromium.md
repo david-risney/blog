@@ -1,6 +1,5 @@
 ---
-draft: true
-title: My First WPT addition in Chromium
+title: Noobs WPT in Chromium learnings
 description: Thoughts on my first time adding a WPT to Chromium
 date: 2025-03-20
 tags:
