@@ -4,12 +4,109 @@
 	<subtitle>Dave Risney&#39;s blog on web, coding, and things</subtitle>
 	<link href="https://deletethis.net/feed/feed.xml" rel="self"/>
 	<link href="https://deletethis.net/dave/"/>
-	<updated>2025-02-02T00:00:00Z</updated>
+	<updated>2025-03-20T00:00:00Z</updated>
 	<id>https://deletethis.net/dave/</id>
 	<author>
 		<name>Dave Risney</name>
 		<email>david.risney+blog@gmail.com</email>
 	</author>
+	
+	<entry>
+		<title>Noobs WPT in Chromium learnings</title>
+		<link href="https://deletethis.net/dave/2025-03/noobs-wpt-in-chromium-learnings/"/>
+		<updated>2025-03-20T00:00:00Z</updated>
+		<id>https://deletethis.net/dave/2025-03/noobs-wpt-in-chromium-learnings/</id>
+		<content type="html">&lt;p&gt;I&#39;m happy to have finished &lt;a href=&quot;https://chromium-review.googlesource.com/c/chromium/src/+/6322749&quot;&gt;my first Chromium bug that adds a WPT&lt;/a&gt;.
+Writing a WPT I found to be more fun than writing usual C++ based tests. But I did learn
+a bunch from issues I ran into and otherwise that I want to record here.&lt;/p&gt;
+&lt;h2 id=&quot;background&quot; tabindex=&quot;-1&quot;&gt;Background &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-03/noobs-wpt-in-chromium-learnings/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The bug was &lt;a href=&quot;https://issues.chromium.org/issues/40288240&quot;&gt;deferring registerProtocolHandler duriung prerendering&lt;/a&gt;. You can see the &lt;a href=&quot;https://storage.googleapis.com/spec-previews/WICG/nav-speculation/pull/283/diff/prerendering.html#extendedattrdef-delaywhileprerendering&quot;&gt;spec change&lt;/a&gt; that led to opening this bug.&lt;/p&gt;
+&lt;p&gt;The actual bug fix was pretty simple. The existing (un)registerProtocolHandler code is already split into validation in the renderer process before calling into the browser process for the actual registration work. The bug requires doing the validation synchronously and deferring the registration work so the existing code was already setup very nicely for this change.&lt;/p&gt;
+&lt;p&gt;I found existing examples of deferring work (&lt;a href=&quot;https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/service_worker/service_worker_registration.cc?q=AddPostPrerenderingActivationStep&amp;amp;ss=chromium&quot;&gt;service worker registration&lt;/a&gt;, &lt;a href=&quot;https://source.chromium.org/chromium/chromium/src/+/main:components/autofill/content/renderer/autofill_agent.cc?q=AddPostPrerenderingActivationStep&amp;amp;ss=chromium&quot;&gt;AutofillAgent&lt;/a&gt;) that shows using two functions to easily defer work:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Check if we&#39;re prerendering using &lt;a href=&quot;https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/service_worker/service_worker_registration.cc?q=AddPostPrerenderingActivationStep&amp;amp;ss=chromium&quot;&gt;&lt;code&gt;Document::IsPrerendering&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Defer work until after activation using &lt;a href=&quot;https://source.chromium.org/search?q=AddPostPrerenderingActivationStep&amp;amp;ss=chromium&quot;&gt;&lt;code&gt;Document::AddPostPrerenderingActivationStep&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;wpt-learnings&quot; tabindex=&quot;-1&quot;&gt;WPT learnings &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-03/noobs-wpt-in-chromium-learnings/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Looking in WPT I could see existing tests for prerendering and for registerProtocolHandler so my plan for testing was to add WPTs. Specifically one to ensure validation occurs synchronously, that registration is deferred and unregistration is deferred. Working on this I learned a bunch of things from docs and from hitting and resolving issues. The rest of this is just my findings in no particular order.&lt;/p&gt;
+&lt;h3 id=&quot;wildcards&quot; tabindex=&quot;-1&quot;&gt;Wildcards &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-03/noobs-wpt-in-chromium-learnings/&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The &lt;code&gt;run_web_tests&lt;/code&gt; / &lt;code&gt;run_wpt_tests&lt;/code&gt; scripts don&#39;t let you use wildcards when specifying tests to run. But you can use a parameter that lets you specify tests that include a trailing wildcard. This encourages naming related tests with common prefixes. And you can do multiple rules separated by &lt;code&gt;::&lt;/code&gt; (🤷)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Q:&#92;cr&#92;src&#92;third_party&#92;blink&#92;tools&#92;run_wpt_tests.bat -t Q:&#92;cr&#92;src&#92;out&#92;debug_x64  --isolated-script-test-filter external/wpt/html/browsers/history/the-location-interface/location-prototype*::external/wpt/html/browsers/history/the-location-interface/location-protocol*
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;sync-ing-between-chromium-and-wpt&quot; tabindex=&quot;-1&quot;&gt;Sync&#39;ing between chromium and WPT &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-03/noobs-wpt-in-chromium-learnings/&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/web-platform-tests/wpt&quot;&gt;WPT has a github repo&lt;/a&gt; but chromium has a great system setup to do two way sync&#39;ing between the chromium repo and the WPT repo with a bot. When you make a CL in chromium and its getting ready to submit a bot will open a github PR to push the change to the WPT repo. There&#39;s also a system to sync WPT repo changes back to chromium.&lt;/p&gt;
+&lt;p&gt;So convenient!&lt;/p&gt;
+&lt;h3 id=&quot;manifest-update-30s&quot; tabindex=&quot;-1&quot;&gt;Manifest update 30s &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-03/noobs-wpt-in-chromium-learnings/&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;When you call &lt;code&gt;run_w(eb|pt)_tests&lt;/code&gt; by default it will parse the manifest JSON every time to collect a list of all tests and this takes about 30 seconds (for my machine). This is a pain, but if you haven&#39;t changed the list of tests then you skip this using the parameter &lt;code&gt;--no-manifest-update&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;virtual-test-folders&quot; tabindex=&quot;-1&quot;&gt;Virtual test folders &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-03/noobs-wpt-in-chromium-learnings/&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;When referring to tests in &lt;code&gt;run_wpt_tests&lt;/code&gt; you can refer to them by default using their path like &lt;code&gt;external/wpt/speculation-rules/prerender/protocol-handler-validation.html&lt;/code&gt;. But some can be referred to exclusively by a &lt;a href=&quot;https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/web_tests/VirtualTestSuites?q=speculation-rules-prerender-target-hint&amp;amp;ss=chromium&quot;&gt;virtual test folder&lt;/a&gt; in which case they have the virtual test folder prefix: &lt;code&gt;virtual/speculation-rules-prerender-target-hint/external/wpt/speculation-rules/prerender/protocol-handler-validation.html&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;If a test is exclusive to a virtual test folder and you try to refer to it with the default name then &lt;code&gt;run_wpt_tests&lt;/code&gt; says the test is skipped but won&#39;t say why. You may want to search &lt;a href=&quot;https://luci-milo.appspot.com/ui/p/chromium/test-search?q=external%2Fwpt%2Fcontent-security-policy%2Fresource-hints%2Fprefetch-allowed-no-default.html&quot;&gt;LUCI tests&lt;/a&gt; for a partial name of your test to find out its full and potentially virtual name.&lt;/p&gt;
+&lt;h3 id=&quot;wpt-name-suffix-https-html&quot; tabindex=&quot;-1&quot;&gt;WPT name suffix &lt;code&gt;.https.html&lt;/code&gt; &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-03/noobs-wpt-in-chromium-learnings/&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://web-platform-tests.org/writing-tests/file-names.html&quot;&gt;WPT names&lt;/a&gt; can have meaning from tags in the name. The big one for me is the &lt;code&gt;.https.html&lt;/code&gt; tag which indicates the test must run using https. If you don&#39;t the test will run as http. I had trouble with this because when I went to debug the test its via &lt;code&gt;http://localhost&lt;/code&gt; which although http it is localhost and chromium throws devs a bone and lets content run as if its via https. Accordingly it took me a bit to realize the issue was the test was running via http and so registerProtocolHandler just wasn&#39;t there.&lt;/p&gt;
+&lt;h3 id=&quot;testdriver-browser-extension-test-driver&quot; tabindex=&quot;-1&quot;&gt;Testdriver browser extension &lt;code&gt;test_driver&lt;/code&gt; &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-03/noobs-wpt-in-chromium-learnings/&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Some WPT need to do things a browser shouldn&#39;t allow script to do normally for example skipping end user UI. For this purpose there&#39;s a &lt;a href=&quot;https://web-platform-tests.org/writing-tests/testdriver-extension-tutorial.html&quot;&gt;Testdriver browser extension&lt;/a&gt; which exposes APIs to script like &lt;code&gt;test_driver.set_rph_registration_mode(&#39;autoAccept&#39;);&lt;/code&gt; (&lt;a href=&quot;https://web-platform-tests.org/writing-tests/testdriver-extension-tutorial.html&quot;&gt;source&lt;/a&gt;). This specifically will make &lt;code&gt;registerProtocolHandler&lt;/code&gt; not show UI to the end user and auto accept instead. I was worried about not being able to test &lt;code&gt;registerProtocolHandler&lt;/code&gt; in WPTs before finding out about this.&lt;/p&gt;
+&lt;p&gt;Because WPT has to work in Firefox and Safari as well, adding to Testdriver may require significant effort to ensure it works in these browsers.&lt;/p&gt;
+&lt;h3 id=&quot;debugging&quot; tabindex=&quot;-1&quot;&gt;Debugging &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-03/noobs-wpt-in-chromium-learnings/&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;My go to for debugging a WPT in the browser is via devtools. But if you&#39;re relying on the testdriver you won&#39;t be able to. I tried a few things:
+* Use &lt;code&gt;--enable-per-test-tracing&lt;/code&gt; and (as long as your test isn&#39;t timing out) you&#39;ll get pftrace files created that you can open in about:tracing / &lt;a href=&quot;https://ui.perfetto.dev/&quot;&gt;https://ui.perfetto.dev/&lt;/a&gt;
+* Use &lt;code&gt;--driver-logging&lt;/code&gt; / &lt;code&gt;--verbose&lt;/code&gt; and the driver will log &lt;code&gt;console.log&lt;/code&gt; messages to the console from any context (main test page, iframes, service workers)
+* Use &lt;code&gt; --additional-driver-flag=--enable-logging --additional-driver-flag=--v=1&lt;/code&gt; with &lt;code&gt;--driver-logging&lt;/code&gt; to turn on additional chromium logging. But just &lt;code&gt;--driver-logging&lt;/code&gt; will get you chromium error logging of at least --v=3 (?).&lt;/p&gt;
+&lt;h3 id=&quot;content-shell&quot; tabindex=&quot;-1&quot;&gt;content_shell &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-03/noobs-wpt-in-chromium-learnings/&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;You can run WPT using two scripts. &lt;a href=&quot;https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/testing/run_web_platform_tests.md&quot;&gt;&lt;code&gt;run_wpt_tests&lt;/code&gt;&lt;/a&gt; is the newer and preferred way to run tests using chrome or headless test driver.  Tests are getting ported over to running this way.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/testing/web_tests_in_content_shell.md#Running-WPT-Tests-in-Content-Shell&quot;&gt;&lt;code&gt;run_web_tests&lt;/code&gt;&lt;/a&gt; is the older way that uses content_shell to run tests. You have to build content_shell specifically and it replaces some parts of the product like replacing the &lt;code&gt;Browser&lt;/code&gt; class with the &lt;code&gt;Shell&lt;/code&gt; class. This was a big problem for me because I didn&#39;t realize that register protocol handler&#39;s main registration code is in &lt;code&gt;Browser::RegisterProtocolHandler&lt;/code&gt; and &lt;code&gt;Browser::UnregisterProtocolHandler&lt;/code&gt;.  Running in content_shell instead I get &lt;code&gt;Shell::RegisterProtocolHandler&lt;/code&gt; and &lt;code&gt;Shell::UnregisterProtocolHandler&lt;/code&gt; but the unregister method is empty. I couldn&#39;t figure out why my test wasn&#39;t working until I added logging to the unregister methods and could see what was missing.&lt;/p&gt;
+&lt;h3 id=&quot;new-test-stability&quot; tabindex=&quot;-1&quot;&gt;New test stability &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-03/noobs-wpt-in-chromium-learnings/&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;When adding a new test its important to ensure there&#39;s no reliability issues. You can locally rerun a test 20 times using something like &lt;code&gt;--repeat-each 20&lt;/code&gt; and validate that it continues to work. When you submit the change via chromium CL it will see you are adding a new test and run it many times to ensure this as well.&lt;/p&gt;
+&lt;p&gt;I had issues with my test sometimes failing but only on Mac. I hear that there are some reliabililty issues on specific Mac setups in the test lab and so I was recommended to allow for timeout from my tests on that group of Macs.&lt;/p&gt;
+&lt;h2 id=&quot;command-line-summary&quot; tabindex=&quot;-1&quot;&gt;Command line summary &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-03/noobs-wpt-in-chromium-learnings/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;run_wpt_tests:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Q:&#92;cr&#92;src&#92;third_party&#92;blink&#92;tools&#92;run_wpt_tests.bat -t Q:&#92;cr&#92;src&#92;out&#92;debug_x64  virtual/speculation-rules-prerender-target-hint/external/wpt/speculation-rules/prerender/protocol-handler-unregister.https.html --verbose --num-retries 0 --no-manifest-update -p chrome --repeat-each 20
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;run_web_tests:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Q:&#92;cr&#92;src&#92;third_party&#92;blink&#92;tools&#92;run_web_tests.bat -t Q:&#92;cr&#92;src&#92;out&#92;debug_x64  virtual/speculation-rules-prerender-target-hint/external/wpt/speculation-rules/prerender/protocol-handler-unregister.https.html --verbose --details --driver-logging --num-retries 0 --no-manifest-update --enable-per-test-tracing
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;run_web_tests param&lt;/th&gt;
+&lt;th&gt;run_wpt_tests param&lt;/th&gt;
+&lt;th&gt;notes&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;--driver-logging&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;--verbose&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;extra info and logging from tests and test infra. Includes chromium LOG statements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;--verbose --details&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;n/a&lt;/td&gt;
+&lt;td&gt;print extra info for every test result&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;--num-retries 0&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;--num-retries 0&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Don&#39;t retry failed tests&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;--repeat-each 20&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;--repeat-each 20&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Rerun every test 20 times&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;--no-manifest-update&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;--no-manifest-update&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Don&#39;t rebuild test list (30s)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;--enable-per-test-tracing&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;n/a&lt;/td&gt;
+&lt;td&gt;Generate pftrace files for the test run&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>Eleventy on GitHub Pages (Part 3)</title>

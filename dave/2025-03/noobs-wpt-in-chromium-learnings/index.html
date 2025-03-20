@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en" class="gradient-background">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Noobs WPT in Chromium learnings</title>
+		<meta name="description" content="Thoughts on my first time adding a WPT to Chromium">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="deletethis.net">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="deletethis.net">
+
+		<meta name="generator" content="Eleventy v2.0.0">
+
+		<link rel="icon" type="image/svg+xml" href="/img/semicolon.svg">
+
+		<style>
+		@view-transition { navigation: auto; }
+
+::view-transition-group(*) { animation-duration: 0.2s; }
+
+@keyframes slide-in-from-left { from { translate: -150vw 0; } }
+@keyframes slide-in-from-right { from { translate: 150vw 0; } }
+@keyframes slide-out-to-left { to { translate: -150vw 0; } }
+@keyframes slide-out-to-right { to { translate: 150vw 0; } }
+@keyframes scale-up { from { scale: 0; } }
+@keyframes scale-down { to { scale: 0; } }
+@keyframes fade-in { from { opacity: 0; } }
+@keyframes fade-out { to { opacity: 0; } }
+
+html:active-view-transition-type(forwards, backwards) {
+	:root { view-transition-name: none; }
+	header { view-transition-name: header; }
+	main { view-transition-name: main; }
+	footer { view-transition-name: footer; }
+}
+
+html:active-view-transition-type(forwards) {
+	&::view-transition-old(main) { animation-name: fade-out; }
+	&::view-transition-new(main) { animation-name: fade-in; }
+}
+
+html:active-view-transition-type(backwards) {
+	&::view-transition-old(main) { animation-name: fade-out; }
+	&::view-transition-new(main) { animation-name: fade-in; }
+}
+
+html:active-view-transition-type(reload) {
+	&::view-transition-old(root) { animation-name: fade-out; }
+	&::view-transition-new(root) { animation-name: fade-in; }
+}
+
+/* Defaults */
+:root {
+	--font-family: Roboto, -apple-system, system-ui, sans-serif;
+	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
+}
+
+/* Theme colors */
+:root {
+	--color-gray-20: #d0d0d0;
+	--color-gray-50: #C0C0C0;
+	--color-gray-90: #333;
+
+	--background-color-rgb: 233, 233, 254;
+	--background-color: rgb(var(--background-color-rgb));
+	--background-color-slightly-transparent: rgba(var(--background-color-rgb), 0.75);
+
+    --content-border: #272727;
+    --content-background: #f0f0f5;
+
+	--text-color: var(--color-gray-90);
+	--text-color-link: #082840;
+	--text-color-link-active: #5f2b48;
+	--text-color-link-visited: #17050F;
+
+	--syntax-tab-size: 2;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-gray-20: #e0e0e0;
+		--color-gray-50: #C0C0C0;
+		--color-gray-90: #dad8d8;
+
+		--background-color-rgb: 21, 32, 43;
+
+		/* --text-color is assigned to --color-gray-_ above */
+		--text-color-link: #1493fb;
+		--text-color-link-active: #6969f7;
+		--text-color-link-visited: #a6a6f8;
+
+		--content-border: #dad8d8;
+		--content-background: #272727;
+	}
+}
+
+
+/* Global stylesheet */
+* {
+	box-sizing: border-box;
+}
+
+html {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+	background-color: var(--background-color);
+}
+
+body {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+}
+html {
+	overflow-y: scroll;
+}
+
+@media (width <= 50em) {
+	body {
+		max-width: 25em;
+	}
+
+	#recap-container {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(1, 1fr);
+		grid-template-areas: "blog"
+			"mastodon";
+		gap: 1em;
+	}
+
+	#blog-posts {
+		grid-area: blog;
+	}
+
+	#mastodon-posts {
+		grid-area: mastodon;
+	}
+
+	#meImage {
+		display: none;
+	}
+}
+
+@media (width > 50em) {
+	body {
+		max-width: 50em;
+	}
+
+	#recap-container {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas: "blog mastodon";
+		gap: 1em;
+	}
+
+	#blog-posts {
+		grid-area: blog;
+	}
+
+	#mastodon-posts {
+		grid-area: mastodon;
+	}
+
+	#floatyHeader {
+		animation: headerChange auto linear;
+		animation-timeline: scroll(root);
+	}
+
+	@keyframes headerChange {
+		0% { 
+			height: 300px; 
+			margin-bottom: 0px; 
+		}
+		15% { 
+			height: 4em; 
+			margin-bottom: calc(300px - 4em);
+		}
+		100% { 
+			height: 4em; 
+			margin-bottom: calc(300px - 4em);
+		}
+	}
+
+	#meImage {
+		animation: imageChange auto linear;
+		animation-timeline: scroll(root);
+		/* rounded corners */
+		border-radius: 5px;
+		/* border */
+		border: 2px solid var(--color-gray-20);
+	}
+
+	@keyframes imageChange {
+		0% { 
+			height: 200px; 
+			width: 200px;
+			opacity: 1;
+			object-fit: cover;
+			object-position: bottom;
+		}
+		15% { 
+			height: 0px;
+			width: 200px;
+			opacity: 0;
+			object-fit: cover;
+			object-position: bottom;
+		}
+		100% { 
+			height: 0px;
+			width: 200px;
+			opacity: 0;
+			object-fit: cover;
+			object-position: bottom;
+		}
+	}
+
+	.home-link {
+		animation: homelinkChange auto linear;
+		animation-timeline: scroll(root);
+	}
+
+	@keyframes homelinkChange {
+		0% { font-size: 3em; }
+		15% { font-size: 1em; }
+		100% { font-size: 1em; }
+	}
+}
+
+#recap-container > * {
+	width: 100%;
+	max-width: 384px; /* based on width of recap container and margins in grid */
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+p {
+	line-height: 1.5;
+}
+
+li {
+	line-height: 1.5;
+}
+
+a[href] {
+	color: var(--text-color-link);
+}
+a[href]:visited {
+	color: var(--text-color-link-visited);
+}
+a[href]:hover,
+a[href]:active {
+	color: var(--text-color-link-active);
+}
+
+main {
+	padding: 1rem;
+	background-color: var(--content-background);
+}
+main :first-child {
+	margin-top: 0;
+}
+
+.links-nextprev {
+	list-style: none;
+	/* border-top: 1px dashed var(--color-gray-20); */
+	padding: 1em 0;
+}
+
+table {
+	margin: 1em 0;
+}
+table td,
+table th {
+	padding-right: 1em;
+}
+
+pre,
+code {
+	font-family: var(--font-family-monospace);
+}
+pre:not([class*="language-"]) {
+	margin: .5em 0;
+	line-height: 1.375; /* 22px /16 */
+	-moz-tab-size: var(--syntax-tab-size);
+	-o-tab-size: var(--syntax-tab-size);
+	tab-size: var(--syntax-tab-size);
+	-webkit-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	overflow: auto;
+}
+code {
+	word-break: break-all;
+}
+
+/* Header */
+/* header is flex with the items aligned to the ends 
+   so that the first item is left aligned and the
+   last is right aligned */
+#floatyHeader {
+	display: grid;
+	align-items: center;
+	padding: 1em;
+	grid-template-columns: 1fr auto;
+	grid-template-areas: "home meImage"
+		"home nav";
+}
+
+#meImage {
+    height: 0px;
+    width: 200px;
+    opacity: 0;
+    object-fit: cover;
+    object-position: bottom;
+}
+
+#floatyHeader {
+	top: 0px;
+	position: sticky;
+	height: 4em;
+}
+
+#floatyHeader {
+	height: 100%;
+	width: 100%;
+	background: var(--background-color-slightly-transparent);
+	backdrop-filter: blur(5px) saturate(200%);
+}
+
+#floatyHeader {
+	border-bottom: 5px dashed var(--color-gray-20);
+}
+
+.home-link {
+	grid-area: home;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+
+nav {
+	grid-area: nav;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+#meImage {
+	grid-area: meImage;
+}
+
+.home-link {
+	font-size: 1em; /* 16px /16 */
+	font-weight: 700;
+	margin-right: 2em;
+}
+.home-link:link:not(:hover) {
+	text-decoration: none;
+}
+
+/* Nav */
+.nav {
+	width: 100%;
+	display: flex;
+	justify-content: right;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.nav-item {
+	display: inline-block;
+	margin-right: 1em;
+}
+.nav-item a[href]:not(:hover) {
+	text-decoration: none;
+}
+.nav a[href][aria-current="page"] {
+	text-decoration: underline;
+}
+
+/* Posts list */
+.postlist {
+	list-style: none;
+	padding: 0;
+	padding-left: 1.5rem;
+}
+.postlist-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	counter-increment: start-from -1;
+	margin-bottom: 3em;
+}
+#blog-posts .postlist-item:before {
+	display: inline-block;
+	pointer-events: none;
+	content: "" counter(start-from, decimal-leading-zero) ". ";
+	line-height: 100%;
+	text-align: right;
+	margin-left: -1.5rem;
+}
+.postlist-item > p {
+	overflow: hidden;
+
+}
+
+.avatar {
+	border-radius: 5px;
+	width: 32px;
+	height: 32px;
+	border: 1px solid var(--color-gray-20);
+}
+/*
+.avatar
+	margin-left: -38px;
+	float: left;
+}
+.toot {
+	padding-left: 36px;
+
+}
+	*/
+.toot {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-auto-rows: auto;
+}
+.toot > .avatar {
+	grid-column: 1;
+	/* avatar is all along the first column taking as many rows as it likes */
+	grid-row: 1 / 10;
+}
+.toot > * {
+	grid-column: 2;
+	grid-row: auto;
+}
+
+.postlist-date,
+.postlist-item:before {
+	font-size: 0.8125em; /* 13px /16 */
+	color: var(--color-gray-90);
+}
+.postlist-date {
+	word-spacing: -0.5px;
+}
+.postlist-link {
+	font-size: 1.1875em; /* 19px /16 */
+	font-weight: 700;
+	flex-basis: calc(100% - 1.5rem);
+	padding-left: .25em;
+	padding-right: .5em;
+	text-underline-position: from-font;
+	text-underline-offset: 0;
+	text-decoration-thickness: 1px;
+}
+.postlist-item-active .postlist-link {
+	font-weight: bold;
+}
+
+/* Tags */
+.post-tag {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: capitalize;
+	font-style: italic;
+}
+.postlist-item > .post-tag {
+	align-self: center;
+}
+
+/* Tags list */
+.post-metadata {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: .5em;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.post-metadata time {
+	margin-right: 1em;
+}
+
+/* Direct Links / Markdown Headers */
+.header-anchor {
+	text-decoration: none;
+	font-style: normal;
+	font-size: 1em;
+	margin-left: .1em;
+}
+a[href].header-anchor,
+a[href].header-anchor:visited {
+	color: transparent;
+}
+a[href].header-anchor:focus,
+a[href].header-anchor:hover {
+	text-decoration: underline;
+}
+a[href].header-anchor:focus,
+:hover > a[href].header-anchor {
+	color: #aaa;
+}
+
+h2 + .header-anchor {
+	font-size: 1.5em;
+}
+
+/* logo is the size of the text and center aligned 
+against the center of the text */
+.logo {
+	width: 1em;
+	height: 1em;
+	vertical-align: middle;
+}
+		</style>
+		<script>
+window.addEventListener("pageswap", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+
+window.addEventListener("pagereveal", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+		</script>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header id="floatyHeader">
+			<a href="/dave/" class="home-link"><code>deletethis.net</code></a>
+			
+			<a href="/dave/about/"><img alt="A photo of me wearing a white button up shirt standing in front of generic office building windows." id="meImage" src="/dave/img/me-now.jpeg"></a>
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/dave/post/">Blog</a></li>
+					<li class="nav-item"><a href="/dave/about/">About</a></li>
+					<li class="nav-item"><a href="/feed/feed.xml"><!-- img class="logo" src="/img/rss-dark.svg" -->Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<h1>Noobs WPT in Chromium learnings</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2025-03-20">2025 March 20</time></li>
+	<li><a href="/dave/tags/chromium/" class="post-tag">chromium</a>, </li>
+	<li><a href="/dave/tags/bug/" class="post-tag">bug</a>, </li>
+	<li><a href="/dave/tags/software-development/" class="post-tag">software-development</a>, </li>
+	<li><a href="/dave/tags/wpt/" class="post-tag">wpt</a></li>
+</ul>
+
+<p>I'm happy to have finished <a href="https://chromium-review.googlesource.com/c/chromium/src/+/6322749">my first Chromium bug that adds a WPT</a>.
+Writing a WPT I found to be more fun than writing usual C++ based tests. But I did learn
+a bunch from issues I ran into and otherwise that I want to record here.</p>
+<h2 id="background" tabindex="-1">Background <a class="header-anchor" href="#background">#</a></h2>
+<p>The bug was <a href="https://issues.chromium.org/issues/40288240">deferring registerProtocolHandler duriung prerendering</a>. You can see the <a href="https://storage.googleapis.com/spec-previews/WICG/nav-speculation/pull/283/diff/prerendering.html#extendedattrdef-delaywhileprerendering">spec change</a> that led to opening this bug.</p>
+<p>The actual bug fix was pretty simple. The existing (un)registerProtocolHandler code is already split into validation in the renderer process before calling into the browser process for the actual registration work. The bug requires doing the validation synchronously and deferring the registration work so the existing code was already setup very nicely for this change.</p>
+<p>I found existing examples of deferring work (<a href="https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/service_worker/service_worker_registration.cc?q=AddPostPrerenderingActivationStep&amp;ss=chromium">service worker registration</a>, <a href="https://source.chromium.org/chromium/chromium/src/+/main:components/autofill/content/renderer/autofill_agent.cc?q=AddPostPrerenderingActivationStep&amp;ss=chromium">AutofillAgent</a>) that shows using two functions to easily defer work:</p>
+<ul>
+<li>Check if we're prerendering using <a href="https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/service_worker/service_worker_registration.cc?q=AddPostPrerenderingActivationStep&amp;ss=chromium"><code>Document::IsPrerendering</code></a></li>
+<li>Defer work until after activation using <a href="https://source.chromium.org/search?q=AddPostPrerenderingActivationStep&amp;ss=chromium"><code>Document::AddPostPrerenderingActivationStep</code></a></li>
+</ul>
+<h2 id="wpt-learnings" tabindex="-1">WPT learnings <a class="header-anchor" href="#wpt-learnings">#</a></h2>
+<p>Looking in WPT I could see existing tests for prerendering and for registerProtocolHandler so my plan for testing was to add WPTs. Specifically one to ensure validation occurs synchronously, that registration is deferred and unregistration is deferred. Working on this I learned a bunch of things from docs and from hitting and resolving issues. The rest of this is just my findings in no particular order.</p>
+<h3 id="wildcards" tabindex="-1">Wildcards <a class="header-anchor" href="#wildcards">#</a></h3>
+<p>The <code>run_web_tests</code> / <code>run_wpt_tests</code> scripts don't let you use wildcards when specifying tests to run. But you can use a parameter that lets you specify tests that include a trailing wildcard. This encourages naming related tests with common prefixes. And you can do multiple rules separated by <code>::</code> (🤷)</p>
+<pre><code>Q:\cr\src\third_party\blink\tools\run_wpt_tests.bat -t Q:\cr\src\out\debug_x64  --isolated-script-test-filter external/wpt/html/browsers/history/the-location-interface/location-prototype*::external/wpt/html/browsers/history/the-location-interface/location-protocol*
+</code></pre>
+<h3 id="sync-ing-between-chromium-and-wpt" tabindex="-1">Sync'ing between chromium and WPT <a class="header-anchor" href="#sync-ing-between-chromium-and-wpt">#</a></h3>
+<p><a href="https://github.com/web-platform-tests/wpt">WPT has a github repo</a> but chromium has a great system setup to do two way sync'ing between the chromium repo and the WPT repo with a bot. When you make a CL in chromium and its getting ready to submit a bot will open a github PR to push the change to the WPT repo. There's also a system to sync WPT repo changes back to chromium.</p>
+<p>So convenient!</p>
+<h3 id="manifest-update-30s" tabindex="-1">Manifest update 30s <a class="header-anchor" href="#manifest-update-30s">#</a></h3>
+<p>When you call <code>run_w(eb|pt)_tests</code> by default it will parse the manifest JSON every time to collect a list of all tests and this takes about 30 seconds (for my machine). This is a pain, but if you haven't changed the list of tests then you skip this using the parameter <code>--no-manifest-update</code>.</p>
+<h3 id="virtual-test-folders" tabindex="-1">Virtual test folders <a class="header-anchor" href="#virtual-test-folders">#</a></h3>
+<p>When referring to tests in <code>run_wpt_tests</code> you can refer to them by default using their path like <code>external/wpt/speculation-rules/prerender/protocol-handler-validation.html</code>. But some can be referred to exclusively by a <a href="https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/web_tests/VirtualTestSuites?q=speculation-rules-prerender-target-hint&amp;ss=chromium">virtual test folder</a> in which case they have the virtual test folder prefix: <code>virtual/speculation-rules-prerender-target-hint/external/wpt/speculation-rules/prerender/protocol-handler-validation.html</code></p>
+<p>If a test is exclusive to a virtual test folder and you try to refer to it with the default name then <code>run_wpt_tests</code> says the test is skipped but won't say why. You may want to search <a href="https://luci-milo.appspot.com/ui/p/chromium/test-search?q=external%2Fwpt%2Fcontent-security-policy%2Fresource-hints%2Fprefetch-allowed-no-default.html">LUCI tests</a> for a partial name of your test to find out its full and potentially virtual name.</p>
+<h3 id="wpt-name-suffix-https-html" tabindex="-1">WPT name suffix <code>.https.html</code> <a class="header-anchor" href="#wpt-name-suffix-https-html">#</a></h3>
+<p><a href="https://web-platform-tests.org/writing-tests/file-names.html">WPT names</a> can have meaning from tags in the name. The big one for me is the <code>.https.html</code> tag which indicates the test must run using https. If you don't the test will run as http. I had trouble with this because when I went to debug the test its via <code>http://localhost</code> which although http it is localhost and chromium throws devs a bone and lets content run as if its via https. Accordingly it took me a bit to realize the issue was the test was running via http and so registerProtocolHandler just wasn't there.</p>
+<h3 id="testdriver-browser-extension-test-driver" tabindex="-1">Testdriver browser extension <code>test_driver</code> <a class="header-anchor" href="#testdriver-browser-extension-test-driver">#</a></h3>
+<p>Some WPT need to do things a browser shouldn't allow script to do normally for example skipping end user UI. For this purpose there's a <a href="https://web-platform-tests.org/writing-tests/testdriver-extension-tutorial.html">Testdriver browser extension</a> which exposes APIs to script like <code>test_driver.set_rph_registration_mode('autoAccept');</code> (<a href="https://web-platform-tests.org/writing-tests/testdriver-extension-tutorial.html">source</a>). This specifically will make <code>registerProtocolHandler</code> not show UI to the end user and auto accept instead. I was worried about not being able to test <code>registerProtocolHandler</code> in WPTs before finding out about this.</p>
+<p>Because WPT has to work in Firefox and Safari as well, adding to Testdriver may require significant effort to ensure it works in these browsers.</p>
+<h3 id="debugging" tabindex="-1">Debugging <a class="header-anchor" href="#debugging">#</a></h3>
+<p>My go to for debugging a WPT in the browser is via devtools. But if you're relying on the testdriver you won't be able to. I tried a few things:
+* Use <code>--enable-per-test-tracing</code> and (as long as your test isn't timing out) you'll get pftrace files created that you can open in about:tracing / <a href="https://ui.perfetto.dev/">https://ui.perfetto.dev/</a>
+* Use <code>--driver-logging</code> / <code>--verbose</code> and the driver will log <code>console.log</code> messages to the console from any context (main test page, iframes, service workers)
+* Use <code> --additional-driver-flag=--enable-logging --additional-driver-flag=--v=1</code> with <code>--driver-logging</code> to turn on additional chromium logging. But just <code>--driver-logging</code> will get you chromium error logging of at least --v=3 (?).</p>
+<h3 id="content-shell" tabindex="-1">content_shell <a class="header-anchor" href="#content-shell">#</a></h3>
+<p>You can run WPT using two scripts. <a href="https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/testing/run_web_platform_tests.md"><code>run_wpt_tests</code></a> is the newer and preferred way to run tests using chrome or headless test driver.  Tests are getting ported over to running this way.</p>
+<p><a href="https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/testing/web_tests_in_content_shell.md#Running-WPT-Tests-in-Content-Shell"><code>run_web_tests</code></a> is the older way that uses content_shell to run tests. You have to build content_shell specifically and it replaces some parts of the product like replacing the <code>Browser</code> class with the <code>Shell</code> class. This was a big problem for me because I didn't realize that register protocol handler's main registration code is in <code>Browser::RegisterProtocolHandler</code> and <code>Browser::UnregisterProtocolHandler</code>.  Running in content_shell instead I get <code>Shell::RegisterProtocolHandler</code> and <code>Shell::UnregisterProtocolHandler</code> but the unregister method is empty. I couldn't figure out why my test wasn't working until I added logging to the unregister methods and could see what was missing.</p>
+<h3 id="new-test-stability" tabindex="-1">New test stability <a class="header-anchor" href="#new-test-stability">#</a></h3>
+<p>When adding a new test its important to ensure there's no reliability issues. You can locally rerun a test 20 times using something like <code>--repeat-each 20</code> and validate that it continues to work. When you submit the change via chromium CL it will see you are adding a new test and run it many times to ensure this as well.</p>
+<p>I had issues with my test sometimes failing but only on Mac. I hear that there are some reliabililty issues on specific Mac setups in the test lab and so I was recommended to allow for timeout from my tests on that group of Macs.</p>
+<h2 id="command-line-summary" tabindex="-1">Command line summary <a class="header-anchor" href="#command-line-summary">#</a></h2>
+<p>run_wpt_tests:</p>
+<pre><code>Q:\cr\src\third_party\blink\tools\run_wpt_tests.bat -t Q:\cr\src\out\debug_x64  virtual/speculation-rules-prerender-target-hint/external/wpt/speculation-rules/prerender/protocol-handler-unregister.https.html --verbose --num-retries 0 --no-manifest-update -p chrome --repeat-each 20
+</code></pre>
+<p>run_web_tests:</p>
+<pre><code>Q:\cr\src\third_party\blink\tools\run_web_tests.bat -t Q:\cr\src\out\debug_x64  virtual/speculation-rules-prerender-target-hint/external/wpt/speculation-rules/prerender/protocol-handler-unregister.https.html --verbose --details --driver-logging --num-retries 0 --no-manifest-update --enable-per-test-tracing
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>run_web_tests param</th>
+<th>run_wpt_tests param</th>
+<th>notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--driver-logging</code></td>
+<td><code>--verbose</code></td>
+<td>extra info and logging from tests and test infra. Includes chromium LOG statements</td>
+</tr>
+<tr>
+<td><code>--verbose --details</code></td>
+<td>n/a</td>
+<td>print extra info for every test result</td>
+</tr>
+<tr>
+<td><code>--num-retries 0</code></td>
+<td><code>--num-retries 0</code></td>
+<td>Don't retry failed tests</td>
+</tr>
+<tr>
+<td><code>--repeat-each 20</code></td>
+<td><code>--repeat-each 20</code></td>
+<td>Rerun every test 20 times</td>
+</tr>
+<tr>
+<td><code>--no-manifest-update</code></td>
+<td><code>--no-manifest-update</code></td>
+<td>Don't rebuild test list (30s)</td>
+</tr>
+<tr>
+<td><code>--enable-per-test-tracing</code></td>
+<td>n/a</td>
+<td>Generate pftrace files for the test run</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="links-nextprev"><li>Previous: <a rel="prev" href="/dave/2025-02/eleventy-on-github-pages--part-3-/">Eleventy on GitHub Pages (Part 3)</a></li>
+</ul>
+
+		</main>
+
+		<footer></footer>
+
+		<!-- Current page: /dave/2025-03/noobs-wpt-in-chromium-learnings/ -->
+	</body>
+</html>

@@ -522,6 +522,11 @@
 	</url>
 	
 	<url>
+		<loc>https://deletethis.net/dave/2025-03/noobs-wpt-in-chromium-learnings/</loc>
+		<lastmod>2025-03-20</lastmod>
+	</url>
+	
+	<url>
 		<loc>https://deletethis.net/dave/about/</loc>
 		<lastmod>2025-03-20</lastmod>
 	</url>
@@ -547,21 +552,6 @@
 	</url>
 	
 	<url>
-		<loc>https://deletethis.net/dave/tags/eleventy/</loc>
-		<lastmod>2025-03-20</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://deletethis.net/dave/tags/github/</loc>
-		<lastmod>2025-03-20</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://deletethis.net/dave/tags/dns/</loc>
-		<lastmod>2025-03-20</lastmod>
-	</url>
-	
-	<url>
 		<loc>https://deletethis.net/dave/tags/http/</loc>
 		<lastmod>2025-03-20</lastmod>
 	</url>
@@ -582,6 +572,21 @@
 	</url>
 	
 	<url>
+		<loc>https://deletethis.net/dave/tags/eleventy/</loc>
+		<lastmod>2025-03-20</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://deletethis.net/dave/tags/github/</loc>
+		<lastmod>2025-03-20</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://deletethis.net/dave/tags/dns/</loc>
+		<lastmod>2025-03-20</lastmod>
+	</url>
+	
+	<url>
 		<loc>https://deletethis.net/dave/tags/chromium/</loc>
 		<lastmod>2025-03-20</lastmod>
 	</url>
@@ -598,6 +603,26 @@
 	
 	<url>
 		<loc>https://deletethis.net/dave/tags/wpt/</loc>
+		<lastmod>2025-03-20</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://deletethis.net/dave/tags/javascript/</loc>
+		<lastmod>2025-03-20</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://deletethis.net/dave/tags/array/</loc>
+		<lastmod>2025-03-20</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://deletethis.net/dave/tags/mastodon/</loc>
+		<lastmod>2025-03-20</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://deletethis.net/dave/tags/blog/</loc>
 		<lastmod>2025-03-20</lastmod>
 	</url>
 	
@@ -623,26 +648,6 @@
 	
 	<url>
 		<loc>https://deletethis.net/dave/tags/restricted-capabilities/</loc>
-		<lastmod>2025-03-20</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://deletethis.net/dave/tags/javascript/</loc>
-		<lastmod>2025-03-20</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://deletethis.net/dave/tags/array/</loc>
-		<lastmod>2025-03-20</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://deletethis.net/dave/tags/mastodon/</loc>
-		<lastmod>2025-03-20</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://deletethis.net/dave/tags/blog/</loc>
 		<lastmod>2025-03-20</lastmod>
 	</url>
 	
