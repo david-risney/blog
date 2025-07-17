@@ -4,12 +4,32 @@
 	<subtitle>Dave Risney&#39;s blog on web, coding, and things</subtitle>
 	<link href="https://deletethis.net/feed/feed.xml" rel="self"/>
 	<link href="https://deletethis.net/dave/"/>
-	<updated>2025-03-20T00:00:00Z</updated>
+	<updated>2025-07-16T00:00:00Z</updated>
 	<id>https://deletethis.net/dave/</id>
 	<author>
 		<name>Dave Risney</name>
 		<email>david.risney+blog@gmail.com</email>
 	</author>
+	
+	<entry>
+		<title>OpenSourceIn Browser Extension</title>
+		<link href="https://deletethis.net/dave/2025-07/opensourcein-browser-extension/"/>
+		<updated>2025-07-16T00:00:00Z</updated>
+		<id>https://deletethis.net/dave/2025-07/opensourcein-browser-extension/</id>
+		<content type="html">&lt;p&gt;I&#39;ve been writing (and using) a browser extension called &lt;a href=&quot;https://github.com/david-risney/OpenSourceIn&quot;&gt;OpenSourceIn&lt;/a&gt; that allows you to open the source code you&#39;re viewing in the browser into VS Code. It supports the web sites I use: GitHub, Azure DevOps, and the various Chromium development sites for bugs, code review, and source search. Working on Chromium I find myself very regularly switching between cs.chromium.org, issues.chromium.org, and chromium-review.googlesource.com and just wanted something to make it slightly easier to switch from the browser into the corresponding local source file. The best solution to this would be proper integration of these various sites into VS Code, but this provides good value for very little investment.&lt;/p&gt;
+&lt;h2 id=&quot;development&quot; tabindex=&quot;-1&quot;&gt;Development &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-07/opensourcein-browser-extension/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I used GitHub Copilot throughout the development of this extension and overall I&#39;m not sure if it saved me time but probably helped me actually finish. My overall thoughts:&lt;/p&gt;
+&lt;h3 id=&quot;side-project-fatigue-mitigation&quot; tabindex=&quot;-1&quot;&gt;Side project fatigue mitigation &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-07/opensourcein-browser-extension/&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I often get very interested and into a side project idea, but at this point in my life I can tell how many days I have before my focus and interest fails. GitHub Copilot helps me get through things like setting up the project, getting test infra setup, and so on that I might otherwise rathole on and not actually get to the project. It means I can start to see progress faster helping with my motivation.&lt;/p&gt;
+&lt;h3 id=&quot;creating-c-grade-skeleton&quot; tabindex=&quot;-1&quot;&gt;Creating C grade skeleton &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-07/opensourcein-browser-extension/&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Very similar to the above, the AI can help create a maybe C grade skeleton of the project. Its easier for me to work from this skeleton and fix things up then to start from scratch. I can run the skeleton and validate behavior as I go. I still end up rewriting maybe most of the code but I get to start with something that runs.&lt;/p&gt;
+&lt;p&gt;And for this phase of the project where I am just trying to get it to setup a skeleton I don&#39;t have to invest a lot of my focus and time. When I start a build of another project that&#39;s going to take a few minutes I can run what I have, look through the code and tell it what I want to see and how to see things setup.&lt;/p&gt;
+&lt;p&gt;When I first had it setup the project it included a bunch of popular dependencies that I really did not want. But its easy enough to go into the dependency list and remove these things and in the mean time I have a working project.&lt;/p&gt;
+&lt;h3 id=&quot;works-best-when-you-know-what-you-want&quot; tabindex=&quot;-1&quot;&gt;Works best when you know what you want &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-07/opensourcein-browser-extension/&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This was my first time trying to write a browser extension for a real purpose. I had a number of misconceptions about how browser extensions work. This led to several instances of me trying to get Copilot to write code that was not going to work. And talking to Copilot did not help. Its too much of a &#39;yes&#39; person. I ask a question in a positive way and it gives me a positive answer. I rephrase my question in a negative way and it gives me a negative answer. I had to go read MDN on exactly how things actually work for browser extension developments.&lt;/p&gt;
+&lt;p&gt;Similarly I can&#39;t tell it to do large tasks like fully describe the options page. I need to understand how I want the code structured, and go one by one through the features.&lt;/p&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>Noobs WPT in Chromium learnings</title>
