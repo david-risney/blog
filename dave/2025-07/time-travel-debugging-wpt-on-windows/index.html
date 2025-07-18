@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Tagged “wpt”</title>
-		<meta name="description" content="Dave Risney&#39;s blog on web, coding, and things">
+		<title>Time Travel Debugging WPT on Windows</title>
+		<meta name="description" content="How to use Time Travel Debugging with Web Platform Tests on Windows.">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="deletethis.net">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="deletethis.net">
 
@@ -579,32 +579,65 @@ window.addEventListener("pagereveal", async (e) => {
 		</header>
 
 		<main id="skip">
-			
-<h1>Tagged “wpt”</h1>
+			<h1>Time Travel Debugging WPT on Windows</h1>
 
+<ul class="post-metadata">
+	<li><time datetime="2025-07-17">2025 July 17</time></li>
+	<li><a href="/dave/tags/ttd/" class="post-tag">ttd</a>, </li>
+	<li><a href="/dave/tags/windows/" class="post-tag">windows</a>, </li>
+	<li><a href="/dave/tags/wpt/" class="post-tag">wpt</a></li>
+</ul>
 
-<ol reversed class="postlist" style="counter-reset: start-from 3">
-
-	<li class="postlist-item">
-		<a href="/dave/2025-07/time-travel-debugging-wpt-on-windows/" class="postlist-link">Time Travel Debugging WPT on Windows</a>
-		<time class="postlist-date" datetime="2025-07-17">2025 July 17</time>
-	</li>
-
-	<li class="postlist-item">
-		<a href="/dave/2025-03/noobs-wpt-in-chromium-learnings/" class="postlist-link">Noobs WPT in Chromium learnings</a>
-		<time class="postlist-date" datetime="2025-03-20">2025 March 20</time>
-	</li>
-
+<p>I've had trouble getting Time Travel Debugging (TTD) working with debugging WPT from my chromium repo on Windows. Having finally gotten it working, I wanted to document the steps I took to get it working:</p>
+<ol>
+<li>
+<p>Follow the <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/time-travel-debugging-ttd-exe-command-line-util#how-to-download-and-install-the-ttdexe-command-line-utility-preferred-method">install TTD instructions</a>. This will install the <code>Microsoft.TimeTravelDebugging</code> app package and will expose the <code>ttd.exe</code> command line executable.</p>
+</li>
+<li>
+<p>Disable hardware enforced stack protection. See <a href="https://learn.microsoft.com/en-us/windows-server/security/kernel-mode-hardware-stack-protection#enable-kernel-mode-hardware-enforced-stack-protection-in-windows-security">Kernel-mode Hardware-enforced Stack Protection</a> of where to find the option, but disable it. TTD cannot trace an executable with this enabled.</p>
+</li>
+<li>
+<p>Add a WPT virtual test suite to pass in <code>--no-sandbox</code>. TTD doesn't work when Chromium sandboxing is on for a process. Edit <code>third_party/blink/web_tests/VirtualTestSuites</code> and add a new entry like the following:</p>
+</li>
+</ol>
+<pre><code>  {
+    &quot;prefix&quot;: &quot;no-sandbox&quot;,
+    &quot;platforms&quot;: [
+      &quot;Linux&quot;,
+      &quot;Mac&quot;,
+      &quot;Win&quot;
+    ],
+    &quot;bases&quot;: [ &quot;&quot; ],
+    &quot;args&quot;: [
+      &quot;--no-sandbox&quot;
+    ],
+    &quot;owners&quot;: [
+      &quot;example@example.com&quot;
+    ],
+    &quot;expires&quot;: &quot;Jul 17, 2026&quot;
+  },
+</code></pre>
+<ol start="4">
+<li>Run TTD to monitor the WPT headless_shell.exe processes. In an admin prompt run the following, but modify the <code>-out</code> path to wherever you want the TTD trace files to be created. Pick a path that can store files of several GBs in size. Leave this running.</li>
+</ol>
+<pre><code>Admin&gt; ttd.exe -out C:\users\davris\tmp -monitor headless_shell.exe -noUI
+</code></pre>
+<ol start="5">
+<li>Run your WPT tests using the virtual test suite, with timeouts extended, and using a release build in a non-admin prompt. Note in the following command the test starts with the test suite prefix <code>virtual/no-sandbox/</code> and the <code>--timeout-multiplier</code> is set to 5 to allow for the much slower execution when TTD tracing.</li>
+</ol>
+<pre><code>Non-Admin&gt; Q:\cr\src\third_party\blink\tools\run_wpt_tests -t Q:\cr\src\out\release_x64 virtual/no-sandbox/external/wpt/service-workers/service-worker/service-worker-header.https.html --no-retry-failures --verbose --driver-logging --timeout-multiplier 5
+</code></pre>
+<ol start="6">
+<li>Once the WPT finishes you should find a bunch of <code>*.run</code> files in the output directory you specified in step 4. These are the TTD trace files. You can open them in WinDbg and use <code>!peb</code> to see the command line and which kind of chromium process kind. But usually the <code>.run</code> file of the renderer process you want is the last one and largest one, and for the browser process is the first one.</li>
 </ol>
 
-
-<p>See <a href="/dave/tags/">all tags</a>.</p>
-
+<ul class="links-nextprev"><li>Previous: <a rel="prev" href="/dave/2025-07/opensourcein-browser-extension/">OpenSourceIn Browser Extension</a></li>
+</ul>
 
 		</main>
 
 		<footer></footer>
 
-		<!-- Current page: /dave/tags/wpt/ -->
+		<!-- Current page: /dave/2025-07/time-travel-debugging-wpt-on-windows/ -->
 	</body>
 </html>

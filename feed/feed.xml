@@ -4,12 +4,62 @@
 	<subtitle>Dave Risney&#39;s blog on web, coding, and things</subtitle>
 	<link href="https://deletethis.net/feed/feed.xml" rel="self"/>
 	<link href="https://deletethis.net/dave/"/>
-	<updated>2025-07-16T00:00:00Z</updated>
+	<updated>2025-07-17T00:00:00Z</updated>
 	<id>https://deletethis.net/dave/</id>
 	<author>
 		<name>Dave Risney</name>
 		<email>david.risney+blog@gmail.com</email>
 	</author>
+	
+	<entry>
+		<title>Time Travel Debugging WPT on Windows</title>
+		<link href="https://deletethis.net/dave/2025-07/time-travel-debugging-wpt-on-windows/"/>
+		<updated>2025-07-17T00:00:00Z</updated>
+		<id>https://deletethis.net/dave/2025-07/time-travel-debugging-wpt-on-windows/</id>
+		<content type="html">&lt;p&gt;I&#39;ve had trouble getting Time Travel Debugging (TTD) working with debugging WPT from my chromium repo on Windows. Having finally gotten it working, I wanted to document the steps I took to get it working:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Follow the &lt;a href=&quot;https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/time-travel-debugging-ttd-exe-command-line-util#how-to-download-and-install-the-ttdexe-command-line-utility-preferred-method&quot;&gt;install TTD instructions&lt;/a&gt;. This will install the &lt;code&gt;Microsoft.TimeTravelDebugging&lt;/code&gt; app package and will expose the &lt;code&gt;ttd.exe&lt;/code&gt; command line executable.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Disable hardware enforced stack protection. See &lt;a href=&quot;https://learn.microsoft.com/en-us/windows-server/security/kernel-mode-hardware-stack-protection#enable-kernel-mode-hardware-enforced-stack-protection-in-windows-security&quot;&gt;Kernel-mode Hardware-enforced Stack Protection&lt;/a&gt; of where to find the option, but disable it. TTD cannot trace an executable with this enabled.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add a WPT virtual test suite to pass in &lt;code&gt;--no-sandbox&lt;/code&gt;. TTD doesn&#39;t work when Chromium sandboxing is on for a process. Edit &lt;code&gt;third_party/blink/web_tests/VirtualTestSuites&lt;/code&gt; and add a new entry like the following:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;  {
+    &amp;quot;prefix&amp;quot;: &amp;quot;no-sandbox&amp;quot;,
+    &amp;quot;platforms&amp;quot;: [
+      &amp;quot;Linux&amp;quot;,
+      &amp;quot;Mac&amp;quot;,
+      &amp;quot;Win&amp;quot;
+    ],
+    &amp;quot;bases&amp;quot;: [ &amp;quot;&amp;quot; ],
+    &amp;quot;args&amp;quot;: [
+      &amp;quot;--no-sandbox&amp;quot;
+    ],
+    &amp;quot;owners&amp;quot;: [
+      &amp;quot;example@example.com&amp;quot;
+    ],
+    &amp;quot;expires&amp;quot;: &amp;quot;Jul 17, 2026&amp;quot;
+  },
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;Run TTD to monitor the WPT headless_shell.exe processes. In an admin prompt run the following, but modify the &lt;code&gt;-out&lt;/code&gt; path to wherever you want the TTD trace files to be created. Pick a path that can store files of several GBs in size. Leave this running.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;Admin&amp;gt; ttd.exe -out C:&#92;users&#92;davris&#92;tmp -monitor headless_shell.exe -noUI
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&quot;5&quot;&gt;
+&lt;li&gt;Run your WPT tests using the virtual test suite, with timeouts extended, and using a release build in a non-admin prompt. Note in the following command the test starts with the test suite prefix &lt;code&gt;virtual/no-sandbox/&lt;/code&gt; and the &lt;code&gt;--timeout-multiplier&lt;/code&gt; is set to 5 to allow for the much slower execution when TTD tracing.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;Non-Admin&amp;gt; Q:&#92;cr&#92;src&#92;third_party&#92;blink&#92;tools&#92;run_wpt_tests -t Q:&#92;cr&#92;src&#92;out&#92;release_x64 virtual/no-sandbox/external/wpt/service-workers/service-worker/service-worker-header.https.html --no-retry-failures --verbose --driver-logging --timeout-multiplier 5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&quot;6&quot;&gt;
+&lt;li&gt;Once the WPT finishes you should find a bunch of &lt;code&gt;*.run&lt;/code&gt; files in the output directory you specified in step 4. These are the TTD trace files. You can open them in WinDbg and use &lt;code&gt;!peb&lt;/code&gt; to see the command line and which kind of chromium process kind. But usually the &lt;code&gt;.run&lt;/code&gt; file of the renderer process you want is the last one and largest one, and for the browser process is the first one.&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>OpenSourceIn Browser Extension</title>
