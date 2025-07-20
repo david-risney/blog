@@ -4,12 +4,24 @@
 	<subtitle>Dave Risney&#39;s blog on web, coding, and things</subtitle>
 	<link href="https://deletethis.net/feed/feed.xml" rel="self"/>
 	<link href="https://deletethis.net/dave/"/>
-	<updated>2025-07-17T00:00:00Z</updated>
+	<updated>2025-07-20T00:00:00Z</updated>
 	<id>https://deletethis.net/dave/</id>
 	<author>
 		<name>Dave Risney</name>
 		<email>david.risney+blog@gmail.com</email>
 	</author>
+	
+	<entry>
+		<title>WatchBuildLog VS Code Extension</title>
+		<link href="https://deletethis.net/dave/2025-07/watchbuildlog-vs-code-extension/"/>
+		<updated>2025-07-20T00:00:00Z</updated>
+		<id>https://deletethis.net/dave/2025-07/watchbuildlog-vs-code-extension/</id>
+		<content type="html">&lt;p&gt;I&#39;ve made &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=DavidRisney.watchbuildlog&quot;&gt;WatchBuildLog&lt;/a&gt;, a VS Code extension that watches a build log file and parses out build errors for the VS Code Problems tab. The default build log paths and build error patterns match the Chromium build system. But you can change the log paths and error patterns in the settings.&lt;/p&gt;
+&lt;p&gt;There are other VS Code extensions for running the build from VS Code. But Chromium has so many different build targets and build options, that I want to continue building like I normally do from the command line. So rather than starting the build from VS Code, I stay in the command line unless there are errors I want to fix in VS Code, then I switch to VS Code, and the build errors are waiting for me.&lt;/p&gt;
+&lt;h2 id=&quot;development&quot; tabindex=&quot;-1&quot;&gt;Development &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-07/watchbuildlog-vs-code-extension/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This is my first VS Code extension. I used GitHub Copilot in part of its creation and it was a reasonable experience. I did end up rewriting most of the code as the generated code was unnecessarily complicated and missed edge cases. But having never made a VS Code extension, before it was convenient to have Copilot help me get started and get the basic structure of the extension.&lt;/p&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>Time Travel Debugging WPT on Windows</title>
