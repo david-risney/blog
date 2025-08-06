@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>deletethis.net</title>
-		<meta name="description" content="Dave Risney&#39;s blog on web, coding, and things">
+		<title>Code Search Comparison: GitHub, Azure DevOps, and Chromium</title>
+		<meta name="description" content="A comparison of code search capabilities between GitHub, Azure DevOps, and Chromium Code Search.">
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="deletethis.net">
 		<link rel="alternate" href="/feed/feed.json" type="application/json" title="deletethis.net">
 
@@ -579,111 +579,105 @@ window.addEventListener("pagereveal", async (e) => {
 		</header>
 
 		<main id="skip">
-			
-<h1>Tags</h1>
+			<h1>Code Search Comparison: GitHub, Azure DevOps, and Chromium</h1>
 
-<ul>
-
-	
-	<li><a href="/dave/tags/javascript/" class="post-tag">javascript</a></li>
-
-	
-	<li><a href="/dave/tags/array/" class="post-tag">array</a></li>
-
-	
-	<li><a href="/dave/tags/proxy/" class="post-tag">proxy</a></li>
-
-	
-	<li><a href="/dave/tags/http/" class="post-tag">http</a></li>
-
-	
-	<li><a href="/dave/tags/404/" class="post-tag">404</a></li>
-
-	
-	<li><a href="/dave/tags/uwp/" class="post-tag">uwp</a></li>
-
-	
-	<li><a href="/dave/tags/msix/" class="post-tag">msix</a></li>
-
-	
-	<li><a href="/dave/tags/sysinternals/" class="post-tag">sysinternals</a></li>
-
-	
-	<li><a href="/dave/tags/windows/" class="post-tag">windows</a></li>
-
-	
-	<li><a href="/dave/tags/restricted-capabilities/" class="post-tag">restricted capabilities</a></li>
-
-	
-	<li><a href="/dave/tags/eleventy/" class="post-tag">eleventy</a></li>
-
-	
-	<li><a href="/dave/tags/github/" class="post-tag">github</a></li>
-
-	
-	<li><a href="/dave/tags/dns/" class="post-tag">dns</a></li>
-
-	
-	<li><a href="/dave/tags/css/" class="post-tag">css</a></li>
-
-	
-	<li><a href="/dave/tags/sticky/" class="post-tag">sticky</a></li>
-
-	
-	<li><a href="/dave/tags/scroll-animation/" class="post-tag">scroll-animation</a></li>
-
-	
-	<li><a href="/dave/tags/chromium/" class="post-tag">chromium</a></li>
-
-	
-	<li><a href="/dave/tags/bug/" class="post-tag">bug</a></li>
-
-	
-	<li><a href="/dave/tags/software-development/" class="post-tag">software-development</a></li>
-
-	
-	<li><a href="/dave/tags/wpt/" class="post-tag">wpt</a></li>
-
-	
-	<li><a href="/dave/tags/browser-extension/" class="post-tag">browser-extension</a></li>
-
-	
-	<li><a href="/dave/tags/ai/" class="post-tag">ai</a></li>
-
-	
-	<li><a href="/dave/tags/opensourcein/" class="post-tag">opensourcein</a></li>
-
-	
-	<li><a href="/dave/tags/github-copilot/" class="post-tag">github-copilot</a></li>
-
-	
-	<li><a href="/dave/tags/ttd/" class="post-tag">ttd</a></li>
-
-	
-	<li><a href="/dave/tags/vscode/" class="post-tag">vscode</a></li>
-
-	
-	<li><a href="/dave/tags/watch-build-log/" class="post-tag">watch-build-log</a></li>
-
-	
-	<li><a href="/dave/tags/code-search/" class="post-tag">code-search</a></li>
-
-	
-	<li><a href="/dave/tags/azure-devops/" class="post-tag">azure-devops</a></li>
-
-	
-	<li><a href="/dave/tags/ado/" class="post-tag">ado</a></li>
-
-	
+<ul class="post-metadata">
+	<li><time datetime="2025-08-06">2025 August 06</time></li>
+	<li><a href="/dave/tags/code-search/" class="post-tag">code-search</a>, </li>
+	<li><a href="/dave/tags/chromium/" class="post-tag">chromium</a>, </li>
+	<li><a href="/dave/tags/azure-devops/" class="post-tag">azure-devops</a>, </li>
+	<li><a href="/dave/tags/ado/" class="post-tag">ado</a>, </li>
+	<li><a href="/dave/tags/github/" class="post-tag">github</a>, </li>
 	<li><a href="/dave/tags/regex/" class="post-tag">regex</a></li>
-
 </ul>
 
+<p>Before working in Chromium I had been using our internal project's Azure DevOps (ADO) code search feature, and occassionally using Chromium Code Search or GitHub's code search. It seemed like Chromium Code Search or GitHub code search would only sometimes work with my queries. Sitting down to compare the syntax of them led me to figure out why and the power of Chromium Code Search:</p>
+<h2 id="comparison-table" tabindex="-1">Comparison Table <a class="header-anchor" href="#comparison-table">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>ADO</th>
+<th>Chromium</th>
+<th>GitHub</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wildcard syntax</td>
+<td>Full glob match (<code>*</code>)</td>
+<td>Partial regex match (uses regular expressions, e.g. <code>.*</code>)</td>
+<td>Paths use partial glob, everything else is partial literal match, or partial regex with slashes</td>
+</tr>
+<tr>
+<td>Search for method/class definition/declaration</td>
+<td><code>Def:Name</code> / <code>decl:Name</code></td>
+<td><code>Class:Name</code> / <code>Func:Name</code></td>
+<td><code>Symbol:Name</code></td>
+</tr>
+<tr>
+<td>Negation logic operator</td>
+<td><code>NOT</code></td>
+<td><code>-</code></td>
+<td><code>NOT</code></td>
+</tr>
+<tr>
+<td>Includes generated files</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Documentation</td>
+<td><a href="https://learn.microsoft.com/en-us/azure/devops/repos/git/code-search?view=azure-devops">Functional code search - Azure Repos | Microsoft Learn</a></td>
+<td><a href="https://developers.google.com/code-search/reference/syntax">Syntax reference | Code Search | Google for Developers</a></td>
+<td><a href="https://docs.github.com/en/search-github/github-code-search/understanding-github-code-search-syntax">Understanding GitHub Code Search syntax</a></td>
+</tr>
+</tbody>
+</table>
+<p>The biggest difference is learning that Chromium is using partial regular expressions matching, ADO is using full glob matching, and GitHub is using partial literal matching unless you use <code>/.../</code> to explicitly ask for regular expressions. So <strong>TLDR</strong>: <code>*</code> in ADO should be <code>.*</code> in Chromium, and <code>/.*/</code> in GitHub.</p>
+<h3 id="example-comparison" tabindex="-1">Example Comparison <a class="header-anchor" href="#example-comparison">#</a></h3>
+<p>Searching for the <code>kTopLevel</code> symbol in the Chromium codebase, excluding tests and mojom files, and only looking in a service path:</p>
+<p><strong>ADO query:</strong></p>
+<pre><code>kTopLevel NOT path:*test* NOT ext:mojom path:*service*
+</code></pre>
+<p><strong><a href="https://source.chromium.org/search?q=%5CbkTopLevel%5Cb%20-path:test%20-path:%5C.mojom$%20-path:%5Eout%2F%20path:service&amp;sq=&amp;ss=chromium">cs.chromium query</a>:</strong></p>
+<pre><code>\bkTopLevel\b -path:test -path:\.mojom$ -path:^out/ path:service
+</code></pre>
+<p><strong><a href="https://github.com/search?q=repo%3Achromium%2Fchromium+%2F%5CbkTopLevel%5Cb%2F+NOT+path%3Atest+NOT+path%3A*.mojom+PATH%3Aservice&amp;type=code">GitHub query</a>:</strong></p>
+<pre><code>repo:chromium/chromium /\bkTopLevel\b/ NOT path:test NOT path:*.mojom PATH:service
+</code></pre>
+<h3 id="notable-differences" tabindex="-1">Notable Differences: <a class="header-anchor" href="#notable-differences">#</a></h3>
+<h4 id="ktoplevel" tabindex="-1"><code>kTopLevel</code> <a class="header-anchor" href="#ktoplevel">#</a></h4>
+<ul>
+<li><strong>ADO</strong>: <code>kTopLevel</code> matches just that word unless you use <code>*</code> to match more.</li>
+<li><strong>cs.chromium</strong>: <code>kTopLevel</code> is a regular expression that matches parts of words and you need to use <code>\b</code> on the ends to indicate that it shouldn't match more.</li>
+<li><strong>GitHub</strong>: <code>kTopLevel</code> on its own does a partial literal match. If you want to match the whole word you can use a regular expression with <code>/.../</code> around it, so <code>/\bkTopLevel\b/</code>.</li>
+</ul>
+<h4 id="not-path-test" tabindex="-1"><code>NOT path:*test*</code> <a class="header-anchor" href="#not-path-test">#</a></h4>
+<ul>
+<li><strong>ADO</strong>: We use <code>NOT</code> for negation and to match any path with test we again have to use <code>*</code> to match more</li>
+<li><strong>cs.chromium</strong>: We negate with <code>–</code> and test is a regular expression that matches the text test anywhere in the path.</li>
+<li><strong>GitHub</strong>: We negate with <code>NOT</code> and test is a partial glob matches the text test anywhere in the path.</li>
+</ul>
+<h4 id="not-ext-mojom" tabindex="-1"><code>NOT ext:mojom</code> <a class="header-anchor" href="#not-ext-mojom">#</a></h4>
+<ul>
+<li><strong>ADO</strong>: We can use <code>ext:</code> to match file extensions. It's just a shortcut for saying <code>path:*.mojom</code>.</li>
+<li><strong>cs.chromium</strong>: We need to represent this as a regular expression <code>-path:\.mojom$</code>. In this case escape the <code>.</code> with <code>\</code> so it's a literal <code>.</code> and use <code>$</code> to indicate that this is the end of the path.</li>
+<li><strong>GitHub</strong>: We can use <code>path:*.mojom</code> to match the file extension, although its a partial glob match so it would also match something like <code>my.mojom.txt</code> and is not perfect.</li>
+</ul>
+<h4 id="path-out" tabindex="-1"><code>-path:^out/</code> <a class="header-anchor" href="#path-out">#</a></h4>
+<ul>
+<li><strong>cs.chromium</strong>: They index generated files. Depending on what you're looking for this can be incredibly useful or since it indexes multiple different archs and platforms of generated code it can produce a lot of noise. You can use <code>-path:^out/</code> to ensure no generated files under the gen build folder show up.</li>
+</ul>
+
+<ul class="links-nextprev"><li>Previous: <a rel="prev" href="/dave/2025-07/watchbuildlog-vs-code-extension/">WatchBuildLog VS Code Extension</a></li>
+</ul>
 
 		</main>
 
 		<footer></footer>
 
-		<!-- Current page: /dave/tags/ -->
+		<!-- Current page: /dave/2025-08/code-search-comparison--github--azure-devops--and-chromium/ -->
 	</body>
 </html>

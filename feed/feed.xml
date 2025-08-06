@@ -4,12 +4,99 @@
 	<subtitle>Dave Risney&#39;s blog on web, coding, and things</subtitle>
 	<link href="https://deletethis.net/feed/feed.xml" rel="self"/>
 	<link href="https://deletethis.net/dave/"/>
-	<updated>2025-07-20T00:00:00Z</updated>
+	<updated>2025-08-06T00:00:00Z</updated>
 	<id>https://deletethis.net/dave/</id>
 	<author>
 		<name>Dave Risney</name>
 		<email>david.risney+blog@gmail.com</email>
 	</author>
+	
+	<entry>
+		<title>Code Search Comparison: GitHub, Azure DevOps, and Chromium</title>
+		<link href="https://deletethis.net/dave/2025-08/code-search-comparison--github--azure-devops--and-chromium/"/>
+		<updated>2025-08-06T00:00:00Z</updated>
+		<id>https://deletethis.net/dave/2025-08/code-search-comparison--github--azure-devops--and-chromium/</id>
+		<content type="html">&lt;p&gt;Before working in Chromium I had been using our internal project&#39;s Azure DevOps (ADO) code search feature, and occassionally using Chromium Code Search or GitHub&#39;s code search. It seemed like Chromium Code Search or GitHub code search would only sometimes work with my queries. Sitting down to compare the syntax of them led me to figure out why and the power of Chromium Code Search:&lt;/p&gt;
+&lt;h2 id=&quot;comparison-table&quot; tabindex=&quot;-1&quot;&gt;Comparison Table &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-08/code-search-comparison--github--azure-devops--and-chromium/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Feature&lt;/th&gt;
+&lt;th&gt;ADO&lt;/th&gt;
+&lt;th&gt;Chromium&lt;/th&gt;
+&lt;th&gt;GitHub&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Wildcard syntax&lt;/td&gt;
+&lt;td&gt;Full glob match (&lt;code&gt;*&lt;/code&gt;)&lt;/td&gt;
+&lt;td&gt;Partial regex match (uses regular expressions, e.g. &lt;code&gt;.*&lt;/code&gt;)&lt;/td&gt;
+&lt;td&gt;Paths use partial glob, everything else is partial literal match, or partial regex with slashes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Search for method/class definition/declaration&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Def:Name&lt;/code&gt; / &lt;code&gt;decl:Name&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Class:Name&lt;/code&gt; / &lt;code&gt;Func:Name&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Symbol:Name&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Negation logic operator&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;NOT&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;-&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;NOT&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Includes generated files&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Documentation&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://learn.microsoft.com/en-us/azure/devops/repos/git/code-search?view=azure-devops&quot;&gt;Functional code search - Azure Repos | Microsoft Learn&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://developers.google.com/code-search/reference/syntax&quot;&gt;Syntax reference | Code Search | Google for Developers&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://docs.github.com/en/search-github/github-code-search/understanding-github-code-search-syntax&quot;&gt;Understanding GitHub Code Search syntax&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The biggest difference is learning that Chromium is using partial regular expressions matching, ADO is using full glob matching, and GitHub is using partial literal matching unless you use &lt;code&gt;/.../&lt;/code&gt; to explicitly ask for regular expressions. So &lt;strong&gt;TLDR&lt;/strong&gt;: &lt;code&gt;*&lt;/code&gt; in ADO should be &lt;code&gt;.*&lt;/code&gt; in Chromium, and &lt;code&gt;/.*/&lt;/code&gt; in GitHub.&lt;/p&gt;
+&lt;h3 id=&quot;example-comparison&quot; tabindex=&quot;-1&quot;&gt;Example Comparison &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-08/code-search-comparison--github--azure-devops--and-chromium/&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Searching for the &lt;code&gt;kTopLevel&lt;/code&gt; symbol in the Chromium codebase, excluding tests and mojom files, and only looking in a service path:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ADO query:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;kTopLevel NOT path:*test* NOT ext:mojom path:*service*
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://source.chromium.org/search?q=%5CbkTopLevel%5Cb%20-path:test%20-path:%5C.mojom$%20-path:%5Eout%2F%20path:service&amp;amp;sq=&amp;amp;ss=chromium&quot;&gt;cs.chromium query&lt;/a&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&#92;bkTopLevel&#92;b -path:test -path:&#92;.mojom$ -path:^out/ path:service
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/search?q=repo%3Achromium%2Fchromium+%2F%5CbkTopLevel%5Cb%2F+NOT+path%3Atest+NOT+path%3A*.mojom+PATH%3Aservice&amp;amp;type=code&quot;&gt;GitHub query&lt;/a&gt;:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;repo:chromium/chromium /&#92;bkTopLevel&#92;b/ NOT path:test NOT path:*.mojom PATH:service
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;notable-differences&quot; tabindex=&quot;-1&quot;&gt;Notable Differences: &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-08/code-search-comparison--github--azure-devops--and-chromium/&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h4 id=&quot;ktoplevel&quot; tabindex=&quot;-1&quot;&gt;&lt;code&gt;kTopLevel&lt;/code&gt; &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-08/code-search-comparison--github--azure-devops--and-chromium/&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ADO&lt;/strong&gt;: &lt;code&gt;kTopLevel&lt;/code&gt; matches just that word unless you use &lt;code&gt;*&lt;/code&gt; to match more.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;cs.chromium&lt;/strong&gt;: &lt;code&gt;kTopLevel&lt;/code&gt; is a regular expression that matches parts of words and you need to use &lt;code&gt;&#92;b&lt;/code&gt; on the ends to indicate that it shouldn&#39;t match more.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GitHub&lt;/strong&gt;: &lt;code&gt;kTopLevel&lt;/code&gt; on its own does a partial literal match. If you want to match the whole word you can use a regular expression with &lt;code&gt;/.../&lt;/code&gt; around it, so &lt;code&gt;/&#92;bkTopLevel&#92;b/&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;not-path-test&quot; tabindex=&quot;-1&quot;&gt;&lt;code&gt;NOT path:*test*&lt;/code&gt; &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-08/code-search-comparison--github--azure-devops--and-chromium/&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ADO&lt;/strong&gt;: We use &lt;code&gt;NOT&lt;/code&gt; for negation and to match any path with test we again have to use &lt;code&gt;*&lt;/code&gt; to match more&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;cs.chromium&lt;/strong&gt;: We negate with &lt;code&gt;–&lt;/code&gt; and test is a regular expression that matches the text test anywhere in the path.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GitHub&lt;/strong&gt;: We negate with &lt;code&gt;NOT&lt;/code&gt; and test is a partial glob matches the text test anywhere in the path.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;not-ext-mojom&quot; tabindex=&quot;-1&quot;&gt;&lt;code&gt;NOT ext:mojom&lt;/code&gt; &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-08/code-search-comparison--github--azure-devops--and-chromium/&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ADO&lt;/strong&gt;: We can use &lt;code&gt;ext:&lt;/code&gt; to match file extensions. It&#39;s just a shortcut for saying &lt;code&gt;path:*.mojom&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;cs.chromium&lt;/strong&gt;: We need to represent this as a regular expression &lt;code&gt;-path:&#92;.mojom$&lt;/code&gt;. In this case escape the &lt;code&gt;.&lt;/code&gt; with &lt;code&gt;&#92;&lt;/code&gt; so it&#39;s a literal &lt;code&gt;.&lt;/code&gt; and use &lt;code&gt;$&lt;/code&gt; to indicate that this is the end of the path.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GitHub&lt;/strong&gt;: We can use &lt;code&gt;path:*.mojom&lt;/code&gt; to match the file extension, although its a partial glob match so it would also match something like &lt;code&gt;my.mojom.txt&lt;/code&gt; and is not perfect.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;path-out&quot; tabindex=&quot;-1&quot;&gt;&lt;code&gt;-path:^out/&lt;/code&gt; &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2025-08/code-search-comparison--github--azure-devops--and-chromium/&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;cs.chromium&lt;/strong&gt;: They index generated files. Depending on what you&#39;re looking for this can be incredibly useful or since it indexes multiple different archs and platforms of generated code it can produce a lot of noise. You can use &lt;code&gt;-path:^out/&lt;/code&gt; to ensure no generated files under the gen build folder show up.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>WatchBuildLog VS Code Extension</title>
