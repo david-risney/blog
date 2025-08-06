@@ -1,5 +1,5 @@
 ---
-title: Code Search Comparison: GitHub, Azure DevOps, and Chromium
+title: "Code Search Comparison: GitHub, Azure DevOps, and Chromium"
 description: A comparison of code search capabilities between GitHub, Azure DevOps, and Chromium Code Search.
 date: 2025-08-06
 tags:
@@ -26,6 +26,8 @@ Before working in Chromium I had been using our internal project's Azure DevOps 
 The biggest difference is learning that Chromium is using partial regular expressions matching, ADO is using full glob matching, and GitHub is using partial literal matching unless you use `/.../` to explicitly ask for regular expressions. So **TLDR**: `*` in ADO should be `.*` in Chromium, and `/.*/` in GitHub.
 
 ### Example Comparison
+
+Searching for the `kTopLevel` symbol in the Chromium codebase, excluding tests and mojom files, and only looking in a service path:
 
 **ADO query:**
 ```
