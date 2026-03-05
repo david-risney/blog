@@ -5,7 +5,7 @@ description: How much AI makes sense when writing software for fun?
 date: 2026-03-01
 tags:
   - software-development
-  - AI
+  - ai
 ---
 
 In the office many corporations are mandating use of AI for software development, but for side projects or personal projects, how much AI makes sense? If I'm writing software on my own time for fun as a hobby, I can use AI to maximize my productivity and make better use of my limited free time, but then am I still having fun writing software and do I still have a hobby? 
