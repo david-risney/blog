@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en" class="gradient-background">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>WebView2 wv2winrt bug case study</title>
+		<meta name="description" content="A case study of a bug in WebView2 wv2winrt and how it was resolved.">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="deletethis.net">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="deletethis.net">
+
+		<meta name="generator" content="Eleventy v2.0.0">
+
+		<link rel="icon" type="image/svg+xml" href="/img/semicolon.svg">
+
+		<link rel="me" href="https://github.com/david-risney">
+		<link rel="me" href="https://infosec.exchange/@davidrisney">
+		<link rel="me" href="mailto:david.risney@gmail.com">
+
+		<style>
+		@view-transition { navigation: auto; }
+
+::view-transition-group(*) { animation-duration: 0.2s; }
+
+@keyframes slide-in-from-left { from { translate: -150vw 0; } }
+@keyframes slide-in-from-right { from { translate: 150vw 0; } }
+@keyframes slide-out-to-left { to { translate: -150vw 0; } }
+@keyframes slide-out-to-right { to { translate: 150vw 0; } }
+@keyframes scale-up { from { scale: 0; } }
+@keyframes scale-down { to { scale: 0; } }
+@keyframes fade-in { from { opacity: 0; } }
+@keyframes fade-out { to { opacity: 0; } }
+
+html:active-view-transition-type(forwards, backwards) {
+	:root { view-transition-name: none; }
+	header { view-transition-name: header; }
+	main { view-transition-name: main; }
+	footer { view-transition-name: footer; }
+}
+
+html:active-view-transition-type(forwards) {
+	&::view-transition-old(main) { animation-name: fade-out; }
+	&::view-transition-new(main) { animation-name: fade-in; }
+}
+
+html:active-view-transition-type(backwards) {
+	&::view-transition-old(main) { animation-name: fade-out; }
+	&::view-transition-new(main) { animation-name: fade-in; }
+}
+
+html:active-view-transition-type(reload) {
+	&::view-transition-old(root) { animation-name: fade-out; }
+	&::view-transition-new(root) { animation-name: fade-in; }
+}
+
+/* Defaults */
+:root {
+	--font-family: Roboto, -apple-system, system-ui, sans-serif;
+	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
+}
+
+/* Theme colors */
+:root {
+	--color-gray-20: #d0d0d0;
+	--color-gray-50: #C0C0C0;
+	--color-gray-90: #333;
+
+	--background-color-rgb: 233, 233, 254;
+	--background-color: rgb(var(--background-color-rgb));
+	--background-color-slightly-transparent: rgba(var(--background-color-rgb), 0.75);
+
+    --content-border: #272727;
+    --content-background: #f0f0f5;
+
+	--text-color: var(--color-gray-90);
+	--text-color-link: #082840;
+	--text-color-link-active: #5f2b48;
+	--text-color-link-visited: #17050F;
+
+	--syntax-tab-size: 2;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-gray-20: #e0e0e0;
+		--color-gray-50: #C0C0C0;
+		--color-gray-90: #dad8d8;
+
+		--background-color-rgb: 21, 32, 43;
+
+		/* --text-color is assigned to --color-gray-_ above */
+		--text-color-link: #1493fb;
+		--text-color-link-active: #6969f7;
+		--text-color-link-visited: #a6a6f8;
+
+		--content-border: #dad8d8;
+		--content-background: #272727;
+	}
+}
+
+
+/* Global stylesheet */
+* {
+	box-sizing: border-box;
+}
+
+html {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+	background-color: var(--background-color);
+}
+
+body {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+}
+html {
+	overflow-y: scroll;
+}
+
+@media (width <= 50em) {
+	body {
+		max-width: 25em;
+	}
+
+	#recap-container {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(1, 1fr);
+		grid-template-areas: "blog"
+			"mastodon";
+		gap: 1em;
+	}
+
+	#blog-posts {
+		grid-area: blog;
+	}
+
+	#mastodon-posts {
+		grid-area: mastodon;
+	}
+
+	#meImage {
+		display: none;
+	}
+}
+
+@media (width > 50em) {
+	body {
+		max-width: 50em;
+	}
+
+	#recap-container {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas: "blog mastodon";
+		gap: 1em;
+	}
+
+	#blog-posts {
+		grid-area: blog;
+	}
+
+	#mastodon-posts {
+		grid-area: mastodon;
+	}
+
+	#floatyHeader {
+		animation: headerChange auto linear;
+		animation-timeline: scroll(root);
+	}
+
+	@keyframes headerChange {
+		0% { 
+			height: 300px; 
+			margin-bottom: 0px; 
+		}
+		15% { 
+			height: 4em; 
+			margin-bottom: calc(300px - 4em);
+		}
+		100% { 
+			height: 4em; 
+			margin-bottom: calc(300px - 4em);
+		}
+	}
+
+	#meImage {
+		animation: imageChange auto linear;
+		animation-timeline: scroll(root);
+		/* rounded corners */
+		border-radius: 5px;
+		/* border */
+		border: 2px solid var(--color-gray-20);
+	}
+
+	@keyframes imageChange {
+		0% { 
+			height: 200px; 
+			width: 200px;
+			opacity: 1;
+			object-fit: cover;
+			object-position: bottom;
+		}
+		15% { 
+			height: 0px;
+			width: 200px;
+			opacity: 0;
+			object-fit: cover;
+			object-position: bottom;
+		}
+		100% { 
+			height: 0px;
+			width: 200px;
+			opacity: 0;
+			object-fit: cover;
+			object-position: bottom;
+		}
+	}
+
+	.home-link {
+		animation: homelinkChange auto linear;
+		animation-timeline: scroll(root);
+	}
+
+	@keyframes homelinkChange {
+		0% { font-size: 3em; }
+		15% { font-size: 1em; }
+		100% { font-size: 1em; }
+	}
+}
+
+#recap-container > * {
+	width: 100%;
+	max-width: 384px; /* based on width of recap container and margins in grid */
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+p {
+	line-height: 1.5;
+}
+
+li {
+	line-height: 1.5;
+}
+
+a[href] {
+	color: var(--text-color-link);
+}
+a[href]:visited {
+	color: var(--text-color-link-visited);
+}
+a[href]:hover,
+a[href]:active {
+	color: var(--text-color-link-active);
+}
+
+main {
+	padding: 1rem;
+	background-color: var(--content-background);
+}
+main :first-child {
+	margin-top: 0;
+}
+
+.links-nextprev {
+	list-style: none;
+	/* border-top: 1px dashed var(--color-gray-20); */
+	padding: 1em 0;
+}
+
+table {
+	margin: 1em 0;
+}
+table td,
+table th {
+	padding-right: 1em;
+}
+
+pre,
+code {
+	font-family: var(--font-family-monospace);
+}
+pre:not([class*="language-"]) {
+	margin: .5em 0;
+	line-height: 1.375; /* 22px /16 */
+	-moz-tab-size: var(--syntax-tab-size);
+	-o-tab-size: var(--syntax-tab-size);
+	tab-size: var(--syntax-tab-size);
+	-webkit-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	overflow: auto;
+}
+code {
+	word-break: break-all;
+}
+
+/* Header */
+/* header is flex with the items aligned to the ends 
+   so that the first item is left aligned and the
+   last is right aligned */
+#floatyHeader {
+	display: grid;
+	align-items: center;
+	padding: 1em;
+	grid-template-columns: 1fr auto;
+	grid-template-areas: "home meImage"
+		"home nav";
+}
+
+#meImage {
+    height: 0px;
+    width: 200px;
+    opacity: 0;
+    object-fit: cover;
+    object-position: bottom;
+}
+
+#floatyHeader {
+	top: 0px;
+	position: sticky;
+	height: 4em;
+}
+
+#floatyHeader {
+	height: 100%;
+	width: 100%;
+	background: var(--background-color-slightly-transparent);
+	backdrop-filter: blur(5px) saturate(200%);
+}
+
+#floatyHeader {
+	border-bottom: 5px dashed var(--color-gray-20);
+}
+
+.home-link {
+	grid-area: home;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+
+nav {
+	grid-area: nav;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+#meImage {
+	grid-area: meImage;
+}
+
+.home-link {
+	font-size: 1em; /* 16px /16 */
+	font-weight: 700;
+	margin-right: 2em;
+}
+.home-link:link:not(:hover) {
+	text-decoration: none;
+}
+
+/* Nav */
+.nav {
+	width: 100%;
+	display: flex;
+	justify-content: right;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.nav-item {
+	display: inline-block;
+	margin-right: 1em;
+}
+.nav-item a[href]:not(:hover) {
+	text-decoration: none;
+}
+.nav a[href][aria-current="page"] {
+	text-decoration: underline;
+}
+
+/* Posts list */
+.postlist {
+	list-style: none;
+	padding: 0;
+	padding-left: 1.5rem;
+}
+.postlist-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	counter-increment: start-from -1;
+	margin-bottom: 3em;
+}
+#blog-posts .postlist-item:before {
+	display: inline-block;
+	pointer-events: none;
+	content: "" counter(start-from, decimal-leading-zero) ". ";
+	line-height: 100%;
+	text-align: right;
+	margin-left: -1.5rem;
+}
+.postlist-item > p {
+	overflow: hidden;
+
+}
+
+.avatar {
+	border-radius: 5px;
+	width: 32px;
+	height: 32px;
+	border: 1px solid var(--color-gray-20);
+}
+/*
+.avatar
+	margin-left: -38px;
+	float: left;
+}
+.toot {
+	padding-left: 36px;
+
+}
+	*/
+.toot {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-auto-rows: auto;
+}
+.toot > .avatar {
+	grid-column: 1;
+	/* avatar is all along the first column taking as many rows as it likes */
+	grid-row: 1 / 10;
+}
+.toot > * {
+	grid-column: 2;
+	grid-row: auto;
+}
+
+.postlist-date,
+.postlist-item:before {
+	font-size: 0.8125em; /* 13px /16 */
+	color: var(--color-gray-90);
+}
+.postlist-date {
+	word-spacing: -0.5px;
+}
+.postlist-link {
+	font-size: 1.1875em; /* 19px /16 */
+	font-weight: 700;
+	flex-basis: calc(100% - 1.5rem);
+	padding-left: .25em;
+	padding-right: .5em;
+	text-underline-position: from-font;
+	text-underline-offset: 0;
+	text-decoration-thickness: 1px;
+}
+.postlist-item-active .postlist-link {
+	font-weight: bold;
+}
+
+/* Tags */
+.post-tag {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: capitalize;
+	font-style: italic;
+}
+.postlist-item > .post-tag {
+	align-self: center;
+}
+
+/* Tags list */
+.post-metadata {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: .5em;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.post-metadata time {
+	margin-right: 1em;
+}
+
+/* Direct Links / Markdown Headers */
+.header-anchor {
+	text-decoration: none;
+	font-style: normal;
+	font-size: 1em;
+	margin-left: .1em;
+}
+a[href].header-anchor,
+a[href].header-anchor:visited {
+	color: transparent;
+}
+a[href].header-anchor:focus,
+a[href].header-anchor:hover {
+	text-decoration: underline;
+}
+a[href].header-anchor:focus,
+:hover > a[href].header-anchor {
+	color: #aaa;
+}
+
+h2 + .header-anchor {
+	font-size: 1.5em;
+}
+
+/* logo is the size of the text and center aligned 
+against the center of the text */
+.logo {
+	width: 1em;
+	height: 1em;
+	vertical-align: middle;
+}
+		</style>
+		<script>
+window.addEventListener("pageswap", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+
+window.addEventListener("pagereveal", async (e) => {
+	if (e.viewTransition) {
+		if (navigation.activation.from.url === navigation.activation.entry.url) {
+			e.viewTransition.types.add('reload');
+		} else {
+			e.viewTransition.types.add('forwards');
+		}
+	}
+});
+		</script>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header id="floatyHeader">
+			<a href="/dave/" class="home-link"><code>deletethis.net</code></a>
+			
+			<a href="/dave/about/"><img alt="A photo of me wearing a white button up shirt standing in front of generic office building windows." id="meImage" src="/dave/img/me-now.jpeg"></a>
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/dave/post/">Blog</a></li>
+					<li class="nav-item"><a href="/dave/about/">About</a></li>
+					<li class="nav-item"><a href="/feed/feed.xml"><!-- img class="logo" src="/img/rss-dark.svg" -->Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<h1>WebView2 wv2winrt bug case study</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2026-03-05">2026 March 05</time></li>
+	<li><a href="/dave/tags/webview2/" class="post-tag">webview2</a>, </li>
+	<li><a href="/dave/tags/wv2winrt/" class="post-tag">wv2winrt</a>, </li>
+	<li><a href="/dave/tags/winrt/" class="post-tag">winrt</a>, </li>
+	<li><a href="/dave/tags/csharp/" class="post-tag">csharp</a>, </li>
+	<li><a href="/dave/tags/bug/" class="post-tag">bug</a>, </li>
+	<li><a href="/dave/tags/software-development/" class="post-tag">software-development</a></li>
+</ul>
+
+<p>The following are my notes on investigating a bug that a customer ran into back when I was on the WebView2 team. I'm sharing it here in case aspects of it can be helpful for folks in similar situations. The names of files, functions, and such have been changed. The customer had provided me a VS solution that would reproduce the bug somewhat minimally:</p>
+<p>I've started the app, opened DevTools for WebView2, turned on <code>pause on exceptions</code>, then I reproduced the issue by clicking the appropriate button. JavaScript throws an exception and DevTools breaks in where we can see its a stack in our AddHostObjectToScript JavaScript code handling an incoming EmbeddedBrowserWebViewEvent message. To elaborate, part of WebView2.AddHostObjectToScript is implemented using JavaScript that runs in the context of the target HTML document. That JavaScript is responsible for producing JavaScript proxy objects that represent its corresponding native host object, proxying method calls and their results, property gets and sets, and so on. Looking at the exception information in the data JSON property on the message object in the DevTools we can see it is telling us there was an error <code>Member not found. (0x80020003)</code>.</p>
+<p>This is a response message from the native side to a request message that the JavaScript side would have initiated. The common issue for this error means that the JavaScript side asked to run a method that doesn't exist. Though in this case the customer says something else is going on.</p>
+<p>Next I look at the JavaScript to see what the corresponding request was. Its something in here so I rerun the repro but with a breakpoint on the start of this function to see when we hit the error (though I know it has to be the <code>await</code> call because the response we saw coming in was async and everything else in here is sync):</p>
+<pre><code>        async function exampleItemsAsync() {
+            try {
+                const instance = new Demo.Example();
+                var result = await instance.getExampleItemsAsync();
+                for (var v of result) {
+                    logMessage('Enumerated Result Async: ' + v.identifier);
+                }
+            } catch (err) {
+                logMessage('Async Error: ' + err);
+            }
+        }
+</code></pre>
+<p>I can see it is the await call.</p>
+<p>At this point I might normally check that the <code>GetExampleItemsAsync</code> method exists in the C# class, in the winmd, in the wv2winrt tool output saying it found it, and in the generated wv2winrt C++ source. I would check the wv2winrt tool generated code under Project\WinRTAdapter\Generated Files\wv2winrt\Demo.g.cpp to see that there is code generated for the function, I would open Project\x64\Debug\WinRTAdapter\WinRTAdapter.winmd in <a href="https://ilspy.net/">ILSpy</a> and see that it contains the method. But the customer says that's all there and I know this customer is good and has done their work. So I try putting a breakpoint in <code>Demo.Example.GetExampleItemsAsync()</code> and when I run the repro I can see that code is getting called.</p>
+<p>So it seems like there's something wrong happening between calling <code>GetExampleItemsAsync</code> and the JavaScript projection of the result. We saw the JavaScript projection receiving the message from native and it was already an error at that point and I stepped through and saw the end of the <code>GetExampleItemsAsync()</code> method succeeded, so its somewhere in between. Our options for code in between is the AddHostObjectToScript C++ WebView2 code, the AddHostObjectToScript C# code (which shouldn't be involved in this case if this is truly just WinRT) and the wv2winrt generated C++ code.</p>
+<p>The wv2winrt generated code is under here: Project\WinRTAdapter\Generated Files\wv2winrt\Demo.g.cpp and where I'm guessing the issue lies. I open that file, search for <code>GetExampleItemsAsync</code>, and put some breakpoints in at invocation (its marked with a comment saying its for <code>// Invoke for ...</code>) and in the async completed handler (the callback lambda passed as a parameter to the <code>asyncResultAsWinRT.Completed</code> method call). Note I had to turn on mixed mode debugging in the VS project settings.</p>
+<p>Then running the repro I see the invocation breakpoint hit, the C# code breakpoint I set earlier hits, then the async completed handler, then an exception is getting thrown from the c++/winrt code during our generated code call to Convert:</p>
+<pre><code>resultAsVariant.reset(Converter&lt;decltype(resultAsWinRT), VARIANT&gt;(
+    dispatchAdapter).Convert(resultAsWinRT));
+</code></pre>
+<p>This generated code is the boundary between the WinRT code and the COM IDispatch code that AddHostObjectToScript deals with. This line is trying to convert the WinRT type we got as a result of the async call, into a COM IDispatch related type that AddHostObjectToScript can deal with.</p>
+<p>Looking at the method in our stack just before the winrt::check_hresult call we can see the failure is coming from the following:</p>
+<pre><code>HRESULT hr = CreateDispatchFromInspectable(
+    unwrappedAsABI.get(), dispatchAdapter, dispatch.put(), &amp;is_cacheable);
+</code></pre>
+<p>I put a breakpoint on this line but disable it because it will get hit a bunch during the repro. I rerun the repro, and when the async completed handler bp hits, I reenable this bp. Stepping into this function the first interesting thing to check is the <code>IInspectable.RuntimeClassName</code> which is the name of the WinRT type we're trying to convert to. In this case its &quot;Windows.Foundation.Collections.IVector`1&lt;Demo.ExampleItem&gt;&quot; which is a WinRT type for a vector of ExampleItems. Stepping through the code the call to <code>LookupInstanceConstructibleEntry</code> returns nullptr.</p>
+<p>LookupInstanceConstructibleEntry should return a wrapper class we can use to wrap an <code>IInspectable</code> (WinRT type) of the specified type name. This list and the wrapper classes are all generated in the wv2winrt generated code. If the   <code>IVector\</code>1` typename isn't generated then there may be either something wrong with wv2winrt that it doesn't generate this, or we have to adjust the wv2winrt configuration to tell it to include this type.</p>
+<p>Just to make sure I understand what code was generated I search for <code>IVector</code> in the wv2winrt code. In <code>globals.cpp</code> we can see the <code>s_instanceConstructibleEntries</code> array that <code>LookupInstanceConstructibleEntry</code> was checking. It is sorted alphabetically and in it we see some entries for <code>IVector</code> but not the type we want. So it looks like wv2winrt tool didn't include this type. We can look at the wv2winrt tool output from when WinRTAdapter is built to see if there's any clues. With verbose output turned on wv2winrt tool will list why it is including or excluding types. After rebuilding WinRTAdapter I search for <code>IVector</code> in the tool's output:</p>
+<pre><code>1&gt;Including via reference: Demo.Example.GetListOfOther -&gt; Windows.Foundation.Collections.IVector`1&lt;Demo.MyClass&gt;
+1&gt;Including via reference: Demo.Example.GetExampleItemsAsync -&gt; Windows.Foundation.IAsyncOperation`1&lt;Windows.Foundation.Collections.IIterable`1&lt;Demo.ExampleItem&gt;&gt;
+</code></pre>
+<p>Conveniently, <code>GetListOfOther</code> gives us an example of something that is working and producing a found <code>IVector</code> type. The main differences are that <code>GetListOfOther</code> is not async and it is also listed here as returning an <code>IVector</code> whereas <code>GetExampleItemsAsync</code> is async and returning an <code>IIterable</code>.</p>
+<p>Lower in the tool output we see it finding the async's completed type:</p>
+<pre><code>1&gt;Including via reference: Windows.Foundation.IAsyncOperation`1&lt;Windows.Foundation.Collections.IIterable`1&lt;Demo.ExampleItem&gt;&gt;.GetResults -&gt; Windows.Foundation.Collections.IIterable`1&lt;Demo.ExampleItem&gt;
+</code></pre>
+<p>So it doesn't seem like the issue is that its async. Opening Project\x64\Debug\Demo.winmd in <a href="https://ilspy.net/">ILSpy</a> I can see that the winmd does indeed seem to say
+<code>IAsyncOperation&lt;IIterable&lt;ExampleItem&gt;&gt; IExampleClass.GetExampleItemsAsync();</code></p>
+<p>It seems to be the issue since at runtime the typename for the returned object was <code>IVector&lt;ExampleItem&gt;</code> not <code>IIterable&lt;ExampleItem&gt;</code>.</p>
+<p>To resolve this we should either get C#/WinMD tool to return <code>IVector</code> instead of <code>IIterable</code>, or get the wv2winrt tool to generate code for <code>IVector&lt;ExampleItem&gt;</code>. I'm going to try the second option.</p>
+<p>I open the project file (Project\WinRTAdapter\WinRTAdapter.vcxproj) in VSCode and examine the WebView2* properties directly:</p>
+<pre><code>&lt;WebView2DispatchAdapterIncludeFilters&gt;Demo;Windows.System.UserProfile;Windows.Globalization.Language;$(WebView2DispatchAdapterIncludeFilters)&lt;/WebView2DispatchAdapterIncludeFilters&gt;
+&lt;WV2WinRTVerbosity&gt;high&lt;/WV2WinRTVerbosity&gt;
+</code></pre>
+<p>(Notice that WV2WinRTVerbosity is already set to 'high' - this is important in order to get the wv2winrt tool verbose output that helped us earlier)</p>
+<p>The WebView2DispatchAdapterIncludeFilters property is a bunch of namespace or type names that should be included by the wv2winrt code generation. We can try adding our type name here. When I do this I start getting strange errors. I expect this is a problem with the <code>\`` and </code>&lt;&gt;` characters and wv2winrt tool not handling it properly or the command line not getting constructed with them correctly. This is likely a wv2winrt bug although perhaps I'm messing up their encoding in the project file.</p>
+<p>Instead I try the first solution, I add the following code to Example2.cs:</p>
+<pre><code>public IAsyncOperation&lt;IList&lt;ExampleItem&gt;&gt; DummyMethod() { return null; }
+</code></pre>
+<p>Now rebuilding Demo and WinRTAdapter everything is building. Looking in the wv2winrt output from WinRTAdapter we can see the following:</p>
+<pre><code>1&gt;Including via reference: Demo.Example.DummyMethod -&gt; Windows.Foundation.IAsyncOperation`1&lt;Windows.Foundation.Collections.IVector`1&lt;Demo.ExampleItem&gt;&gt;
+</code></pre>
+<p>And now running the bug repro the issue no longer occurs.</p>
+<p>Having this dummy method is a workaround to the issue. A better solution would be to add the <code>IVector\</code>1` type to the project's WebView2DispatchAdapterIncludeFilters.</p>
+<p>The real issue is that the runtime object and the winmd disagree about the type that's getting returned <code>IIterable</code> vs <code>IVector</code> which should be caused by CsWinRT the tool that is connecting up the C# to WinRT.</p>
+
+<ul class="links-nextprev"><li>Previous: <a rel="prev" href="/dave/2025-08/code-search-comparison--github--azure-devops--and-chromium/">Code Search Comparison: GitHub, Azure DevOps, and Chromium</a></li>
+</ul>
+
+		</main>
+
+		<footer></footer>
+
+		<!-- Current page: /dave/2026-03/webview2-wv2winrt-bug-case-study/ -->
+	</body>
+</html>

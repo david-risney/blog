@@ -4,12 +4,78 @@
 	<subtitle>Dave Risney&#39;s blog on web, coding, and things</subtitle>
 	<link href="https://deletethis.net/feed/feed.xml" rel="self"/>
 	<link href="https://deletethis.net/dave/"/>
-	<updated>2025-08-06T00:00:00Z</updated>
+	<updated>2026-03-05T00:00:00Z</updated>
 	<id>https://deletethis.net/dave/</id>
 	<author>
 		<name>Dave Risney</name>
 		<email>david.risney+blog@gmail.com</email>
 	</author>
+	
+	<entry>
+		<title>WebView2 wv2winrt bug case study</title>
+		<link href="https://deletethis.net/dave/2026-03/webview2-wv2winrt-bug-case-study/"/>
+		<updated>2026-03-05T00:00:00Z</updated>
+		<id>https://deletethis.net/dave/2026-03/webview2-wv2winrt-bug-case-study/</id>
+		<content type="html">&lt;p&gt;The following are my notes on investigating a bug that a customer ran into back when I was on the WebView2 team. I&#39;m sharing it here in case aspects of it can be helpful for folks in similar situations. The names of files, functions, and such have been changed. The customer had provided me a VS solution that would reproduce the bug somewhat minimally:&lt;/p&gt;
+&lt;p&gt;I&#39;ve started the app, opened DevTools for WebView2, turned on &lt;code&gt;pause on exceptions&lt;/code&gt;, then I reproduced the issue by clicking the appropriate button. JavaScript throws an exception and DevTools breaks in where we can see its a stack in our AddHostObjectToScript JavaScript code handling an incoming EmbeddedBrowserWebViewEvent message. To elaborate, part of WebView2.AddHostObjectToScript is implemented using JavaScript that runs in the context of the target HTML document. That JavaScript is responsible for producing JavaScript proxy objects that represent its corresponding native host object, proxying method calls and their results, property gets and sets, and so on. Looking at the exception information in the data JSON property on the message object in the DevTools we can see it is telling us there was an error &lt;code&gt;Member not found. (0x80020003)&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This is a response message from the native side to a request message that the JavaScript side would have initiated. The common issue for this error means that the JavaScript side asked to run a method that doesn&#39;t exist. Though in this case the customer says something else is going on.&lt;/p&gt;
+&lt;p&gt;Next I look at the JavaScript to see what the corresponding request was. Its something in here so I rerun the repro but with a breakpoint on the start of this function to see when we hit the error (though I know it has to be the &lt;code&gt;await&lt;/code&gt; call because the response we saw coming in was async and everything else in here is sync):&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;        async function exampleItemsAsync() {
+            try {
+                const instance = new Demo.Example();
+                var result = await instance.getExampleItemsAsync();
+                for (var v of result) {
+                    logMessage(&#39;Enumerated Result Async: &#39; + v.identifier);
+                }
+            } catch (err) {
+                logMessage(&#39;Async Error: &#39; + err);
+            }
+        }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I can see it is the await call.&lt;/p&gt;
+&lt;p&gt;At this point I might normally check that the &lt;code&gt;GetExampleItemsAsync&lt;/code&gt; method exists in the C# class, in the winmd, in the wv2winrt tool output saying it found it, and in the generated wv2winrt C++ source. I would check the wv2winrt tool generated code under Project&#92;WinRTAdapter&#92;Generated Files&#92;wv2winrt&#92;Demo.g.cpp to see that there is code generated for the function, I would open Project&#92;x64&#92;Debug&#92;WinRTAdapter&#92;WinRTAdapter.winmd in &lt;a href=&quot;https://ilspy.net/&quot;&gt;ILSpy&lt;/a&gt; and see that it contains the method. But the customer says that&#39;s all there and I know this customer is good and has done their work. So I try putting a breakpoint in &lt;code&gt;Demo.Example.GetExampleItemsAsync()&lt;/code&gt; and when I run the repro I can see that code is getting called.&lt;/p&gt;
+&lt;p&gt;So it seems like there&#39;s something wrong happening between calling &lt;code&gt;GetExampleItemsAsync&lt;/code&gt; and the JavaScript projection of the result. We saw the JavaScript projection receiving the message from native and it was already an error at that point and I stepped through and saw the end of the &lt;code&gt;GetExampleItemsAsync()&lt;/code&gt; method succeeded, so its somewhere in between. Our options for code in between is the AddHostObjectToScript C++ WebView2 code, the AddHostObjectToScript C# code (which shouldn&#39;t be involved in this case if this is truly just WinRT) and the wv2winrt generated C++ code.&lt;/p&gt;
+&lt;p&gt;The wv2winrt generated code is under here: Project&#92;WinRTAdapter&#92;Generated Files&#92;wv2winrt&#92;Demo.g.cpp and where I&#39;m guessing the issue lies. I open that file, search for &lt;code&gt;GetExampleItemsAsync&lt;/code&gt;, and put some breakpoints in at invocation (its marked with a comment saying its for &lt;code&gt;// Invoke for ...&lt;/code&gt;) and in the async completed handler (the callback lambda passed as a parameter to the &lt;code&gt;asyncResultAsWinRT.Completed&lt;/code&gt; method call). Note I had to turn on mixed mode debugging in the VS project settings.&lt;/p&gt;
+&lt;p&gt;Then running the repro I see the invocation breakpoint hit, the C# code breakpoint I set earlier hits, then the async completed handler, then an exception is getting thrown from the c++/winrt code during our generated code call to Convert:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;resultAsVariant.reset(Converter&amp;lt;decltype(resultAsWinRT), VARIANT&amp;gt;(
+    dispatchAdapter).Convert(resultAsWinRT));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This generated code is the boundary between the WinRT code and the COM IDispatch code that AddHostObjectToScript deals with. This line is trying to convert the WinRT type we got as a result of the async call, into a COM IDispatch related type that AddHostObjectToScript can deal with.&lt;/p&gt;
+&lt;p&gt;Looking at the method in our stack just before the winrt::check_hresult call we can see the failure is coming from the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;HRESULT hr = CreateDispatchFromInspectable(
+    unwrappedAsABI.get(), dispatchAdapter, dispatch.put(), &amp;amp;is_cacheable);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I put a breakpoint on this line but disable it because it will get hit a bunch during the repro. I rerun the repro, and when the async completed handler bp hits, I reenable this bp. Stepping into this function the first interesting thing to check is the &lt;code&gt;IInspectable.RuntimeClassName&lt;/code&gt; which is the name of the WinRT type we&#39;re trying to convert to. In this case its &amp;quot;Windows.Foundation.Collections.IVector`1&amp;lt;Demo.ExampleItem&amp;gt;&amp;quot; which is a WinRT type for a vector of ExampleItems. Stepping through the code the call to &lt;code&gt;LookupInstanceConstructibleEntry&lt;/code&gt; returns nullptr.&lt;/p&gt;
+&lt;p&gt;LookupInstanceConstructibleEntry should return a wrapper class we can use to wrap an &lt;code&gt;IInspectable&lt;/code&gt; (WinRT type) of the specified type name. This list and the wrapper classes are all generated in the wv2winrt generated code. If the   &lt;code&gt;IVector&#92;&lt;/code&gt;1` typename isn&#39;t generated then there may be either something wrong with wv2winrt that it doesn&#39;t generate this, or we have to adjust the wv2winrt configuration to tell it to include this type.&lt;/p&gt;
+&lt;p&gt;Just to make sure I understand what code was generated I search for &lt;code&gt;IVector&lt;/code&gt; in the wv2winrt code. In &lt;code&gt;globals.cpp&lt;/code&gt; we can see the &lt;code&gt;s_instanceConstructibleEntries&lt;/code&gt; array that &lt;code&gt;LookupInstanceConstructibleEntry&lt;/code&gt; was checking. It is sorted alphabetically and in it we see some entries for &lt;code&gt;IVector&lt;/code&gt; but not the type we want. So it looks like wv2winrt tool didn&#39;t include this type. We can look at the wv2winrt tool output from when WinRTAdapter is built to see if there&#39;s any clues. With verbose output turned on wv2winrt tool will list why it is including or excluding types. After rebuilding WinRTAdapter I search for &lt;code&gt;IVector&lt;/code&gt; in the tool&#39;s output:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1&amp;gt;Including via reference: Demo.Example.GetListOfOther -&amp;gt; Windows.Foundation.Collections.IVector`1&amp;lt;Demo.MyClass&amp;gt;
+1&amp;gt;Including via reference: Demo.Example.GetExampleItemsAsync -&amp;gt; Windows.Foundation.IAsyncOperation`1&amp;lt;Windows.Foundation.Collections.IIterable`1&amp;lt;Demo.ExampleItem&amp;gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Conveniently, &lt;code&gt;GetListOfOther&lt;/code&gt; gives us an example of something that is working and producing a found &lt;code&gt;IVector&lt;/code&gt; type. The main differences are that &lt;code&gt;GetListOfOther&lt;/code&gt; is not async and it is also listed here as returning an &lt;code&gt;IVector&lt;/code&gt; whereas &lt;code&gt;GetExampleItemsAsync&lt;/code&gt; is async and returning an &lt;code&gt;IIterable&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Lower in the tool output we see it finding the async&#39;s completed type:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1&amp;gt;Including via reference: Windows.Foundation.IAsyncOperation`1&amp;lt;Windows.Foundation.Collections.IIterable`1&amp;lt;Demo.ExampleItem&amp;gt;&amp;gt;.GetResults -&amp;gt; Windows.Foundation.Collections.IIterable`1&amp;lt;Demo.ExampleItem&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So it doesn&#39;t seem like the issue is that its async. Opening Project&#92;x64&#92;Debug&#92;Demo.winmd in &lt;a href=&quot;https://ilspy.net/&quot;&gt;ILSpy&lt;/a&gt; I can see that the winmd does indeed seem to say
+&lt;code&gt;IAsyncOperation&amp;lt;IIterable&amp;lt;ExampleItem&amp;gt;&amp;gt; IExampleClass.GetExampleItemsAsync();&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;It seems to be the issue since at runtime the typename for the returned object was &lt;code&gt;IVector&amp;lt;ExampleItem&amp;gt;&lt;/code&gt; not &lt;code&gt;IIterable&amp;lt;ExampleItem&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To resolve this we should either get C#/WinMD tool to return &lt;code&gt;IVector&lt;/code&gt; instead of &lt;code&gt;IIterable&lt;/code&gt;, or get the wv2winrt tool to generate code for &lt;code&gt;IVector&amp;lt;ExampleItem&amp;gt;&lt;/code&gt;. I&#39;m going to try the second option.&lt;/p&gt;
+&lt;p&gt;I open the project file (Project&#92;WinRTAdapter&#92;WinRTAdapter.vcxproj) in VSCode and examine the WebView2* properties directly:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;WebView2DispatchAdapterIncludeFilters&amp;gt;Demo;Windows.System.UserProfile;Windows.Globalization.Language;$(WebView2DispatchAdapterIncludeFilters)&amp;lt;/WebView2DispatchAdapterIncludeFilters&amp;gt;
+&amp;lt;WV2WinRTVerbosity&amp;gt;high&amp;lt;/WV2WinRTVerbosity&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;(Notice that WV2WinRTVerbosity is already set to &#39;high&#39; - this is important in order to get the wv2winrt tool verbose output that helped us earlier)&lt;/p&gt;
+&lt;p&gt;The WebView2DispatchAdapterIncludeFilters property is a bunch of namespace or type names that should be included by the wv2winrt code generation. We can try adding our type name here. When I do this I start getting strange errors. I expect this is a problem with the &lt;code&gt;&#92;`` and &lt;/code&gt;&amp;lt;&amp;gt;` characters and wv2winrt tool not handling it properly or the command line not getting constructed with them correctly. This is likely a wv2winrt bug although perhaps I&#39;m messing up their encoding in the project file.&lt;/p&gt;
+&lt;p&gt;Instead I try the first solution, I add the following code to Example2.cs:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public IAsyncOperation&amp;lt;IList&amp;lt;ExampleItem&amp;gt;&amp;gt; DummyMethod() { return null; }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now rebuilding Demo and WinRTAdapter everything is building. Looking in the wv2winrt output from WinRTAdapter we can see the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1&amp;gt;Including via reference: Demo.Example.DummyMethod -&amp;gt; Windows.Foundation.IAsyncOperation`1&amp;lt;Windows.Foundation.Collections.IVector`1&amp;lt;Demo.ExampleItem&amp;gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And now running the bug repro the issue no longer occurs.&lt;/p&gt;
+&lt;p&gt;Having this dummy method is a workaround to the issue. A better solution would be to add the &lt;code&gt;IVector&#92;&lt;/code&gt;1` type to the project&#39;s WebView2DispatchAdapterIncludeFilters.&lt;/p&gt;
+&lt;p&gt;The real issue is that the runtime object and the winmd disagree about the type that&#39;s getting returned &lt;code&gt;IIterable&lt;/code&gt; vs &lt;code&gt;IVector&lt;/code&gt; which should be caused by CsWinRT the tool that is connecting up the C# to WinRT.&lt;/p&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>Code Search Comparison: GitHub, Azure DevOps, and Chromium</title>
