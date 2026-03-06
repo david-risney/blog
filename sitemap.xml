@@ -577,11 +577,6 @@
 	</url>
 	
 	<url>
-		<loc>https://deletethis.net/dave/tags/http/</loc>
-		<lastmod>2026-03-05</lastmod>
-	</url>
-	
-	<url>
 		<loc>https://deletethis.net/dave/tags/code-search/</loc>
 		<lastmod>2026-03-05</lastmod>
 	</url>
@@ -608,6 +603,11 @@
 	
 	<url>
 		<loc>https://deletethis.net/dave/tags/regex/</loc>
+		<lastmod>2026-03-05</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://deletethis.net/dave/tags/http/</loc>
 		<lastmod>2026-03-05</lastmod>
 	</url>
 	
@@ -652,17 +652,17 @@
 	</url>
 	
 	<url>
+		<loc>https://deletethis.net/dave/tags/ai/</loc>
+		<lastmod>2026-03-05</lastmod>
+	</url>
+	
+	<url>
 		<loc>https://deletethis.net/dave/tags/javascript/</loc>
 		<lastmod>2026-03-05</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://deletethis.net/dave/tags/array/</loc>
-		<lastmod>2026-03-05</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://deletethis.net/dave/tags/ai/</loc>
 		<lastmod>2026-03-05</lastmod>
 	</url>
 	
@@ -682,16 +682,6 @@
 	</url>
 	
 	<url>
-		<loc>https://deletethis.net/dave/tags/mastodon/</loc>
-		<lastmod>2026-03-05</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://deletethis.net/dave/tags/blog/</loc>
-		<lastmod>2026-03-05</lastmod>
-	</url>
-	
-	<url>
 		<loc>https://deletethis.net/dave/tags/browser-extension/</loc>
 		<lastmod>2026-03-05</lastmod>
 	</url>
@@ -703,6 +693,16 @@
 	
 	<url>
 		<loc>https://deletethis.net/dave/tags/github-copilot/</loc>
+		<lastmod>2026-03-05</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://deletethis.net/dave/tags/mastodon/</loc>
+		<lastmod>2026-03-05</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://deletethis.net/dave/tags/blog/</loc>
 		<lastmod>2026-03-05</lastmod>
 	</url>
 	
@@ -737,7 +737,12 @@
 	</url>
 	
 	<url>
-		<loc>https://deletethis.net/dave/tags/proxy/</loc>
+		<loc>https://deletethis.net/dave/tags/vscode/</loc>
+		<lastmod>2026-03-05</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://deletethis.net/dave/tags/watch-build-log/</loc>
 		<lastmod>2026-03-05</lastmod>
 	</url>
 	
@@ -762,12 +767,7 @@
 	</url>
 	
 	<url>
-		<loc>https://deletethis.net/dave/tags/vscode/</loc>
-		<lastmod>2026-03-05</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://deletethis.net/dave/tags/watch-build-log/</loc>
+		<loc>https://deletethis.net/dave/tags/proxy/</loc>
 		<lastmod>2026-03-05</lastmod>
 	</url>
 </urlset>
