@@ -4,12 +4,204 @@
 	<subtitle>Dave Risney&#39;s blog on web, coding, and things</subtitle>
 	<link href="https://deletethis.net/feed/feed.xml" rel="self"/>
 	<link href="https://deletethis.net/dave/"/>
-	<updated>2026-03-05T00:00:00Z</updated>
+	<updated>2026-03-19T00:00:00Z</updated>
 	<id>https://deletethis.net/dave/</id>
 	<author>
 		<name>Dave Risney</name>
 		<email>david.risney+blog@gmail.com</email>
 	</author>
+	
+	<entry>
+		<title>Edge and WebView2 in Chrome DevTools MCP</title>
+		<link href="https://deletethis.net/dave/2026-03/edge-and-webview2-in-chrome-devtools-mcp/"/>
+		<updated>2026-03-19T00:00:00Z</updated>
+		<id>https://deletethis.net/dave/2026-03/edge-and-webview2-in-chrome-devtools-mcp/</id>
+		<content type="html">&lt;p&gt;The &lt;a href=&quot;https://github.com/ChromeDevTools/chrome-devtools-mcp&quot;&gt;Chrome DevTools MCP&lt;/a&gt; is very useful! Although it is the &lt;strong&gt;Chrome&lt;/strong&gt; DevTools MCP, it supports connecting to pretty much all chromium based browsers. This includes Microsoft Edge and WebView2 with a bit of extra configuration in &lt;code&gt;mcp.json&lt;/code&gt;. The tool knows explicitly about Chrome, so you have to specify either the &lt;code&gt;--executablePath&lt;/code&gt; for launch scenarios or &lt;code&gt;--userDataDir&lt;/code&gt; for auto-connect scenarios.&lt;/p&gt;
+&lt;h2 id=&quot;edge-launch&quot; tabindex=&quot;-1&quot;&gt;Edge Launch &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2026-03/edge-and-webview2-in-chrome-devtools-mcp/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To launch Edge you set the executablePath to point to your Edge binary. For example the following uses the Edge Dev channel on Windows:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;quot;args&amp;quot;: [
+  &amp;quot;--registry&amp;quot;,
+  &amp;quot;https://registry.npmjs.org&amp;quot;,
+  &amp;quot;chrome-devtools-mcp@0.18.1&amp;quot;,
+  // Relevant part next:
+  &amp;quot;--executablePath=C:&#92;&#92;Program Files (x86)&#92;&#92;Microsoft&#92;&#92;Edge Dev&#92;&#92;Application&#92;&#92;msedge.exe&amp;quot;
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There are a few different locations where Edge could be installed so you&#39;ll need to ensure you have the correct one for your device.&lt;/p&gt;
+&lt;p&gt;Default Edge install paths (not definitive, may vary based on user configuration, version or group policies):&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;OS&lt;/th&gt;
+&lt;th&gt;Channel&lt;/th&gt;
+&lt;th&gt;Path&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Windows&lt;/td&gt;
+&lt;td&gt;Stable&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;%PROGRAMFILES(X86)%&#92;Microsoft&#92;Edge&#92;Application&#92;msedge.exe&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Windows&lt;/td&gt;
+&lt;td&gt;Beta&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;%PROGRAMFILES(X86)%&#92;Microsoft&#92;Edge Beta&#92;Application&#92;msedge.exe&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Windows&lt;/td&gt;
+&lt;td&gt;Dev&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;%PROGRAMFILES(X86)%&#92;Microsoft&#92;Edge Dev&#92;Application&#92;msedge.exe&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Windows&lt;/td&gt;
+&lt;td&gt;Canary&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;%LOCALAPPDATA%&#92;Microsoft&#92;Edge SxS&#92;Application&#92;msedge.exe&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;macOS&lt;/td&gt;
+&lt;td&gt;Stable&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;macOS&lt;/td&gt;
+&lt;td&gt;Beta&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/Applications/Microsoft Edge Beta.app/Contents/MacOS/Microsoft Edge&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;macOS&lt;/td&gt;
+&lt;td&gt;Dev&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/Applications/Microsoft Edge Dev.app/Contents/MacOS/Microsoft Edge&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;macOS&lt;/td&gt;
+&lt;td&gt;Canary&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/Applications/Microsoft Edge Canary.app/Contents/MacOS/Microsoft Edge&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Linux&lt;/td&gt;
+&lt;td&gt;Stable&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/usr/bin/microsoft-edge&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Linux&lt;/td&gt;
+&lt;td&gt;Beta&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/usr/bin/microsoft-edge-beta&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Linux&lt;/td&gt;
+&lt;td&gt;Dev&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/usr/bin/microsoft-edge-dev&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Linux&lt;/td&gt;
+&lt;td&gt;Canary&lt;/td&gt;
+&lt;td&gt;Not available&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;edge-auto-connect&quot; tabindex=&quot;-1&quot;&gt;Edge Auto-connect &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2026-03/edge-and-webview2-in-chrome-devtools-mcp/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;To auto-connect to Edge, you need to:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Setup Edge for remote debugging:
+&lt;ol&gt;
+&lt;li&gt;Either use the &lt;code&gt;--remote-debugging-port=0&lt;/code&gt; flag when launching Edge&lt;/li&gt;
+&lt;li&gt;Or start Edge, navigate to &lt;code&gt;edge://inspect/#remote-debugging&lt;/code&gt;, and enable remote debugging on that page&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;And then set the &lt;code&gt;--user-data-dir&lt;/code&gt; to point to the Edge user data directory in &lt;code&gt;mcp.json&lt;/code&gt;:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&quot;language-json&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token property&quot;&gt;&quot;args&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token string&quot;&gt;&quot;--registry&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token string&quot;&gt;&quot;https://registry.npmjs.org&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token string&quot;&gt;&quot;chrome-devtools-mcp@0.18.1&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token comment&quot;&gt;// Relevant part next:&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token string&quot;&gt;&quot;--autoConnect&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token string&quot;&gt;&quot;--user-data-dir=C:&#92;&#92;Users&#92;&#92;davris&#92;&#92;AppData&#92;&#92;Local&#92;&#92;Microsoft&#92;&#92;Edge Dev&#92;&#92;User Data&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Default Edge user data directories (not definitive, may vary based on user configuration, version or group policies):&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;OS&lt;/th&gt;
+&lt;th&gt;Channel&lt;/th&gt;
+&lt;th&gt;Path&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Windows&lt;/td&gt;
+&lt;td&gt;Stable&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;%LOCALAPPDATA%&#92;Microsoft&#92;Edge&#92;User Data&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Windows&lt;/td&gt;
+&lt;td&gt;Beta&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;%LOCALAPPDATA%&#92;Microsoft&#92;Edge Beta&#92;User Data&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Windows&lt;/td&gt;
+&lt;td&gt;Dev&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;%LOCALAPPDATA%&#92;Microsoft&#92;Edge Dev&#92;User Data&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Windows&lt;/td&gt;
+&lt;td&gt;Canary&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;%LOCALAPPDATA%&#92;Microsoft&#92;Edge SxS&#92;User Data&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;macOS&lt;/td&gt;
+&lt;td&gt;Stable&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/Library/Application Support/Microsoft Edge&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;macOS&lt;/td&gt;
+&lt;td&gt;Beta&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/Library/Application Support/Microsoft Edge Beta&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;macOS&lt;/td&gt;
+&lt;td&gt;Dev&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/Library/Application Support/Microsoft Edge Dev&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;macOS&lt;/td&gt;
+&lt;td&gt;Canary&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/Library/Application Support/Microsoft Edge Canary&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Linux&lt;/td&gt;
+&lt;td&gt;Stable&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/.config/microsoft-edge&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Linux&lt;/td&gt;
+&lt;td&gt;Beta&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/.config/microsoft-edge-beta&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Linux&lt;/td&gt;
+&lt;td&gt;Dev&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;~/.config/microsoft-edge-dev&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Linux&lt;/td&gt;
+&lt;td&gt;Canary&lt;/td&gt;
+&lt;td&gt;Not available&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;webview2-auto-connect&quot; tabindex=&quot;-1&quot;&gt;WebView2 Auto-connect &lt;a class=&quot;header-anchor&quot; href=&quot;https://deletethis.net/dave/2026-03/edge-and-webview2-in-chrome-devtools-mcp/&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;WebView2 is similar to the Edge auto-connect scenario. WebView2 doesn&#39;t have a launch scenario because its up to the host app to decide when to create a WebView2.&lt;/p&gt;
+&lt;p&gt;To auto-connect to WebView2, you need to:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Setup WebView2 for remote debugging using WebView2 loader overrides:
+&lt;ol&gt;
+&lt;li&gt;Either use WebView2Utilities and follow the &lt;a href=&quot;https://github.com/david-risney/WebView2Utilities/wiki/How-to:-Auto-open-DevTools&quot;&gt;How to: Auto open DevTools wiki page&lt;/a&gt; but instead of checking the &lt;code&gt;Auto open DevTools&lt;/code&gt; checkbox, type &lt;code&gt;--remote-debugging-port=0&lt;/code&gt; in the &lt;code&gt;Arguments&lt;/code&gt; textbox.&lt;/li&gt;
+&lt;li&gt;Or manually create a registry value to set the AdditionalBrowserArguments after replacing &lt;code&gt;appname.exe&lt;/code&gt; with the name of your WebView2 host executable.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&quot;language-ini&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-ini&quot;&gt;&lt;span class=&quot;token section&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token section-name selector&quot;&gt;HKEY_CURRENT_USER&#92;Software&#92;Policies&#92;Microsoft&#92;Edge&#92;WebView2&#92;AdditionalBrowserArguments&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token key attr-name&quot;&gt;&quot;appname.exe&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token value attr-value&quot;&gt;&quot;&lt;span class=&quot;token inner-value&quot;&gt;--remote-debugging-port=0&lt;/span&gt;&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;And then set the &lt;code&gt;--user-data-dir&lt;/code&gt; to point to the WebView2 user data directory in &lt;code&gt;mcp.json&lt;/code&gt;. You&#39;ll need to discover the user data directory of the host app. You can use WebView2Utilities to do this as well, by going to the &lt;code&gt;Host Apps&lt;/code&gt; tab, selecting your running host app, and looking at the &lt;code&gt;User data folder&lt;/code&gt; row. For WebView2 user data folders, the path should end with &lt;code&gt;EBWebView&lt;/code&gt;. This is automatically added by WebView2 so if you are copying the path from source code, you will need to add it yourself.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&quot;language-json&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token property&quot;&gt;&quot;args&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token string&quot;&gt;&quot;--registry&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token string&quot;&gt;&quot;https://registry.npmjs.org&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token string&quot;&gt;&quot;chrome-devtools-mcp@0.18.1&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token comment&quot;&gt;// Relevant part next:&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token string&quot;&gt;&quot;--autoConnect&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token string&quot;&gt;&quot;--user-data-dir=C:&#92;&#92;Users&#92;&#92;davris&#92;&#92;AppData&#92;&#92;Local&#92;&#92;Packages&#92;&#92;Microsoft.WinUI3ControlsGallery_8wekyb3d8bbwe&#92;&#92;LocalState&#92;&#92;EBWebView&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>WebView2 wv2winrt bug case study</title>
