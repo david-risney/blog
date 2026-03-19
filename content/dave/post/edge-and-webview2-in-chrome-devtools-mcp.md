@@ -52,7 +52,7 @@ To auto-connect to Edge, you need to:
    2. Or start Edge, navigate to `edge://inspect/#remote-debugging`, and enable remote debugging on that page
 2. And then set the `--user-data-dir` to point to the Edge user data directory in `mcp.json`:
 
-```
+```json
 "args": [
   "--registry",
   "https://registry.npmjs.org",
@@ -90,14 +90,14 @@ To auto-connect to WebView2, you need to:
    1. Either use WebView2Utilities and follow the [How to: Auto open DevTools wiki page](https://github.com/david-risney/WebView2Utilities/wiki/How-to:-Auto-open-DevTools) but instead of checking the `Auto open DevTools` checkbox, type `--remote-debugging-port=0` in the `Arguments` textbox.
    2. Or manually create a registry value to set the AdditionalBrowserArguments after replacing `appname.exe` with the name of your WebView2 host executable.
 
-```reg
+```ini
 [HKEY_CURRENT_USER\Software\Policies\Microsoft\Edge\WebView2\AdditionalBrowserArguments]
 "appname.exe"="--remote-debugging-port=0"
 ```
 
 2. And then set the `--user-data-dir` to point to the WebView2 user data directory in `mcp.json`. You'll need to discover the user data directory of the host app. You can use WebView2Utilities to do this as well, by going to the `Host Apps` tab, selecting your running host app, and looking at the `User data folder` row. For WebView2 user data folders, the path should end with `EBWebView`. This is automatically added by WebView2 so if you are copying the path from source code, you will need to add it yourself.
 
-```
+```json
 "args": [
     "--registry",
     "https://registry.npmjs.org",
