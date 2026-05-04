@@ -51,7 +51,10 @@ window.addEventListener("pagereveal", async (e) => {
 
 			{#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
 			{# <!-- img alt="An old photo of me wearing a suit in a hotel room" id="meImage" src="/dave/img/me-old.png"--> #}
-			<a href="/dave/about/"><img alt="A photo of me wearing a white button up shirt standing in front of generic office building windows." id="meImage" src="/dave/img/me-now.jpeg"></a>
+			<a href="/dave/about/"><picture>
+				<source srcset="/dave/img/me-now.webp" type="image/webp">
+				<img alt="A photo of me wearing a white button up shirt standing in front of generic office building windows." id="meImage" src="/dave/img/me-now-400.jpeg" width="196" height="196">
+			</picture></a>
 			<nav>
 				<h2 class="visually-hidden">Top level navigation menu</h2>
 				<ul class="nav">
